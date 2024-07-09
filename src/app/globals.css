@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html {
+    scroll-behavior: smooth;
+}
+@layer components {
+    .wrapper {
+        max-width: 1300px;
+        margin: 0 auto;
+        overflow: hidden;
+    }
+}
+
