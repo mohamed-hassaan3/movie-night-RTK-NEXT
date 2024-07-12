@@ -27,6 +27,7 @@ const MediaBanner = ({ mediaID }) => {
   const category = useAppSelector(selectCategory);
   const dispatch = useAppDispatch();
   const {
+    id,
     backdrop_path,
     title,
     original_title,
@@ -40,6 +41,7 @@ const MediaBanner = ({ mediaID }) => {
     tagline,
     vote_average,
     first_air_date,
+    videos
   } = mediaDetails;
 
   useEffect(() => {
@@ -48,22 +50,24 @@ const MediaBanner = ({ mediaID }) => {
 
   console.log("MEDIA", mediaDetails);
   return (
-    <div className="text-center">
+    <div className="text-center relative">
       {isError ? (
         isError.status_message
       ) : isLoading ? (
         <p>Loading....</p>
       ) : (
         /* Backdrop Path */
-        <section className="relative h-[60vh] w-full">
+        <section className=" h-[60vh] w-full">
           <Image
             className="w-full h-full object-cover object-right-top opacity-10 "
-            src={`${process.env.NEXT_PUBLIC_MOVIE_DB_IMAGE_API}${backdrop_path}`}
+            src={`${process.env.NEXT_PUBLIC_MOVIE_DB_IMAGE_API}${
+              backdrop_path ? backdrop_path : poster_path
+              }`}
             layout="fill"
             alt="Banner"
           />
           {/* Content */}
-          <article className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-[95%] lg:w-[80%] flex gap-4 items-center p-4">
+          <article className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-[95%] lg:w-[80%] p-4 lg:p-2 flex gap-4 items-center">
             <figure>
               <Image
                 className="shadow-md w-full object-cover min-h-[400px] max-h-[400px] min-w-[300px] max-w-[300px]"
@@ -98,7 +102,7 @@ const MediaBanner = ({ mediaID }) => {
                 <span className="font-bold">User Score</span>
               </div>
                 <div className="my-3">
-                  <Trailer />
+                  <Trailer videos={videos?.results} id={id} />
                 </div>
               <div className="space-y-3">
                 <p className="text-gray-400">{tagline}</p>
@@ -116,4 +120,3 @@ const MediaBanner = ({ mediaID }) => {
 };
 
 export default MediaBanner;
-/* https://www.themoviedb.org/movie/ID#play=KEY */
