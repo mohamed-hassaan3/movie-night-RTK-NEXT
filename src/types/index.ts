@@ -49,3 +49,4 @@ export interface CharProps {
     id: string | number;
     original_title?: string;
   }
+

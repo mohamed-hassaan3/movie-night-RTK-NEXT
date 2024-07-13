@@ -3,18 +3,7 @@ import React, { useState } from "react";
 import { FaPlay } from "react-icons/fa";
 import Popup from "../common/Popup";
 
-interface Video {
-  iso_639_1: string;
-  iso_3166_1: string;
-  key: string;
-  name: string;
-  official: boolean;
-  published_at: string;
-  site: string;
-  size: number;
-  type: string;
-}
-const Trailer = ({ videos }: { videos: [];  }) => {
+const Trailer: React.FC<TrailerProps> = ({ videos }) => {
   const [isOpenPopup, setIsOpenPopup] = useState(false);
 
   const onOpenPopup = () => {
@@ -24,7 +13,7 @@ const Trailer = ({ videos }: { videos: [];  }) => {
     setIsOpenPopup(false);
   };
 
-  const findTrailer = (videos: Video[] | undefined) => {
+  const findTrailer = (videos: Video[]): Video | null | undefined => {
     if (videos) {
       return videos.find((video: Video) => video.type === "Trailer");
     } else {
@@ -43,7 +32,11 @@ const Trailer = ({ videos }: { videos: [];  }) => {
         <span>Play trailer</span>
       </button>
       {/* Popup Component */}
-      <Popup onClose={onClosePopup} isOpen={isOpenPopup} typeName={getTrailer?.type}>
+      <Popup
+        onClose={onClosePopup}
+        isOpen={isOpenPopup}
+        typeName={getTrailer?.type}
+      >
         <iframe
           width="50%"
           height="50%"
@@ -51,7 +44,7 @@ const Trailer = ({ videos }: { videos: [];  }) => {
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
           title={`${getTrailer?.name}`}
-          ></iframe>
+        ></iframe>
       </Popup>
     </div>
   );

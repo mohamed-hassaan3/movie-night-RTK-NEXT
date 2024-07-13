@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 
 export function filterDate(date: string): string {
-  return date?.split("-")[0] ;
+  return date?.split("-")[0];
 }
 export function formatDate(dateStr: unknown): string {
   const dateString = String(dateStr);
@@ -28,3 +28,11 @@ export function convertRuntime(runTime: number) {
   const mins = runTime % 60;
   return `${hours}h ${mins}m`;
 }
+
+export const formatAmount = (amount: number) => {
+  const formatNumber = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+  }).format(amount);
+  return formatNumber
+};

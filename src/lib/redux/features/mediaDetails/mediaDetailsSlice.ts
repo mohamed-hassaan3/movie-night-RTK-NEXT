@@ -7,7 +7,7 @@ export const getMediaDetails = createAsyncThunk(
     "media/id",
     async ({ mediaID, category }: { mediaID: string | number, category: string }, { rejectWithValue }) => {
         try {
-            const response = await API(`/${category}/${mediaID}?&language=en-US&append_to_response=credits,videos,reviews,keywords,watch/providers`, options);
+            const response = await API(`/${category}/${mediaID}?&language=en-US&append_to_response=credits,videos,reviews,keywords,watch/providers,external_ids`, options);
             const data = response.data
             console.log("MEDIA ID", data)
             return data
@@ -57,4 +57,3 @@ export const selectMediaIDLoading = (state: any) => state.mediaDetails.isLoading
 export const selectMediaIDError = (state: any) => state.mediaDetails.isError;
 export const selectMediaDetails = (state: any) => state.mediaDetails.mediaDetails;
 export default mediaDetailsSlice.reducer
-// https://api.themoviedb.org/3/movie/157336?api_key=f1e9657028cf1bc109c0852dce6376c2&append_to_response=videos

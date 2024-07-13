@@ -1,11 +1,20 @@
-import React from 'react'
+import React from "react";
+import CastCard from "./CastCard";
 
-const TopCast = () => {
+const TopCast = ({ mediaDetails }: { mediaDetails: MediaDetails }) => {
+  const truncateCast = mediaDetails.credits?.cast.slice(0, 9);
+  console.log("TOP CAST", truncateCast);
   return (
-    <div className='space-y-3 p-4 lg:p-2 w-[95%] lg:w-[80%] m-auto'>
-        <h1 className='font-bold text-lg'>Top Billed Cast</h1>
+    <div className="">
+      <h1 className="font-bold text-xl">Top Billed Cast</h1>
+      <div>
+        {mediaDetails.credits?.cast.length > 0 &&
+          truncateCast.map((cast: any) => (
+            <CastCard cast={cast} key={cast.id} />
+          ))}
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default TopCast
+export default TopCast;
