@@ -52,13 +52,30 @@ declare global {
     interface TrailerProps {
         videos: Video[];
     }
+    interface Author {
+        avatar_path: string
+        rating: number
+        name: string
+    }
+    interface Reviews {
+        id: number
+        author: string
+        content: string
+        created_at: Date
+        url: string
+        author_details: Author
+    }
     interface MediaDetails {
+        id: number
         Video: Video[]
         homepage: string
         status: string
         original_language: string
         budget: number
         revenue: number
+        reviews: {
+            results: Reviews[]
+        }
         keywords: {
             keywords: Keywords[]
         }

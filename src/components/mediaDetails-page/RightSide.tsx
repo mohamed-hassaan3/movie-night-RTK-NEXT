@@ -15,13 +15,13 @@ const RightSide = ({ mediaDetails }: {mediaDetails: MediaDetails}) => {
   const twitter = mediaDetails?.external_ids?.twitter_id || undefined;
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 space-y-6">
       {/* Social Media Section */}
-      <div className="flex items-center gap-4">
-        <div className="flex items-center gap-5">
+      <div className="flex items-center justify-start gap-4">
+        <div className="flex items-center gap-5 after:pr-1 border-r">
           {facebook ? (
             <Link href={`https://www.facebook.com/${facebook}`} target="_blank">
-              <FaFacebook size={30} />
+              <FaFacebook size={25} />
             </Link>
           ) : null}
           {instagram ? (
@@ -29,19 +29,19 @@ const RightSide = ({ mediaDetails }: {mediaDetails: MediaDetails}) => {
               href={`https://www.instagram.com/${instagram}`}
               target="_blank"
             >
-              <FaInstagram size={30} />
+              <FaInstagram size={25} />
             </Link>
           ) : null}
           {twitter ? (
             <Link href={`https://x.com/${twitter}`} target="_blank">
-              <FaTwitter size={30} />
+              <FaTwitter size={25} />
             </Link>
           ) : null}
         </div>
-        <div className=" before:border border-black flex before:mr-3">
+        <div>
           {mediaDetails?.homepage ? (
             <Link href={mediaDetails?.homepage} target="_blank">
-              <FaLink size={30} />
+              <FaLink size={25} />
             </Link>
           ) : null}
         </div>
@@ -53,10 +53,10 @@ const RightSide = ({ mediaDetails }: {mediaDetails: MediaDetails}) => {
           <p>{mediaDetails?.status ? mediaDetails.status : "_"}</p>
         </div>
         <div className="space-y-1">
-          <h5 className="font-semibold">Original Language</h5>
+          <h5 className="font-semibold text-nowrap">Original Language</h5>
           <p>
             {mediaDetails?.original_language
-              ? mediaDetails.original_language
+              ? mediaDetails.original_language?.toUpperCase()
               : "_"}
           </p>
         </div>

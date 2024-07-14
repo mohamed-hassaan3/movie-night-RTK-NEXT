@@ -11,6 +11,7 @@ import { useAppDispatch, useAppSelector } from "@/lib/redux/hooks";
 import MediaBanner from "@/components/mediaDetails-page/MediaBanner";
 import TopCast from "@/components/mediaDetails-page/TopCast";
 import RightSide from "@/components/mediaDetails-page/RightSide";
+import Social from "@/components/mediaDetails-page/Social";
 
 const MediaID = ({ params }: { params: { mediaID: number | string } }) => {
   const mediaID = params.mediaID;
@@ -33,9 +34,10 @@ const MediaID = ({ params }: { params: { mediaID: number | string } }) => {
       ) : (
         <section>
           <MediaBanner mediaDetails={mediaDetails} />
-          <section className="grid grid-cols-6 gap-4 m-auto my-6 lg:p-2 w-[95%] lg:w-[80%] ">
+          <section className="grid grid-cols-6 gap-6 m-auto my-6 lg:p-2 w-[95%] lg:w-[80%] ">
             <article className="col-span-5">
               <TopCast mediaDetails={mediaDetails} />
+              <Social mediaDetails={mediaDetails} />
             </article>
             <aside className="col-span-1">
               <RightSide mediaDetails={mediaDetails} />
