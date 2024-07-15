@@ -4,7 +4,7 @@ interface PopupProps {
   isOpen: boolean;
   onClose: () => void;
   children: React.ReactNode;
-  typeName: string | undefined
+  typeName?: string | undefined
 }
 
 const Popup: React.FC<PopupProps> = ({ children, onClose, isOpen, typeName }) => {

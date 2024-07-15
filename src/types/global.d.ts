@@ -49,6 +49,10 @@ declare global {
         size: number;
         type: string;
     }
+    interface Item {
+        id?: number;
+        [key: string]: any;
+      }
     interface TrailerProps {
         videos: Video[];
     }
@@ -56,6 +60,17 @@ declare global {
         avatar_path: string
         rating: number
         name: string
+    }
+    interface VideosResults {
+        id: number
+        key: string
+    }
+    interface Recommendations {
+        id: number
+        backdrop_path: string
+        release_date: string
+        title: string
+        vote_average: number
     }
     interface Reviews {
         id: number
@@ -73,6 +88,12 @@ declare global {
         original_language: string
         budget: number
         revenue: number
+        recommendations: {
+            results: Recommendations[]
+        }
+        videos: {
+            results: VideosResults[]
+        }
         reviews: {
             results: Reviews[]
         }

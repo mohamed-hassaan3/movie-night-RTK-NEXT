@@ -12,6 +12,8 @@ import MediaBanner from "@/components/mediaDetails-page/MediaBanner";
 import TopCast from "@/components/mediaDetails-page/TopCast";
 import RightSide from "@/components/mediaDetails-page/RightSide";
 import Social from "@/components/mediaDetails-page/Social";
+import Media from "@/components/mediaDetails-page/Media";
+import Recommendation from "@/components/mediaDetails-page/Recommendation";
 
 const MediaID = ({ params }: { params: { mediaID: number | string } }) => {
   const mediaID = params.mediaID;
@@ -38,6 +40,8 @@ const MediaID = ({ params }: { params: { mediaID: number | string } }) => {
             <article className="col-span-5">
               <TopCast mediaDetails={mediaDetails} />
               <Social mediaDetails={mediaDetails} />
+              <Media mediaDetails={mediaDetails} />
+              <Recommendation mediaDetails={mediaDetails} />
             </article>
             <aside className="col-span-1">
               <RightSide mediaDetails={mediaDetails} />

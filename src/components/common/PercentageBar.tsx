@@ -1,3 +1,4 @@
+import { formatVote } from "@/helper/formatText";
 import React from "react";
 import { buildStyles, CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
@@ -7,7 +8,7 @@ interface PercentageBarProps {
 }
 
 const PercentageBar: React.FC<PercentageBarProps> = ({ percentage }) => {
-  const voteAverage: number = Math.round(percentage * 10);
+  const voteAverage = formatVote(percentage);
 
   return (
     <div className="bg-darkBlue rounded-full font-bold p-1">

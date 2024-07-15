@@ -7,9 +7,9 @@ export function formatDate(dateStr: unknown): string {
   const dateString = String(dateStr);
   return dateString.replace(/-/g, "/");
 }
-interface Item {
-  id?: number;
-  [key: string]: any;
+
+export function formatVote (voteAverage: number) {
+  return  Math.round(voteAverage * 10);
 }
 
 export function loopArr(arr: Item[]) {
