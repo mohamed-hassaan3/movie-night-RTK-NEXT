@@ -107,6 +107,8 @@ declare global {
         }
         credits: {
             cast: Cast[]
+            crew: Cast[]
         }
     }
+    
 }

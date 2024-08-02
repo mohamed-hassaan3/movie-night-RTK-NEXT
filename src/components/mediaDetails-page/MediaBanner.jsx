@@ -30,8 +30,8 @@ const MediaBanner = ({ mediaDetails }) => {
 
   console.log("MEDIA", mediaDetails);
   return (
-    <div className="text-center relative m-auto">
-      <section className=" h-[60vh] w-full">
+    <div className="text-center relative m-auto !text-sm">
+      <section className="md:h-[60vh] w-full">
         <Image
           className="w-full h-full object-cover object-right-top opacity-10 "
           src={`${process.env.NEXT_PUBLIC_MOVIE_DB_IMAGE_API}${
@@ -41,7 +41,7 @@ const MediaBanner = ({ mediaDetails }) => {
           alt="Banner"
         />
         {/* Content */}
-        <article className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-[95%] lg:w-[80%] p-4 lg:p-2 flex gap-4 items-center">
+        <article className="md:absolute md:left-1/2 md:-translate-x-1/2 md:top-1/2 md:-translate-y-1/2 w-[95%] lg:w-[80%] p-4 lg:p-2 flex static md:flex-row flex-col gap-4 md:items-center">
           <figure>
             <Image
               className="shadow-md w-full object-cover min-h-[400px] max-h-[400px] min-w-[300px] max-w-[300px]"
@@ -55,7 +55,7 @@ const MediaBanner = ({ mediaDetails }) => {
             </figcaption>
           </figure>
           <aside className="flex flex-col p-4 text-start overflow-hidden min-w-[70%]">
-            <p className="text-2xl font-extrabold text-start">
+            <p className="md:text-2xl font-extrabold text-start md:mr-12">
               {title || original_title || original_name}
               <span className="font-normal">
                 ({filterDate(release_date || first_air_date)})
@@ -78,7 +78,7 @@ const MediaBanner = ({ mediaDetails }) => {
             <div className="my-3">
               <Trailer videos={videos?.results} id={id} />
             </div>
-            <div className="space-y-3">
+            <div className="space-y-3 md:mr-16">
               <p className="text-gray-500 italic">{tagline}</p>
               <div className="space-y-2">
                 <h3 className="text-xl font-bold">Overview</h3>

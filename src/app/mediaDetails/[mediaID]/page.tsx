@@ -14,6 +14,7 @@ import RightSide from "@/components/mediaDetails-page/RightSide";
 import Social from "@/components/mediaDetails-page/Social";
 import Media from "@/components/mediaDetails-page/Media";
 import Recommendation from "@/components/mediaDetails-page/Recommendation";
+import MediaDetailsSkeleton from "@/components/mediaDetails-page/MediaDetailsSkeleton";
 
 const MediaID = ({ params }: { params: { mediaID: number | string } }) => {
   const mediaID = params.mediaID;
@@ -32,7 +33,7 @@ const MediaID = ({ params }: { params: { mediaID: number | string } }) => {
       {isError ? (
         isError.status_message
       ) : isLoading ? (
-        <p>Loading....</p>
+        <MediaDetailsSkeleton />
       ) : (
         <section>
           <MediaBanner mediaDetails={mediaDetails} />

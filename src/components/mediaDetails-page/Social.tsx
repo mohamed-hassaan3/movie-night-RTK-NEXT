@@ -1,5 +1,5 @@
 import Link from "next/link";
-import React, { Fragment } from "react";
+import React from "react";
 import SocialCard from "./SocialCard";
 
 const Social = ({ mediaDetails }: { mediaDetails: MediaDetails }) => {
@@ -8,10 +8,10 @@ const Social = ({ mediaDetails }: { mediaDetails: MediaDetails }) => {
 
   console.log("Social", social);
   return (
-    <Fragment>
+    <div className="border-b">
       {social.length !== 0 && (
         <section className="py-8">
-          <h2 className="font-bold text-xl">Social</h2>
+          <h2 className="font-bold text-xl flex items-center gap-8">Social <span className="font-normal">{`Reviews ${social?.length}`}</span></h2>
           <div className="my-6">
             {truncateSocial?.length > 0 &&
               truncateSocial.map((social) => (
@@ -19,14 +19,14 @@ const Social = ({ mediaDetails }: { mediaDetails: MediaDetails }) => {
               ))}
           </div>
           <Link
-            className="text-lg"
+            className="text-md hover:opacity-50"
             href={`/mediaDetails/${mediaDetails.id}/fullReviews`}
           >
             Read All Reviews
           </Link>
         </section>
       )}
-    </Fragment>
+    </div>
   );
 };
 

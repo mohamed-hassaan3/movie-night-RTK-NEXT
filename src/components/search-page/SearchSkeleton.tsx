@@ -13,7 +13,7 @@ const SearchSkeleton
   return (
     
     <LoadingSkeleton>
-      <div className="mx-auto w-[90%]" >
+      <div className="mx-auto w-[90%] opacity-50">
       <Skeleton
         count={resultArray.length}
         className="border h-[152px] shadow-lg !rounded-xl mb-6"
