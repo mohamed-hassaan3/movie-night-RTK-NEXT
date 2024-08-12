@@ -4,13 +4,14 @@ const CategoryButton = ({
   className,
   children,
   value,
+  isActive,
   onClick,
   disabled,
   type,
 }: CategoryButton) => {
   return (
     <button
-      className={className}
+      className={`${className} `}
       value={value}
       onClick={onClick}
       disabled={disabled}

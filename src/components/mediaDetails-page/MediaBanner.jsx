@@ -62,12 +62,12 @@ const MediaBanner = ({ mediaDetails }) => {
               </span>
             </p>
             <ul className="text-start flex gap-3">
-              <li>{formatDate(release_date)}</li>
+              <li>{release_date && formatDate(release_date)}</li> 
               <li>({loopArr(origin_country)})</li>
               <li>
                 <ul className="flex space-x-1">{loopArr(genres)}</ul>
               </li>
-              <li className="text-nowrap">{convertRuntime(runtime)}</li>
+              <li className="text-nowrap">{runtime && convertRuntime(runtime)}</li>
             </ul>
             <div className="w-[130px] h-[100px] flex items-center gap-2">
               <div>
@@ -80,10 +80,12 @@ const MediaBanner = ({ mediaDetails }) => {
             </div>
             <div className="space-y-3 md:mr-16">
               <p className="text-gray-500 italic">{tagline}</p>
-              <div className="space-y-2">
+              {overview && (
+                <div className="space-y-2">
                 <h3 className="text-xl font-bold">Overview</h3>
                 <p>{overview}</p>
               </div>
+              )}
             </div>
           </aside>
         </article>

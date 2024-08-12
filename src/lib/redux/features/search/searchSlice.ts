@@ -5,7 +5,7 @@ import axios, { AxiosError } from "axios";
 
 export const getSearch = createAsyncThunk(
     'home/searchResult',
-    async ({ searchTerm, currentPage, category }: 
+    async ({ searchTerm, currentPage, category }:
         { searchTerm: ApiPath, currentPage: CurrentPage, category: Category },
         { rejectWithValue }: RejectWithValue) => {
         try {
@@ -29,8 +29,22 @@ export const getSearch = createAsyncThunk(
     }
 );
 
+// Fetch the Length of Categories Results (total_results)
+export const getCategoriesResults = createAsyncThunk<{ category: string; totalResults: number}, {category: string, searchTerm: string}>(
+    'search/fetchCategoryResults',
+    async ({category, searchTerm}) => {
+        try {
+            const response = await API(`search/${category}?query=${encodeURIComponent(searchTerm)}`, options);
+            return { category, totalResults: response.data.total_results };
+        } catch (error) {
+            throw new Error(`Failed to fetch results for category ${category}`);
+        }
+    }
+);
+
 const initialState: InitialStateSearch = {
     searchTerm: "",
+    categoryResults: {},
     category: "movie",
     currentPage: 1,
     searchData: [] as any[],
@@ -66,10 +80,24 @@ const searchSlice = createSlice({
                 state.isError = action.payload
                 state.isLoading = false
             })
+            .addCase(getCategoriesResults.pending, (state) => {
+                state.isLoading = true
+                state.isError = null
+            })
+            .addCase(getCategoriesResults.fulfilled, (state, action) => {
+                const { category, totalResults } = action.payload
+                state.categoryResults[category] = totalResults
+                state.isLoading = false
+            })
+            .addCase(getCategoriesResults.rejected, (state, action) => {
+                state.isError = action.payload
+                state.isLoading = false
+            })
     }
 
 })
 
+export const selectCategoryResults = (state: any) => state.search.categoryResults
 export const selectSearchIsError = (state: any) => state.search.isError
 export const selectSearchIsLoading = (state: any) => state.search.isLoading
 export const selectSearchData = (state: any) => state.search.searchData

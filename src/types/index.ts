@@ -4,6 +4,7 @@ export type Category = string
 
 export interface InitialStateSearch {
     searchTerm: string;
+    categoryResults: {[key: string]: number}
     category: string;
     currentPage: Number;
     searchData: any[];
@@ -22,6 +23,7 @@ export interface SearchItem {
     name: string;
     original_name: string;
     original_title: string;
+    title: string;
     poster_path: string | undefined;
     overview: string | number;
     media_type: string;

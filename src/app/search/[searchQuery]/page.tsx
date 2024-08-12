@@ -11,13 +11,17 @@ import {
   setSearchTerm,
 } from "@/lib/redux/features/search/searchSlice";
 import { useAppDispatch, useAppSelector } from "@/lib/redux/hooks";
-import React, { useEffect } from "react";
+import React, { Fragment, useEffect } from "react";
 import { type SearchItem } from "@/types/index";
 import usePagination from "@/hooks/usePagination";
 import Form from "@/components/common/Form";
 import { FaSearch } from "react-icons/fa";
 import SearchCategory from "@/components/search-page/SearchCategory";
 import PrimaryButton from "@/components/common/Buttons/PrimaryButton";
+import PersonCard from "@/components/search-page/PersonCard";
+import CompanyCard from "@/components/search-page/CompanyCard";
+import KeywordCard from "@/components/search-page/KeywordCard";
+import CollectionCard from "@/components/search-page/CollectionCard";
 
 const SearchTerm = () => {
   const searchTerm = useAppSelector(selectSearchTerm);
@@ -32,11 +36,29 @@ const SearchTerm = () => {
     : [];
 
   console.log("RESULT", resultArray);
+  console.log("CATEGORY", category);
+
+  const renderCategoriesCard = (item: SearchItem) => {
+    switch (category) {
+      case "movie":
+        return <SearchCard item={item} />;
+      case "tv":
+        return <SearchCard item={item} />;
+      case "person":
+        return <PersonCard item={item} />;
+      case "company":
+        return <CompanyCard item={item} />;
+      case "keyword":
+        return <KeywordCard item={item} />;
+      case "collection":
+        return <CollectionCard item={item} />;
+    }
+  };
 
   useEffect(() => {
     dispatch(getSearch({ searchTerm, currentPage, category }));
     window.scrollTo({ top: 0 });
-  }, [dispatch, searchTerm, currentPage, category]);
+  }, [searchTerm, currentPage, category, dispatch]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(setSearchTerm(event.target.value.toLocaleLowerCase()));
@@ -68,7 +90,7 @@ const SearchTerm = () => {
           <span className="text-gray-400 italic font-bold">{searchTerm}</span>
         </p>
       )}
-      <section className="flex justify-center gap-4 w-[90%] m-auto py-6">
+      <section className="flex justify-center gap-6 md:gap-12 w-[90%] m-auto py-6">
         <article className="w-[25%]">
           <SearchCategory />
         </article>
@@ -81,12 +103,7 @@ const SearchTerm = () => {
             <SearchSkeleton />
           ) : (
             resultArray.map((item: SearchItem) => (
-              <div
-                className="border flex gap-4 h-[152px] rounded-xl shadow-lg"
-                key={item.id}
-              >
-                <SearchCard item={item} />
-              </div>
+              <Fragment key={item.id}>{renderCategoriesCard(item)}</Fragment>
             ))
           )}
           {resultArray.length === 0 && (

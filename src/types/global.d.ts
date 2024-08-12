@@ -23,6 +23,7 @@ declare global {
     interface CategoryButton {
         children: React.ReactNode
         className?: string;
+        isActive?: boolean;
         onClick?: (e: React.MouseEvent<HTMLElement>) => void;
         disabled?: boolean;
         value?: string;
@@ -67,8 +68,10 @@ declare global {
     }
     interface Recommendations {
         id: number
+        name: string
         backdrop_path: string
         release_date: string
+        first_air_date: string
         title: string
         vote_average: number
     }

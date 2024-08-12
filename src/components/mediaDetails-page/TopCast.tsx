@@ -29,7 +29,7 @@ const TopCast = ({ mediaDetails }: { mediaDetails: MediaDetails }) => {
         )}
       </div>
       <Link
-        className="text-lg"
+        className="text-lg hover:opacity-50"
         href={`/mediaDetails/${mediaDetails.id}/fullCast`}
       >
         Full Cast & Crew

@@ -1,12 +1,11 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import useDebounce from "@/hooks/useDebounce";
 import { useRouter } from "next/navigation";
 import { getSearch, selectCategory, selectSearchTerm, setSearchTerm } from "./searchSlice";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import usePagination from "@/hooks/usePagination";
 import Form from "@/components/common/Form";
-import Button from "@/components/common/Buttons/PrimaryButton";
 import PrimaryButton from "@/components/common/Buttons/PrimaryButton";
 
 const Search = () => {
@@ -19,7 +18,6 @@ const Search = () => {
 
   useEffect(() => {
     dispatch(getSearch({ searchTerm: debouncedValue, currentPage, category }));
-    console.log("update current page", currentPage);
   }, [dispatch, searchTerm, currentPage, debouncedValue, category]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {

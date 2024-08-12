@@ -1,10 +1,10 @@
-import React from "react";
-import { CharProps, type SearchItem } from "../../types/index";
+import { CharProps, SearchItem } from "@/types";
 import Image from "next/image";
+import React from "react";
 import UNKNOWN from "../../../public/unknown-Img.jpg";
 import Link from "next/link";
 
-const SearchCard = ({ item }: { item: SearchItem }) => {
+const CollectionCard = ({ item }: { item: SearchItem }) => {
   const {
     id,
     name,
@@ -18,7 +18,6 @@ const SearchCard = ({ item }: { item: SearchItem }) => {
     known_for,
     release_date,
   } = item;
-
   return (
     <div className=" flex gap-4 h-[152px] border rounded-xl shadow-lg">
       <Link
@@ -46,12 +45,13 @@ const SearchCard = ({ item }: { item: SearchItem }) => {
         )}
       </Link>
       <div className="flex flex-col justify-between gap-4 py-6 pr-4">
-        <h3 className=" font-semibold">
-          {name || title || original_name || original_title}{" "}
-          <span className="opacity-50 ">
-            {`${original_title === title ? "" : `( ${original_title} )`}`}
-          </span>
-        </h3>
+
+          <h3 className=" font-semibold">
+            {name || title || original_name || original_title}{" "}
+            <span className="opacity-50 ">
+            {`${original_title === name ? "" : `(${original_name})`}`}
+            </span>
+          </h3>
         <p className="opacity-50">{release_date}</p>
         {profile_path && (
           <p>
@@ -71,4 +71,4 @@ const SearchCard = ({ item }: { item: SearchItem }) => {
   );
 };
 
-export default SearchCard;
+export default CollectionCard;

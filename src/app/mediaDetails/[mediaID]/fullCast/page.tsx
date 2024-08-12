@@ -1,6 +1,7 @@
 "use client";
 import CastCard from "@/components/mediaDetails-page/CastCard";
 import { filterDate } from "@/helper/formatText";
+import { uniqueObject } from "@/helper/uniqueObject";
 import usePagination from "@/hooks/usePagination";
 import {
   getMediaDetails,
@@ -16,16 +17,11 @@ import { FaArrowLeft } from "react-icons/fa";
 
 const FullCast = ({ params }: { params: { mediaID: number } }) => {
   const { mediaID } = params;
-  // const [currentPage, setCurrentPage] = useState(1);
-  // const [total, setTotal] = useState(100);
-  // const { nextPage, prevPage } = usePagination();
-  // const isLoading = useAppSelector(selectMediaDetails);
-  // const isError = useAppSelector(selectMediaIDError);
   const mediaDetails = useAppSelector(selectMediaDetails);
   const category = useAppSelector(selectCategory);
   const dispatch = useAppDispatch();
   const casts = mediaDetails.credits?.cast;
-  const crews = mediaDetails.credits?.crew;
+  const crews = uniqueObject(mediaDetails.credits?.crew);
   console.log("CASTS", casts);
   console.log("CREWS", crews);
   useEffect(() => {
