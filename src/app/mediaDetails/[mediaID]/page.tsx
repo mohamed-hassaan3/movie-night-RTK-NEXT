@@ -15,6 +15,7 @@ import Social from "@/components/mediaDetails-page/Social";
 import Media from "@/components/mediaDetails-page/Media";
 import Recommendation from "@/components/mediaDetails-page/Recommendation";
 import MediaDetailsSkeleton from "@/components/mediaDetails-page/MediaDetailsSkeleton";
+import Parts from "@/components/mediaDetails-page/Parts";
 
 const MediaID = ({ params }: { params: { mediaID: number | string } }) => {
   const mediaID = params.mediaID;
@@ -39,6 +40,7 @@ const MediaID = ({ params }: { params: { mediaID: number | string } }) => {
           <MediaBanner mediaDetails={mediaDetails} />
           <section className="grid grid-cols-6 gap-6 m-auto my-6 lg:p-2 w-[95%] lg:w-[80%] ">
             <article className="col-span-5">
+              <Parts mediaDetails={mediaDetails} />
               <TopCast mediaDetails={mediaDetails} />
               <Social mediaDetails={mediaDetails} />
               <Media mediaDetails={mediaDetails} />

@@ -1,58 +1,51 @@
 import { CharProps, SearchItem } from "@/types";
 import Image from "next/image";
-import React from "react";
-import UNKNOWN from "../../../public/unknown-Img.jpg";
 import Link from "next/link";
+import React from "react";
+import CHARACTER from "../../../../public/character.jpg";
 
-const CollectionCard = ({ item }: { item: SearchItem }) => {
+const PersonCard = ({ item }: { item: SearchItem }) => {
   const {
     id,
-    name,
+    known_for_department,
+    profile_path,
+    poster_path,
     original_name,
     original_title,
     title,
-    poster_path,
-    overview,
-    known_for_department,
-    profile_path,
+    name,
     known_for,
-    release_date,
   } = item;
   return (
-    <div className=" flex gap-4 h-[152px] border rounded-xl shadow-lg">
+    <div className="flex items-center gap-4 ">
       <Link
         href={`/mediaDetails/${id}`}
-        className="w-full max-w-[100px] max-h-[150px]"
+        className="w-full max-w-[80px] min-h-[80px]"
       >
         {poster_path || profile_path ? (
           <Image
-            className=" rounded-tl-xl rounded-bl-xl w-auto h-auto object-cover"
+            className="rounded-xl object-cover w-[80px] h-[80px]"
             src={`${process.env.NEXT_PUBLIC_MOVIE_DB_IMAGE_API}${
               poster_path || profile_path
             }`}
-            width={100}
-            height={100}
+            width={80}
+            height={80}
             alt={"UNKNOWN"}
           />
         ) : (
           <Image
-            className="w-auto h-auto object-cover"
-            src={UNKNOWN}
-            width={100}
-            height={100}
+            className="rounded-xl w-[80px] h-[80px] object-cover"
+            src={CHARACTER}
+            width={80}
+            height={80}
             alt={"UNKNOWN"}
           />
         )}
       </Link>
-      <div className="flex flex-col justify-between gap-4 py-6 pr-4">
-
-          <h3 className=" font-semibold">
+      <div className="flex flex-col justify-between gap-0 py-2 pr-4">
+          <h3 className=" font-extrabold">
             {name || title || original_name || original_title}{" "}
-            <span className="opacity-50 ">
-            {`${original_title === name ? "" : `(${original_name})`}`}
-            </span>
           </h3>
-        <p className="opacity-50">{release_date}</p>
         {profile_path && (
           <p>
             {known_for_department}/
@@ -64,11 +57,9 @@ const CollectionCard = ({ item }: { item: SearchItem }) => {
             ))}
           </p>
         )}
-
-        <p className="line-clamp-2 text-sm">{overview}</p>
       </div>
     </div>
   );
 };
 
-export default CollectionCard;
+export default PersonCard;

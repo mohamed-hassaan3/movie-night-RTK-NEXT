@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React, { useState } from "react";
-import PROFILE from "../../../public/character.jpg";
+import PROFILE from "../../../../public/character.jpg";
 import { FaStar } from "react-icons/fa";
 const SocialCard = ({ social }: { social: any }) => {
   const [isExpand, setIsExpand] = useState(false);

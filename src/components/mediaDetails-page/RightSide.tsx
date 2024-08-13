@@ -9,7 +9,7 @@ import {
   FaTwitter,
 } from "react-icons/fa";
 
-const RightSide = ({ mediaDetails }: {mediaDetails: MediaDetails}) => {
+const RightSide = ({ mediaDetails }: { mediaDetails: MediaDetails }) => {
   const facebook = mediaDetails?.external_ids?.facebook_id || undefined;
   const instagram = mediaDetails?.external_ids?.instagram_id || undefined;
   const twitter = mediaDetails?.external_ids?.twitter_id || undefined;
@@ -74,20 +74,22 @@ const RightSide = ({ mediaDetails }: {mediaDetails: MediaDetails}) => {
         </div>
       </div>
       {/* Keywords */}
-      <div className=" border-b pb-6">
-        <h5 className="font-semibold mb-3">Keywords</h5>
-        <div className="flex flex-wrap w-[200%]">
-          {mediaDetails.keywords?.keywords &&
-            mediaDetails.keywords.keywords?.map((word: Keywords) => (
-              <span
-                className="bg-gray-300 p-2 text-xs text-nowrap my-2 mr-2 rounded-md border-gray-400 border shadow-sm"
-                key={word.id}
-              >
-                {word.name}
-              </span>
-            ))}
+      {mediaDetails.keywords?.keywords && (
+        <div className=" border-b pb-6">
+          <h5 className="font-semibold mb-3">Keywords</h5>
+          <div className="flex flex-wrap w-[200%]">
+            {mediaDetails.keywords?.keywords &&
+              mediaDetails.keywords.keywords?.map((word: Keywords) => (
+                <span
+                  className="bg-gray-300 p-2 text-xs text-nowrap my-2 mr-2 rounded-md border-gray-400 border shadow-sm"
+                  key={word.id}
+                >
+                  {word.name}
+                </span>
+              ))}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

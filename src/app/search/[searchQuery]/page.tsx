@@ -1,5 +1,5 @@
 "use client";
-import SearchCard from "@/components/search-page/SearchCard";
+import SearchCard from "@/components/search-page/cards/SearchCard";
 import SearchSkeleton from "@/components/search-page/SearchSkeleton";
 import {
   getSearch,
@@ -18,10 +18,10 @@ import Form from "@/components/common/Form";
 import { FaSearch } from "react-icons/fa";
 import SearchCategory from "@/components/search-page/SearchCategory";
 import PrimaryButton from "@/components/common/Buttons/PrimaryButton";
-import PersonCard from "@/components/search-page/PersonCard";
-import CompanyCard from "@/components/search-page/CompanyCard";
-import KeywordCard from "@/components/search-page/KeywordCard";
-import CollectionCard from "@/components/search-page/CollectionCard";
+import PersonCard from "@/components/search-page/cards/PersonCard";
+import CompanyCard from "@/components/search-page/cards/CompanyCard";
+import KeywordCard from "@/components/search-page/cards/KeywordCard";
+import CollectionCard from "@/components/search-page/cards/CollectionCard";
 
 const SearchTerm = () => {
   const searchTerm = useAppSelector(selectSearchTerm);

@@ -26,6 +26,7 @@ const MediaBanner = ({ mediaDetails }) => {
     vote_average,
     first_air_date,
     videos,
+    name,
   } = mediaDetails;
 
   console.log("MEDIA", mediaDetails);
@@ -56,18 +57,22 @@ const MediaBanner = ({ mediaDetails }) => {
           </figure>
           <aside className="flex flex-col p-4 text-start overflow-hidden min-w-[70%]">
             <p className="md:text-2xl font-extrabold text-start md:mr-12">
-              {title || original_title || original_name}
+              {title || original_title || original_name || name}
               <span className="font-normal">
-                ({filterDate(release_date || first_air_date)})
+                {release_date ||
+                  (first_air_date &&
+                    filterDate(release_date || first_air_date))}
               </span>
             </p>
             <ul className="text-start flex gap-3">
-              <li>{release_date && formatDate(release_date)}</li> 
-              <li>({loopArr(origin_country)})</li>
+              <li>{release_date && formatDate(release_date)}</li>
+              <li>{origin_country && loopArr(origin_country)}</li>
               <li>
                 <ul className="flex space-x-1">{loopArr(genres)}</ul>
               </li>
-              <li className="text-nowrap">{runtime && convertRuntime(runtime)}</li>
+              <li className="text-nowrap">
+                {runtime && convertRuntime(runtime)}
+              </li>
             </ul>
             <div className="w-[130px] h-[100px] flex items-center gap-2">
               <div>
@@ -76,15 +81,15 @@ const MediaBanner = ({ mediaDetails }) => {
               <span className="font-bold">User Score</span>
             </div>
             <div className="my-3">
-              <Trailer videos={videos?.results} id={id} />
+              {videos?.results && <Trailer videos={videos?.results} id={id} />}
             </div>
             <div className="space-y-3 md:mr-16">
               <p className="text-gray-500 italic">{tagline}</p>
               {overview && (
                 <div className="space-y-2">
-                <h3 className="text-xl font-bold">Overview</h3>
-                <p>{overview}</p>
-              </div>
+                  <h3 className="text-xl font-bold">Overview</h3>
+                  <p>{overview}</p>
+                </div>
               )}
             </div>
           </aside>

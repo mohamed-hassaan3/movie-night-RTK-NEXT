@@ -35,6 +35,7 @@ export const getCategoriesResults = createAsyncThunk<{ category: string; totalRe
     async ({category, searchTerm}) => {
         try {
             const response = await API(`search/${category}?query=${encodeURIComponent(searchTerm)}`, options);
+            console.log(searchTerm)
             return { category, totalResults: response.data.total_results };
         } catch (error) {
             throw new Error(`Failed to fetch results for category ${category}`);

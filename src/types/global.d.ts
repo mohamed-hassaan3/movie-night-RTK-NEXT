@@ -53,7 +53,7 @@ declare global {
     interface Item {
         id?: number;
         [key: string]: any;
-      }
+    }
     interface TrailerProps {
         videos: Video[];
     }
@@ -83,8 +83,27 @@ declare global {
         url: string
         author_details: Author
     }
+    interface Parts {
+        id: number;
+        original_name: string;
+    original_title: string;
+    title: string;
+    poster_path: string | undefined;
+    overview: string | number;
+    media_type: string;
+    profile_path: string
+    known_for_department: string
+    known_for: []
+    release_date: string
+    name:string;
+        release_date: Date;
+        overview: string;
+        original_title: string
+    }
     interface MediaDetails {
         id: number
+        media_type?: string;
+        parts: Parts[]
         Video: Video[]
         homepage: string
         status: string
@@ -113,5 +132,5 @@ declare global {
             crew: Cast[]
         }
     }
-    
+
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import MediaCard from "./MediaCard";
+import MediaCard from "./cards/MediaCard";
 
 const Media = ({ mediaDetails }: { mediaDetails: MediaDetails }) => {
   const videos = mediaDetails.videos?.results;

@@ -1,7 +1,7 @@
 import React from "react";
-import { CharProps, type SearchItem } from "../../types/index";
+import { CharProps, type SearchItem } from "../../../types/index";
 import Image from "next/image";
-import UNKNOWN from "../../../public/unknown-Img.jpg";
+import UNKNOWN from "../../../../public/unknown-Img.jpg";
 import Link from "next/link";
 
 const SearchCard = ({ item }: { item: SearchItem }) => {

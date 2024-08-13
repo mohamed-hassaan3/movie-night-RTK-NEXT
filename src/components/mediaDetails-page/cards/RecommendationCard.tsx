@@ -3,10 +3,18 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { FaCalendar } from "react-icons/fa";
-import UNKNOWN from "../../../public/unknown-Img.jpg";
+import UNKNOWN from "../../../../public/unknown-Img.jpg";
 
 const RecommendationCard = ({ recommend }: { recommend: Recommendations }) => {
-  const { id, title, vote_average, release_date, backdrop_path, first_air_date, name } = recommend;
+  const {
+    id,
+    title,
+    vote_average,
+    release_date,
+    backdrop_path,
+    first_air_date,
+    name,
+  } = recommend;
   return (
     <Link href={`/mediaDetails/${id}`}>
       <figure className="relative group/item  transition-all ease-in-out duration-700">
