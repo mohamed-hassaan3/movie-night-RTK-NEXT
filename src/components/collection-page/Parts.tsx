@@ -1,5 +1,5 @@
 import React from "react";
-import SearchCard from "../search-page/cards/SearchCard";
+import PartsCard from "./PartsCard";
 
 const Parts = ({ mediaDetails }: { mediaDetails: MediaDetails }) => {
   const { parts, media_type } = mediaDetails;
@@ -13,7 +13,7 @@ const Parts = ({ mediaDetails }: { mediaDetails: MediaDetails }) => {
           </h1>
           {parts?.map((part) => (
             <>
-              <SearchCard key={part.id} item={part} />
+              <PartsCard key={part.id} item={part} />
             </>
           ))}
         </div>

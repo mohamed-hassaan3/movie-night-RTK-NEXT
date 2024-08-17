@@ -19,7 +19,7 @@ const PersonCard = ({ item }: { item: SearchItem }) => {
   return (
     <div className="flex items-center gap-4 ">
       <Link
-        href={`/mediaDetails/${id}`}
+        href={`/person/${id}`}
         className="w-full max-w-[80px] min-h-[80px]"
       >
         {poster_path || profile_path ? (

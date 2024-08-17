@@ -86,16 +86,16 @@ declare global {
     interface Parts {
         id: number;
         original_name: string;
-    original_title: string;
-    title: string;
-    poster_path: string | undefined;
-    overview: string | number;
-    media_type: string;
-    profile_path: string
-    known_for_department: string
-    known_for: []
-    release_date: string
-    name:string;
+        original_title: string;
+        title: string;
+        poster_path: string | undefined;
+        overview: string | number;
+        media_type: string;
+        profile_path: string
+        known_for_department: string
+        known_for: []
+        release_date: string
+        name: string;
         release_date: Date;
         overview: string;
         original_title: string
@@ -133,4 +133,24 @@ declare global {
         }
     }
 
+    interface PersonDetails {
+        id: number;
+        biography: string;
+        birthday: Date;
+        also_known_as: [];
+        homepage: string
+        known_for_department: string;
+        name: string;
+        place_of_birth: string;
+        profile_path: string;
+        external_ids?: {
+            facebook_id: string
+            instagram_id: string
+            twitter_id: string
+        }
+        credits: {
+            cast: Cast[]
+            crew: Cast[]
+        }
+    }
 }

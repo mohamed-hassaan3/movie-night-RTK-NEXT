@@ -74,12 +74,14 @@ const MediaBanner = ({ mediaDetails }) => {
                 {runtime && convertRuntime(runtime)}
               </li>
             </ul>
+            {vote_average && (
             <div className="w-[130px] h-[100px] flex items-center gap-2">
               <div>
                 <PercentageBar percentage={vote_average} />
               </div>
               <span className="font-bold">User Score</span>
             </div>
+            )}
             <div className="my-3">
               {videos?.results && <Trailer videos={videos?.results} id={id} />}
             </div>

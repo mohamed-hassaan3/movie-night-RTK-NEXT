@@ -64,7 +64,7 @@ const SearchCard = ({ item }: { item: SearchItem }) => {
             ))}
           </p>
         )}
-
+  
         <p className="line-clamp-2 text-sm">{overview}</p>
       </div>
     </div>

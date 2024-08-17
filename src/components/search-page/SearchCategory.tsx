@@ -52,7 +52,7 @@ const SearchCategory = () => {
       >
         Movies{" "}
         <span className="p-1 bg-slate-400 text-white rounded-md w-10 min-w-fit font-semibold text-center">
-          {categoryResults["movie"] || 0}{" "}
+          {categoryResults["movie"]?.toLocaleString() || 0}{" "}
         </span>
       </CategoryButton>
       <CategoryButton
@@ -64,7 +64,7 @@ const SearchCategory = () => {
       >
         TvShows{" "}
         <span className="p-1 bg-slate-400 text-white rounded-md w-10 min-w-fit font-semibold text-center">
-          {categoryResults["tv"] || 0}
+          {categoryResults["tv"]?.toLocaleString() || 0}
         </span>
       </CategoryButton>
       <CategoryButton
@@ -76,7 +76,7 @@ const SearchCategory = () => {
       >
         People{" "}
         <span className="p-1 bg-slate-400 text-white rounded-md w-10 min-w-fit font-semibold text-center">
-          {categoryResults["person"] || 0}
+          {categoryResults["person"]?.toLocaleString() || 0}
         </span>
       </CategoryButton>
       <CategoryButton
@@ -88,7 +88,7 @@ const SearchCategory = () => {
       >
         Collections{" "}
         <span className="p-1 bg-slate-400 text-white rounded-md w-10 min-w-fit font-semibold text-center">
-          {categoryResults["collection"] || 0}
+          {categoryResults["collection"]?.toLocaleString() || 0}
         </span>
       </CategoryButton>
       <CategoryButton
@@ -100,7 +100,7 @@ const SearchCategory = () => {
       >
         Keywords{" "}
         <span className="p-1 bg-slate-400 text-white rounded-md w-10 min-w-fit font-semibold text-center">
-          {categoryResults["keyword"] || 0}
+          {categoryResults["keyword"]?.toLocaleString() || 0}
         </span>
       </CategoryButton>
       <CategoryButton
@@ -112,7 +112,7 @@ const SearchCategory = () => {
       >
         Companies{" "}
         <span className="p-1 bg-slate-400 text-white rounded-md w-10 min-w-fit font-semibold text-center">
-          {categoryResults["company"] || 0}
+          {categoryResults["company"]?.toLocaleString() || 0}
         </span>
       </CategoryButton>
     </div>

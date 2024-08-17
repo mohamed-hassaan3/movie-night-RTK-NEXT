@@ -4,7 +4,7 @@ export type Category = string
 
 export interface InitialStateSearch {
     searchTerm: string;
-    categoryResults: {[key: string]: number}
+    categoryResults: { [key: string]: number }
     category: string;
     currentPage: Number;
     searchData: any[];
@@ -50,5 +50,15 @@ export interface CharProps {
     name?: string;
     id: string | number;
     original_title?: string;
-  }
+}
 
+export interface PersonDetails {
+    id: number;
+    name: string
+}
+
+export interface InitialPersonDetails {
+    personDetails: {};
+    isLoading: boolean;
+    isError: unknown
+}

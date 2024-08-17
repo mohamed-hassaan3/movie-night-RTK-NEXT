@@ -1,12 +1,12 @@
 "use client";
 import React, { useEffect } from "react";
 import useDebounce from "@/hooks/useDebounce";
-import { useRouter } from "next/navigation";
 import { getSearch, selectCategory, selectSearchTerm, setSearchTerm } from "./searchSlice";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import usePagination from "@/hooks/usePagination";
 import Form from "@/components/common/Form";
 import PrimaryButton from "@/components/common/Buttons/PrimaryButton";
+import { useRouter } from "next/navigation";
 
 const Search = () => {
   const router = useRouter();
