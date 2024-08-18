@@ -26,6 +26,7 @@ const Collection = ({
 
   useEffect(() => {
     dispatch(getMediaDetails({ mediaID, category }));
+    window.scrollTo({top: 0})
   }, [dispatch, mediaID, category]);
 
   return (

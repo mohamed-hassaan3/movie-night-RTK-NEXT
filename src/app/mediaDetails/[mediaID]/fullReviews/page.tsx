@@ -10,7 +10,7 @@ import Image from "next/image";
 import { filterDate } from "@/helper/formatText";
 import Link from "next/link";
 import { FaArrowLeft } from "react-icons/fa";
-import SocialCard from "@/components/mediaDetails-page/SocialCard";
+import SocialCard from "@/components/mediaDetails-page/cards/SocialCard";
 
 const FullReviews = ({ params }: { params: { mediaID: string | number } }) => {
   const { mediaID } = params;

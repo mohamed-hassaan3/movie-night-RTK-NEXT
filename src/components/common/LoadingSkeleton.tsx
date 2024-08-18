@@ -6,7 +6,7 @@ const LoadingSkeleton = ({
   children
 }: Readonly<{ children: React.ReactNode }>) => {
   return (
-    <SkeletonTheme baseColor={"rgb(1,180,228)"} highlightColor={"rgb(3,37,65)"}>
+    <SkeletonTheme baseColor={"rgb(1,180,228)"} highlightColor={"rgba(255, 255, 255, .5)"}>
       {children}
     </SkeletonTheme>
   );

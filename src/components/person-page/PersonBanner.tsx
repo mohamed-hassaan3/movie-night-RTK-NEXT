@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React, { useState } from "react";
 import { FaAngleRight } from "react-icons/fa";
+import KnownFor from "./KnownFor";
 
 const PersonBanner = ({ personDetails }: { personDetails: PersonDetails }) => {
   const {
@@ -16,60 +17,63 @@ const PersonBanner = ({ personDetails }: { personDetails: PersonDetails }) => {
     external_ids,
     credits,
   } = personDetails;
-  const [readMore, setReadMore] = useState<boolean>(false);
+  const [isExpand, setIsExpand] = useState(false);
   const paragraphs = biography?.split("\n\n");
 
   console.log(biography);
-  console.log(biography?.slice().length);
   return (
     <article>
       <section>
-        <figure className="flex items-start gap-6">
+        <figure className="grid justify-center items-start grid-cols-6">
           <Image
-            className=" object-contain aspect-[1/1.5] rounded-lg"
+            className="object-contain aspect-[1/1.5] rounded-lg col-span-2"
             src={`${process.env.NEXT_PUBLIC_MOVIE_DB_IMAGE_API}${profile_path}`}
             width={300}
             height={300}
             alt="Banner"
           />
-          <figcaption className="space-y-12  overflow-hidden">
-            <h1 className="text-3xl font-bold tracking-wide">
-              {name || "Not available"}
-            </h1>
-            {biography && (
-              <>
-                <p className="text-xl font-bold">Biography</p>
+          <figcaption className="col-span-4 grid gap-1">
+            <section className=" overflow-hidden space-y-6">
+              <h1 className="text-3xl font-bold tracking-wide">
+                {name || "Not available"}
+              </h1>
+              {biography && (
                 <div
                   className={`${
-                    readMore ? "h-none" : "h-36"
-                  } relative overflow-hidden !mt-0`}
+                    isExpand || biography.slice().length <= 600
+                      ? "h-none"
+                      : "h-48"
+                  } relative`}
                 >
+                  <p className="text-xl font-bold">Biography</p>
                   {paragraphs.map((paragraph, i) => (
                     <p
                       key={i}
-                      className="block font-normal text-[16px] mb-4 leading-tight mt-2 "
+                      className="block font-normal text-sm tracking-tighter mb-4 leading-tight mt-2 "
                     >
-                      {readMore ? paragraph : paragraph.slice(0, 600)}
-                      {!readMore && biography?.slice().length >= 600 && (
-                        <>
+                      {isExpand ? paragraph : paragraph.slice(0, 600)}
+                      {!isExpand && biography?.slice().length >= 600 && (
+                        <div className="">
                           <div className="absolute inset-x-0 bottom-0 h-6 bg-gradient-to-l from-white to-transparent"></div>
                           <button
-                            onClick={() => setReadMore(!readMore)}
-                            className=" absolute bottom-0 right-0 p-1 text-blue-500 font-medium"
+                            onClick={() => setIsExpand(!isExpand)}
+                            className=" absolute bottom-0 right-0 pt-4 text-blue-500 font-medium"
                           >
                             Read More
                           </button>
-                        </>
+                        </div>
                       )}
                     </p>
                   ))}
                 </div>
-              </>
-            )}
+              )}
+            </section>
+            <section className="overflow-x-scroll overflow-y-hidden w-full py-6 mb-8 relative"> 
+              <KnownFor credits={credits} />
+            </section>
           </figcaption>
         </figure>
       </section>
-      <section>Known For</section>
     </article>
   );
 };

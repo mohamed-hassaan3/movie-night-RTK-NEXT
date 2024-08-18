@@ -1,5 +1,6 @@
 "use client";
 import PersonBanner from "@/components/person-page/PersonBanner";
+import PersonSkeleton from "@/components/person-page/PersonSkeleton";
 import {
   getPersonDetails,
   selectPersonDetails,
@@ -18,6 +19,7 @@ const PersonID = ({ params }: { params: { personID: string | number } }) => {
 
   useEffect(() => {
     dispatch(getPersonDetails({ personID }));
+    window.scrollTo({ top: 0 });
   }, [dispatch, personID]);
 
   console.log(personDetails);
@@ -29,7 +31,7 @@ const PersonID = ({ params }: { params: { personID: string | number } }) => {
           {isError.status_message}
         </p>
       ) : isLoading ? (
-        "Loading...."
+        <PersonSkeleton />
       ) : (
         <section>
           <PersonBanner personDetails={personDetails} />

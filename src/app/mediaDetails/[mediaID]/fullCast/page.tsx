@@ -1,5 +1,5 @@
 "use client";
-import CastCard from "@/components/mediaDetails-page/CastCard";
+import CastCard from "@/components/mediaDetails-page/cards/CastCard";
 import { filterDate } from "@/helper/formatText";
 import { uniqueObject } from "@/helper/uniqueObject";
 import usePagination from "@/hooks/usePagination";

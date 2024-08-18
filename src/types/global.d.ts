@@ -34,6 +34,8 @@ declare global {
         name: string
         character: string
         profile_path: string | null
+        poster_path?: string | null
+        backdrop_path?: string | null
     }
     interface Keywords {
         id: number
@@ -127,10 +129,12 @@ declare global {
             instagram_id: string
             twitter_id: string
         }
-        credits: {
-            cast: Cast[]
-            crew: Cast[]
-        }
+        credits: Credits
+    }
+
+    interface Credits {
+        cast: Cast[]
+        crew: Cast[]
     }
 
     interface PersonDetails {
@@ -148,9 +152,6 @@ declare global {
             instagram_id: string
             twitter_id: string
         }
-        credits: {
-            cast: Cast[]
-            crew: Cast[]
-        }
+        credits: Credits
     }
 }
