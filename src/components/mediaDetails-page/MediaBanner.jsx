@@ -8,6 +8,7 @@ import {
 import PercentageBar from "../common/PercentageBar";
 import WatchProviders from "./WatchProviders";
 import Trailer from "./Trailer";
+import unknown from "../../../public/unknown-Img.jpg";
 
 const MediaBanner = ({ mediaDetails }) => {
   const {
@@ -33,24 +34,43 @@ const MediaBanner = ({ mediaDetails }) => {
   return (
     <div className="text-center relative m-auto !text-sm">
       <section className="md:h-[60vh] w-full">
-        <Image
-          className="w-full h-full object-cover object-right-top opacity-10 "
-          src={`${process.env.NEXT_PUBLIC_MOVIE_DB_IMAGE_API}${
-            backdrop_path ? backdrop_path : poster_path
-          }`}
-          layout="fill"
-          alt="Banner"
-        />
+        {backdrop_path || poster_path !== null ? (
+          <Image
+            className="w-full h-full object-cover object-right-top opacity-10 "
+            src={`${process.env.NEXT_PUBLIC_MOVIE_DB_IMAGE_API}${
+              backdrop_path ? backdrop_path : poster_path
+            }`}
+            layout="fill"
+            alt="Banner"
+          />
+        ) : (
+          <Image
+            className="w-full h-full object-cover object-right-top opacity-10 "
+            src={unknown}
+            layout="fill"
+            alt="Banner2"
+          />
+        )}
         {/* Content */}
         <article className="md:absolute md:left-1/2 md:-translate-x-1/2 md:top-1/2 md:-translate-y-1/2 w-[95%] lg:w-[80%] p-4 lg:p-2 flex static md:flex-row flex-col gap-4 md:items-center">
           <figure>
-            <Image
+            {poster_path !== null ? (
+              <Image
               className="shadow-md w-full object-cover min-h-[400px] max-h-[400px] min-w-[300px] max-w-[300px]"
               src={`${process.env.NEXT_PUBLIC_MOVIE_DB_IMAGE_API}${poster_path}`}
               width={300}
               height={450}
-              alt="Banner"
-            />
+              alt="Banner3"
+              />
+            ) : (
+              <Image
+            className="shadow-md w-full object-cover min-h-[400px] max-h-[400px] min-w-[300px] max-w-[300px]"
+            src={unknown}
+            width={300}
+            height={450}
+            alt="Banner2"
+          />
+            )}
             <figcaption>
               <WatchProviders mediaDetails={mediaDetails} />
             </figcaption>
@@ -75,12 +95,12 @@ const MediaBanner = ({ mediaDetails }) => {
               </li>
             </ul>
             {vote_average && (
-            <div className="w-[130px] h-[100px] flex items-center gap-2">
-              <div>
-                <PercentageBar percentage={vote_average} />
+              <div className="w-[130px] h-[100px] flex items-center gap-2">
+                <div>
+                  <PercentageBar percentage={vote_average} />
+                </div>
+                <span className="font-bold">User Score</span>
               </div>
-              <span className="font-bold">User Score</span>
-            </div>
             )}
             <div className="my-3">
               {videos?.results && <Trailer videos={videos?.results} id={id} />}

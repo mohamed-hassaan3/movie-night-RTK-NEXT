@@ -3,9 +3,10 @@ import CastCard from "./cards/CastCard";
 import "@/app/globals.css";
 import { FaArrowRight } from "react-icons/fa";
 import Link from "next/link";
+import { uniqueObject } from "@/helper/uniqueObject";
 
 const TopCast = ({ mediaDetails }: { mediaDetails: MediaDetails }) => {
-  const truncateCast = mediaDetails.credits?.cast.slice(0, 9);
+  const truncateCast = uniqueObject(mediaDetails.credits?.cast.slice(0, 9));
 
   return (
     <>

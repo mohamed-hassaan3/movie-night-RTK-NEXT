@@ -22,6 +22,7 @@ import PersonCard from "@/components/search-page/cards/PersonCard";
 import CompanyCard from "@/components/search-page/cards/CompanyCard";
 import KeywordCard from "@/components/search-page/cards/KeywordCard";
 import CollectionCard from "@/components/search-page/cards/CollectionCard";
+import TvCard from "@/components/search-page/cards/TvCard";
 
 const SearchTerm = () => {
   const searchTerm = useAppSelector(selectSearchTerm);
@@ -36,14 +37,14 @@ const SearchTerm = () => {
     : [];
 
   console.log("RESULT", resultArray);
-  console.log("CATEGORY", category);
+  console.log("category", category);
 
   const renderCategoriesCard = (item: SearchItem) => {
     switch (category) {
       case "movie":
         return <SearchCard item={item} />;
       case "tv":
-        return <SearchCard item={item} />;
+        return <TvCard item={item} />;
       case "person":
         return <PersonCard item={item} />;
       case "company":

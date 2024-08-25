@@ -1,4 +1,5 @@
 import { formatAmount } from "@/helper/formatText";
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import {
@@ -51,6 +52,27 @@ const RightSide = ({ mediaDetails }: { mediaDetails: MediaDetails }) => {
         <div className="space-y-1">
           <h5 className="font-semibold">Status</h5>
           <p>{mediaDetails?.status ? mediaDetails.status : "_"}</p>
+        </div>
+        <div className="space-y-1">
+          <h5 className="font-semibold">Network</h5>
+          <p>
+            {mediaDetails?.networks
+              ? mediaDetails.networks.map((network) => (
+                  <Image
+                    key={network.id}
+                    className="aspect-[2, 1]"
+                    src={`${process.env.NEXT_PUBLIC_MOVIE_DB_IMAGE_API}${network.logo_path}`}
+                    width={100}
+                    height={100}
+                    alt="Banner"
+                  />
+                ))
+              : "_"}
+          </p>
+        </div>
+        <div className="space-y-1">
+          <h5 className="font-semibold">Type</h5>
+          <p>{mediaDetails?.type ? mediaDetails.type : "_"}</p>
         </div>
         <div className="space-y-1">
           <h5 className="font-semibold text-nowrap">Original Language</h5>

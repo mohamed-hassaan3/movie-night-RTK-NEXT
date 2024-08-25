@@ -5,9 +5,9 @@ import axios, { AxiosError } from "axios";
 
 export const getMediaDetails = createAsyncThunk(
     "media/id",
-    async ({ mediaID, category }: { mediaID: string | number, category: string }, { rejectWithValue }) => {
+    async ({ mediaID, category, mediaType }: { mediaID: string | number, category?: string, mediaType?: string }, { rejectWithValue }) => {
         try {
-            const response = await API(`/${category}/${mediaID}?&language=en-US&append_to_response=credits,videos,reviews,keywords,watch/providers,external_ids,recommendations`, options);
+            const response = await API(`/${mediaType || category}/${mediaID}?&language=en-US&append_to_response=credits,videos,reviews,keywords,watch/providers,external_ids,recommendations`, options);
             const data = response.data
             console.log("MEDIA ID", data)
             return data

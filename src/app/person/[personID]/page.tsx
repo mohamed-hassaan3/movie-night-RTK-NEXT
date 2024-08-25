@@ -22,7 +22,7 @@ const PersonID = ({ params }: { params: { personID: string | number } }) => {
     window.scrollTo({ top: 0 });
   }, [dispatch, personID]);
 
-  console.log(personDetails);
+  console.log("personDetails", personDetails);
   return (
     <main className="w-[80%] m-auto py-12">
       {isError ? (

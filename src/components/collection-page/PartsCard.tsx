@@ -1,4 +1,4 @@
-import { CharProps, SearchItem } from "@/types";
+import { SearchItem } from "@/types";
 import Image from "next/image";
 import React from "react";
 import UNKNOWN from "../../../public/unknown-Img.jpg";
@@ -14,15 +14,15 @@ const PartsCard = ({ item }: { item: SearchItem }) => {
     poster_path,
     overview,
     profile_path,
-    known_for,
     release_date,
-    known_for_department,
   } = item;
+  
   return (
     <div className=" flex gap-4 h-[175px] border rounded-xl shadow-lg my-6">
       <Link
         href={`/mediaDetails/${id}`}
         className="w-full max-w-[100px] max-h-[175px]"
+        scroll={true}
       >
         {poster_path || profile_path ? (
           <Image
@@ -52,17 +52,6 @@ const PartsCard = ({ item }: { item: SearchItem }) => {
           </span>
         </h3>
         <p className="opacity-50">{release_date}</p>
-        {/*{profile_path && (
-          <p>
-            {known_for_department}/
-            {known_for.map((char: CharProps, i) => (
-              <span key={i}>
-                {char.name || char.original_title}
-                {i < known_for.length - 1 && ","}
-              </span>
-            ))}
-          </p>
-        )} */}
         <p className="line-clamp-2 text-sm">{overview}</p>
       </div>
     </div>

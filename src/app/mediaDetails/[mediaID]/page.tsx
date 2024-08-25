@@ -23,10 +23,17 @@ const MediaID = ({ params }: { params: { mediaID: number | string } }) => {
   const mediaDetails = useAppSelector(selectMediaDetails);
   const category = useAppSelector(selectCategory);
   const dispatch = useAppDispatch();
+  console.log("Media type", mediaDetails?.media_type);
+  console.log("category", category);
+  const mediaType = mediaDetails.media_type;
 
   useEffect(() => {
-    dispatch(getMediaDetails({ mediaID, category }));
-  }, [dispatch, mediaID, category]);
+    if (mediaType !== undefined) {
+      dispatch(getMediaDetails({ mediaID, mediaType }));
+    } else {
+      dispatch(getMediaDetails({ mediaID, category }));
+    }
+  }, [dispatch, mediaID, category, mediaType]);
 
   return (
     <main className="overflow-hidden">

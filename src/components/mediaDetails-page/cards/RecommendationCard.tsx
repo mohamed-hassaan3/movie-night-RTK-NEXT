@@ -24,7 +24,7 @@ const RecommendationCard = ({ recommend }: { recommend: Recommendations }) => {
             src={`${process.env.NEXT_PUBLIC_MOVIE_DB_IMAGE_API}${backdrop_path}`}
             width={270}
             height={180}
-            alt={title}
+            alt={"title"}
           />
         ) : (
           <Image
@@ -32,7 +32,7 @@ const RecommendationCard = ({ recommend }: { recommend: Recommendations }) => {
             src={UNKNOWN}
             width={270}
             height={180}
-            alt={title}
+            alt={"title"}
           />
         )}
 

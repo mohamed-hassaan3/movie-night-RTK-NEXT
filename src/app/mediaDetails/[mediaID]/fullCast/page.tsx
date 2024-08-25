@@ -2,17 +2,15 @@
 import CastCard from "@/components/mediaDetails-page/cards/CastCard";
 import { filterDate } from "@/helper/formatText";
 import { uniqueObject } from "@/helper/uniqueObject";
-import usePagination from "@/hooks/usePagination";
 import {
   getMediaDetails,
   selectMediaDetails,
-  selectMediaIDError,
 } from "@/lib/redux/features/mediaDetails/mediaDetailsSlice";
 import { selectCategory } from "@/lib/redux/features/search/searchSlice";
 import { useAppDispatch, useAppSelector } from "@/lib/redux/hooks";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { FaArrowLeft } from "react-icons/fa";
 
 const FullCast = ({ params }: { params: { mediaID: number } }) => {
@@ -24,6 +22,7 @@ const FullCast = ({ params }: { params: { mediaID: number } }) => {
   const crews = uniqueObject(mediaDetails.credits?.crew);
   console.log("CASTS", casts);
   console.log("CREWS", crews);
+
   useEffect(() => {
     dispatch(getMediaDetails({ mediaID, category }));
   }, [mediaID, category, dispatch]);

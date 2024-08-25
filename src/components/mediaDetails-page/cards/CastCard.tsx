@@ -15,7 +15,7 @@ const CastCard = ({ cast }: { cast: Cast }) => {
             src={`${process.env.NEXT_PUBLIC_MOVIE_DB_IMAGE_API}${profile_path}`}
             width={70}
             height={100}
-            alt={name || "img"}
+            alt={"img"}
           />
         ) : (
           <Image
@@ -23,7 +23,7 @@ const CastCard = ({ cast }: { cast: Cast }) => {
             src={CHARACTER}
             width={70}
             height={100}
-            alt={name || "img"}
+            alt={"img"}
           />
         )}
         <figcaption className=" p-3">

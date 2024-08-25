@@ -18,6 +18,12 @@ export interface InitialMediaIDState {
     isError: any;
 }
 
+export interface InitialTvIDState {
+    tvDetails: {};
+    isLoading: boolean;
+    isError: any;
+}
+
 export interface SearchItem {
     id: number;
     name: string;
@@ -61,4 +67,9 @@ export interface InitialPersonDetails {
     personDetails: {};
     isLoading: boolean;
     isError: unknown
+}
+export interface InitialCollectionDetails {
+    collectionDetails: {}
+    isError: unknown
+    isLoading: boolean
 }

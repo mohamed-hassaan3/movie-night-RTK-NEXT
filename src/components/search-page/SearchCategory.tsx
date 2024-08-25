@@ -31,7 +31,6 @@ const SearchCategory = () => {
       "collection",
       "keyword",
       "company",
-      "network",
     ];
     categories.forEach((category) =>
       dispatch(getCategoriesResults({ category, searchTerm }))

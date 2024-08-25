@@ -1,3 +1,5 @@
+import { SearchItem } from "."
+
 export { }
 
 declare global {
@@ -30,6 +32,7 @@ declare global {
         type?: "submit" | "button" | "reset";
     }
     interface Cast {
+        number_of_episodes?: number
         id: number
         name: string
         character: string
@@ -102,9 +105,16 @@ declare global {
         overview: string;
         original_title: string
     }
+    interface Networks {
+        id: number;
+        name?: string;
+        logo_path: string
+    }
     interface MediaDetails {
         id: number
         media_type?: string;
+        type?: string;
+        networks?: Networks[]
         parts: Parts[]
         Video: Video[]
         homepage: string
@@ -153,5 +163,14 @@ declare global {
             twitter_id: string
         }
         credits: Credits
+    }
+
+    interface CollectionDetails {
+        id: number | undefined;
+        name: string;
+        backdrop_path: string;
+        poster_path: string;
+        overview: string;
+        parts: SearchItem 
     }
 }

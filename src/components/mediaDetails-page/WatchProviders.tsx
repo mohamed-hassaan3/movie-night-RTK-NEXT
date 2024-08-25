@@ -2,7 +2,7 @@
 import { getUserCountry } from "@/Utilities/getUserCountry";
 import Image from "next/image";
 import Link from "next/link";
-import React, { Fragment, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const WatchProviders = ({ mediaDetails }: any) => {
   const [userCountry, setUserCountry] = useState<string>("AE");
