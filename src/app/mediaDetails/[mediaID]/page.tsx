@@ -34,11 +34,16 @@ const MediaID = ({ params }: { params: { mediaID: number | string } }) => {
       dispatch(getMediaDetails({ mediaID, category }));
     }
   }, [dispatch, mediaID, category, mediaType]);
-
+  useEffect(() => {
+    if (category !== "movie") {
+      window.location.reload();
+    }
+  }, []);
+  
   return (
     <main className="overflow-hidden">
       {isError ? (
-        isError.status_message
+        <p className="text-center my-4 mx-auto h-[60dvh]">{isError.status_message}</p>
       ) : isLoading ? (
         <MediaDetailsSkeleton />
       ) : (

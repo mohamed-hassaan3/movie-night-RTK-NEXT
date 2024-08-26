@@ -106,7 +106,9 @@ const RightSide = ({ mediaDetails }: { mediaDetails: MediaDetails }) => {
                   className="bg-gray-300 p-2 text-xs text-nowrap my-2 mr-2 rounded-md border-gray-400 border shadow-sm"
                   key={word.id}
                 >
+                  <Link href={`/keyword/${word.id}`}>
                   {word.name}
+                  </Link>
                 </span>
               ))}
           </div>

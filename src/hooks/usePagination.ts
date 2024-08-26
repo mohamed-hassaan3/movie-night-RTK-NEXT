@@ -3,7 +3,6 @@ import { selectCurrentPage, setCurrentPage } from "@/lib/redux/features/search/s
 import { useAppDispatch, useAppSelector } from "@/lib/redux/hooks"
 
 const usePagination = () => {
-    // const [currentPage, setCurrentPage] = useState(1);
     const currentPage = useAppSelector(selectCurrentPage)
     const dispatch = useAppDispatch()
 

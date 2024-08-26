@@ -8,14 +8,11 @@ import {
   selectSearchIsError,
   selectSearchIsLoading,
   selectSearchTerm,
-  setSearchTerm,
 } from "@/lib/redux/features/search/searchSlice";
 import { useAppDispatch, useAppSelector } from "@/lib/redux/hooks";
 import React, { Fragment, useEffect } from "react";
 import { type SearchItem } from "@/types/index";
 import usePagination from "@/hooks/usePagination";
-import Form from "@/components/common/Form";
-import { FaSearch } from "react-icons/fa";
 import SearchCategory from "@/components/search-page/SearchCategory";
 import PrimaryButton from "@/components/common/Buttons/PrimaryButton";
 import PersonCard from "@/components/search-page/cards/PersonCard";
@@ -61,30 +58,8 @@ const SearchTerm = () => {
     window.scrollTo({ top: 0 });
   }, [searchTerm, currentPage, category, dispatch]);
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(setSearchTerm(event.target.value.toLocaleLowerCase()));
-  };
-
-  const handleSubmit = (event: React.ChangeEvent<HTMLFormElement>) => {
-    event.preventDefault();
-  };
-
   return (
     <div className="w-full ">
-      <Form
-        className="mb-4 border-b flex items-center px-20 space-x-1"
-        onSubmit={handleSubmit}
-      >
-        <FaSearch />
-        <input
-          className=" outline-none p-4 w-full text-gray-400 italic"
-          value={searchTerm}
-          onChange={handleChange}
-          type="text"
-          name="search"
-          placeholder="Search for a Movie, TV show, person......"
-        />
-      </Form>
       {searchTerm && (
         <p className=" max-w-max shadow-md py-2 px-4 rounded-rb-lg rounded-r-lg sticky top-0 bg-slate-200">
           Search Key is{" "}

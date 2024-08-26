@@ -29,6 +29,8 @@ export interface SearchItem {
     name: string;
     original_name: string;
     original_title: string;
+    logo_path?: string;
+    origin_country?: string;
     title: string;
     poster_path: string | undefined;
     overview: string | number;

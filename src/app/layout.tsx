@@ -35,10 +35,12 @@ export default function RootLayout({
           speed={200}
           shadow="0 0 10px #2299DD,0 0 5px #2299DD"
         />
-        <header className="bg-darkBlue text-white font-medium p-4 w-full">
-          <Header />
-        </header>
-        <StoreProvider>{children}</StoreProvider>
+        <StoreProvider>
+          <header className="bg-darkBlue text-white font-medium p-4 w-full">
+            <Header />
+          </header>
+          {children}
+        </StoreProvider>
         <footer className="bg-darkBlue text-white py-6">
           <Footer />
         </footer>

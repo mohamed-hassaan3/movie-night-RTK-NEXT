@@ -1,33 +1,11 @@
 "use client";
-import React, { useEffect } from "react";
-import useDebounce from "@/hooks/useDebounce";
-import { getSearch, selectCategory, selectSearchTerm, setSearchTerm } from "./searchSlice";
-import { useAppDispatch, useAppSelector } from "../../hooks";
-import usePagination from "@/hooks/usePagination";
+import React from "react";
 import Form from "@/components/common/Form";
 import PrimaryButton from "@/components/common/Buttons/PrimaryButton";
-import { useRouter } from "next/navigation";
+import useSearchQuery from "@/hooks/useSearchQuery";
 
 const Search = () => {
-  const router = useRouter();
-  const searchTerm = useAppSelector(selectSearchTerm);
-  const {currentPage} = usePagination();
-  const category = useAppSelector(selectCategory)
-  const debouncedValue = useDebounce(searchTerm, 500);
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    dispatch(getSearch({ searchTerm: debouncedValue, currentPage, category }));
-  }, [dispatch, searchTerm, currentPage, debouncedValue, category]);
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(setSearchTerm(event.target.value.toLocaleLowerCase()));
-  };
-
-  const handleSubmit = (event: React.ChangeEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    router.push(`/search/${searchTerm}`);
-  };
+  const {searchTerm, handleChange, handleSubmit} = useSearchQuery()
 
   return (
     <Form className="text-center m-auto w-[95%]" onSubmit={handleSubmit}>
@@ -39,7 +17,6 @@ const Search = () => {
         name="search"
         placeholder="Search for a Movie, TV show, person......"
       />
-
       <PrimaryButton
         disabled={!searchTerm}
         className={`bg-lightBlue py-4 px-8 rounded-full text-white font-bold hover:text-black absolute right-4 ${

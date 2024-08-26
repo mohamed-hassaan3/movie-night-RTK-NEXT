@@ -74,11 +74,15 @@ const PersonBanner = ({ personDetails }: { personDetails: PersonDetails }) => {
                     </p>
                   ))}
                 </div>
-              ) : (<p>We dont have a biography for <strong>{name}</strong>.</p>)}
+              ) : (
+                <p>
+                  We dont have a biography for <strong>{name}</strong>.
+                </p>
+              )}
             </section>
-              <section className="overflow-x-scroll overflow-y-hidden w-full py-6 mb-8 relative">
-                <KnownFor credits={credits} />
-              </section>
+            <section className="overflow-x-scroll overflow-y-hidden w-full py-6 mb-8 relative">
+              {credits?.cast.length ? <KnownFor credits={credits} /> : ""}
+            </section>
           </figcaption>
         </figure>
       </section>
