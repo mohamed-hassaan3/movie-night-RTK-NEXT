@@ -75,3 +75,10 @@ export interface InitialCollectionDetails {
     isError: unknown
     isLoading: boolean
 }
+export interface TrendingProps {
+    id: number;
+    title: string;
+    backdrop_path: string;
+    vote_average: number;
+    release_date: Date;
+}
