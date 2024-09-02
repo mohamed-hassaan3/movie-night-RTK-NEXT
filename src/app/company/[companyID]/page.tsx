@@ -19,7 +19,7 @@ async function getCompanyID(id: number | string) {
 
 const page = async ({ params }: { params: { companyID: string | number } }) => {
   const companyData = await getCompanyID(params.companyID);
-  console.log(companyData);
+  console.log(companyData.results);
   return (
     <div className="w-[90%] m-auto py-16">
       {companyData.total_results > 1 && (

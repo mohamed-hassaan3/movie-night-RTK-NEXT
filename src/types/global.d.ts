@@ -39,6 +39,7 @@ declare global {
         profile_path: string | null
         poster_path?: string | null
         backdrop_path?: string | null
+        media_type?: string
     }
     interface Keywords {
         id: number
@@ -79,6 +80,7 @@ declare global {
         first_air_date: string
         title: string
         vote_average: number
+        media_type: string
     }
     interface Reviews {
         id: number

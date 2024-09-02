@@ -10,7 +10,7 @@ const TopCast = ({ mediaDetails }: { mediaDetails: MediaDetails }) => {
 
   return (
     <>
-      {mediaDetails.credits?.cast.length > 0 && (
+      {mediaDetails.credits?.cast.length > 0 ? (
         <div className="border-b pb-8">
           <h1 className="font-bold text-xl">Top Billed Cast</h1>
           <div className="flex items-center justify-start gap-3 overflow-x-scroll overflow-y-hidden w-full py-6 mb-8">
@@ -38,7 +38,7 @@ const TopCast = ({ mediaDetails }: { mediaDetails: MediaDetails }) => {
             Full Cast & Crew
           </Link>
         </div>
-      )}
+      ) : "We don't have any cast added to this movie. You can help by adding some!"}
     </>
   );
 };

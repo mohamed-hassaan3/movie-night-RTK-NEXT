@@ -14,9 +14,10 @@ const RecommendationCard = ({ recommend }: { recommend: Recommendations }) => {
     backdrop_path,
     first_air_date,
     name,
+    media_type
   } = recommend;
   return (
-    <Link href={`/mediaDetails/${id}`}>
+    <Link href={`/mediaDetails/${media_type ? media_type : "movie"}/${id}`}>
       <figure className="relative group/item  transition-all ease-in-out duration-700">
         {backdrop_path ? (
           <Image

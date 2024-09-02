@@ -60,7 +60,7 @@ const RightSide = ({ mediaDetails }: { mediaDetails: MediaDetails }) => {
               ? mediaDetails.networks.map((network) => (
                   <Image
                     key={network.id}
-                    className="aspect-[2, 1]"
+                    className="aspect-[2, 1] p-2"
                     src={`${process.env.NEXT_PUBLIC_MOVIE_DB_IMAGE_API}${network.logo_path}`}
                     width={100}
                     height={100}

@@ -76,7 +76,7 @@ const PersonBanner = ({ personDetails }: { personDetails: PersonDetails }) => {
                 </div>
               ) : (
                 <p>
-                  We dont have a biography for <strong>{name}</strong>.
+                  We don&apos;t have a biography for <strong>{name}</strong>.
                 </p>
               )}
             </section>

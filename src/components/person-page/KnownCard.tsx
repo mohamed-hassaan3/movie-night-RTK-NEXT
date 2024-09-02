@@ -5,7 +5,7 @@ import unknown from "../../../public/unknown-Img.jpg";
 
 const KnownCard = ({ credit }: { credit: Cast }) => {
   return (
-    <Link href={`/mediaDetails/${credit.id}`}>
+    <Link href={`/mediaDetails/${credit.media_type ? credit.media_type : "movie"}/${credit.id}`}>
       <figure className="min-w-[130px] h-[195px] border shadow-md rounded-xl">
         {credit?.poster_path || credit?.backdrop_path ? (
           <Image

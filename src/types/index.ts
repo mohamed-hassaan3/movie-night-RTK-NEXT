@@ -78,6 +78,10 @@ export interface InitialCollectionDetails {
 export interface TrendingProps {
     id: number;
     title: string;
+    name: string;
+    media_type: string;
+    first_air_date: Date;
+    poster_path: string;
     backdrop_path: string;
     vote_average: number;
     release_date: Date;

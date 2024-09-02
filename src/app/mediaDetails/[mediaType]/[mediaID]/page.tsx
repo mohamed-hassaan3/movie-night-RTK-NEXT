@@ -6,7 +6,6 @@ import {
   selectMediaIDError,
   selectMediaIDLoading,
 } from "@/lib/redux/features/mediaDetails/mediaDetailsSlice";
-import { selectCategory } from "@/lib/redux/features/search/searchSlice";
 import { useAppDispatch, useAppSelector } from "@/lib/redux/hooks";
 import MediaBanner from "@/components/mediaDetails-page/MediaBanner";
 import TopCast from "@/components/mediaDetails-page/TopCast";
@@ -16,34 +15,30 @@ import Media from "@/components/mediaDetails-page/Media";
 import Recommendation from "@/components/mediaDetails-page/Recommendation";
 import MediaDetailsSkeleton from "@/components/mediaDetails-page/MediaDetailsSkeleton";
 
-const MediaID = ({ params }: { params: { mediaID: number | string } }) => {
+const MediaID = ({
+  params,
+}: {
+  params: { mediaID: number | string; mediaType: string };
+}) => {
   const mediaID = params.mediaID;
+  const mediaType = params.mediaType;
   const isLoading = useAppSelector(selectMediaIDLoading);
   const isError = useAppSelector(selectMediaIDError);
   const mediaDetails = useAppSelector(selectMediaDetails);
-  const category = useAppSelector(selectCategory);
   const dispatch = useAppDispatch();
   console.log("Media type", mediaDetails?.media_type);
-  console.log("category", category);
-  const mediaType = mediaDetails.media_type;
 
   useEffect(() => {
-    if (mediaType !== undefined) {
-      dispatch(getMediaDetails({ mediaID, mediaType }));
-    } else {
-      dispatch(getMediaDetails({ mediaID, category }));
-    }
-  }, [dispatch, mediaID, category, mediaType]);
-  useEffect(() => {
-    if (category !== "movie") {
-      window.location.reload();
-    }
-  }, []);
+    dispatch(getMediaDetails({ mediaType, mediaID }));
   
+  }, [dispatch, mediaID, mediaType]);
+
   return (
     <main className="overflow-hidden">
       {isError ? (
-        <p className="text-center my-4 mx-auto h-[60dvh]">{isError.status_message}</p>
+        <p className="text-center my-4 mx-auto h-[60dvh]">
+          {isError.status_message}
+        </p>
       ) : isLoading ? (
         <MediaDetailsSkeleton />
       ) : (

@@ -2,7 +2,7 @@ import React from "react";
 import MediaCard from "./cards/MediaCard";
 
 const Media = ({ mediaDetails }: { mediaDetails: MediaDetails }) => {
-  const videos = mediaDetails.videos?.results;
+  const videos = mediaDetails.videos?.results.slice(0, 6);
   return (
     <>
       {videos?.length ? (

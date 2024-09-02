@@ -17,12 +17,13 @@ const SearchCard = ({ item }: { item: SearchItem }) => {
     profile_path,
     known_for,
     release_date,
+    media_type
   } = item;
 
   return (
     <div className=" flex gap-4 h-[152px] border rounded-xl shadow-lg">
       <Link
-        href={`/mediaDetails/${id}`}
+        href={`/mediaDetails/${media_type ? media_type : "movie"}/${id}`}
         className="w-full max-w-[100px] max-h-[150px]"
       >
         {poster_path || profile_path ? (

@@ -15,12 +15,13 @@ const PartsCard = ({ item }: { item: SearchItem }) => {
     overview,
     profile_path,
     release_date,
+    media_type
   } = item;
   
   return (
     <div className=" flex gap-4 h-[175px] border rounded-xl shadow-lg my-6">
       <Link
-        href={`/mediaDetails/${id}`}
+        href={`/mediaDetails/${media_type ? media_type : "movie"}/${id}`}
         className="w-full max-w-[100px] max-h-[175px]"
         scroll={true}
       >
