@@ -33,7 +33,7 @@ const Popular = () => {
   };
 
   return (
-    <article>
+    <article className="relative">
       {isError ? (
         <p className="text-center h-[80dvh] text-red-400">{error}</p>
       ) : (
@@ -68,7 +68,8 @@ const Popular = () => {
           </div>
         )
       )}
-      <div className="w-full overflow-scroll flex gap-4 items-center m-auto">
+      <div className="absolute right-0 bottom-0 h-full w-32 bg-gradient-to-l from-white z-50 to-transparent "></div>
+      <div className="w-full overflow-scroll flex gap-4 items-center m-auto pr-12">
         {isLoading && popularData ? (
           <HorizontalCardSkeleton items={popularData || []} />
         ) : (

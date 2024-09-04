@@ -29,18 +29,17 @@ const TrendingPeople = () => {
   }, [fetchPopular, popularType]);
 
   return (
-    <article>
+    <article className="relative">
       {isError ? (
         <p className="text-center h-[80dvh] text-red-400">{error}</p>
       ) : (
         popularData &&
         popularData.results.length > 1 && (
-          <div className="flex items-center gap-6 mb-2">
-            <h1 className="title">Trending People</h1>
-          </div>
+            <h1 className="title mb-6">Trending People</h1>
         )
       )}
-      <div className="w-full overflow-scroll flex gap-4 items-center m-auto">
+      <div className="absolute right-0 bottom-0 h-full w-32 bg-gradient-to-l from-white to-transparent "></div>
+      <div className="w-full overflow-scroll flex gap-4 items-center m-auto pr-12">
         {isLoading && popularData ? (
           <HorizontalCardSkeleton items={popularData || []} />
         ) : (
