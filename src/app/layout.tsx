@@ -40,10 +40,10 @@ export default function RootLayout({
             <Header />
           </header>
           {children}
+          <footer className="bg-darkBlue text-white py-6">
+            <Footer />
+          </footer>
         </StoreProvider>
-        <footer className="bg-darkBlue text-white py-6">
-          <Footer />
-        </footer>
       </body>
     </html>
   );

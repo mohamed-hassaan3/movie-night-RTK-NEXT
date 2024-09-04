@@ -1,16 +1,12 @@
 "use server"
-import { TrendingProps } from "@/types";
+import { Data, TrendingProps } from "@/types";
 
-interface Data {
-    results: TrendingProps[]
-}
-
-export async function getTrending() {
+export async function getTrending({timeWindow}: {timeWindow: string}) {
     let data: Data | undefined = undefined
     let isError = false;
     let error = ""
     try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_TRENDING_DB_API}/day`,
+        const response = await fetch(`${process.env.NEXT_PUBLIC_TRENDING_DB_API}/${timeWindow}`,
             {
                 headers: {
                     accept: "application/json",

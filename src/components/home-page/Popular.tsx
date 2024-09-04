@@ -1,22 +1,21 @@
-"use client";
-import React, { useCallback, useEffect, useState } from "react";
-import TrendingCard from "./cards/TrendingCard";
+import { getPopular } from "@/app/actions/getPopular";
 import { Data, TrendingProps } from "@/types";
-import { getTrending } from "@/app/actions/getTrending";
+import React, { useCallback, useEffect, useState } from "react";
 import HorizontalCardSkeleton from "../common/HorizontalCardSkeleton";
+import TrendingCard from "./cards/TrendingCard";
 
-const Trending = () => {
-  const [trendingData, setTrendingData] = useState<Data | undefined>();
+const Popular = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [error, setError] = useState("");
-  const [timeWindow, setTimeWindow] = useState<string>("day");
+  const [popularData, setPopularData] = useState<Data | undefined>();
+  const [popularType, setPopularType] = useState("movie");
 
-  const fetchTrending = useCallback(async (timeWindow: string) => {
+  const fetchPopular = useCallback(async (type: string) => {
     setIsLoading(true);
-    const { data, error, isError } = await getTrending({ timeWindow });
+    const { data, isError, error } = await getPopular({ type });
     if (!isError) {
-      setTrendingData(data);
+      setPopularData(data);
     } else {
       setIsError(true);
       setError(error);
@@ -25,12 +24,12 @@ const Trending = () => {
   }, []);
 
   useEffect(() => {
-    fetchTrending(timeWindow);
-  }, [fetchTrending, timeWindow]);
+    fetchPopular(popularType);
+  }, [fetchPopular, popularType]);
 
   const toggleBtn = (e: React.MouseEvent<HTMLButtonElement>) => {
     const value = (e.target as HTMLButtonElement).value;
-    setTimeWindow(value);
+    setPopularType(value);
   };
 
   return (
@@ -38,31 +37,31 @@ const Trending = () => {
       {isError ? (
         <p className="text-center h-[80dvh] text-red-400">{error}</p>
       ) : (
-        trendingData &&
-        trendingData.results.length > 1 && (
+        popularData &&
+        popularData.results.length > 1 && (
           <div className="flex items-center gap-6 mb-2">
-            <h1 className="title">Trending</h1>
+            <h1 className="title">What&apos;s Popular</h1>
             <ul className="flex items-center text-sm border rounded-full *:rounded-full *:text-darkBlue ">
               <li>
                 <button
                   className={`${
-                    timeWindow === "day" && "text-lightBlue bg-darkBlue"
+                    popularType === "movie" && "text-lightBlue bg-darkBlue"
                   } transition-all rounded-full duration-700 px-6 py-2 font-semibold`}
-                  value="day"
+                  value="movie"
                   onClick={toggleBtn}
                 >
-                  Today
+                  Movie
                 </button>
               </li>
               <li>
                 <button
                   className={`${
-                    timeWindow === "week" && "text-lightBlue bg-darkBlue"
+                    popularType === "tv" && "text-lightBlue bg-darkBlue"
                   } transition-all rounded-full duration-700 px-6 py-2 font-semibold`}
-                  value="week"
+                  value="tv"
                   onClick={toggleBtn}
                 >
-                  This Week
+                  On TV
                 </button>
               </li>
             </ul>
@@ -70,11 +69,11 @@ const Trending = () => {
         )
       )}
       <div className="w-full overflow-scroll flex gap-4 items-center m-auto">
-        {isLoading && trendingData ? (
-          <HorizontalCardSkeleton items={trendingData || []} />
+        {isLoading && popularData ? (
+          <HorizontalCardSkeleton items={popularData || []} />
         ) : (
-          trendingData?.results &&
-          trendingData.results?.map((trending: TrendingProps) => (
+          popularData?.results &&
+          popularData.results?.map((trending: TrendingProps) => (
             <TrendingCard key={trending.id} trending={trending} />
           ))
         )}
@@ -83,4 +82,4 @@ const Trending = () => {
   );
 };
 
-export default Trending;
+export default Popular;

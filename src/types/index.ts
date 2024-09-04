@@ -86,3 +86,7 @@ export interface TrendingProps {
     vote_average: number;
     release_date: Date;
 }
+
+export interface Data {
+    results: TrendingProps[];
+  }

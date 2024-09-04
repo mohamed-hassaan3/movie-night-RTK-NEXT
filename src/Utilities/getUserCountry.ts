@@ -1,6 +1,5 @@
 import axios from "axios"
 
-
 export const getUserCountry = async (): Promise<string> => {
 
     try {
