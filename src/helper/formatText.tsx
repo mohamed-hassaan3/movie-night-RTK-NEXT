@@ -8,8 +8,40 @@ export function formatDate(dateStr: unknown): string {
   return dateString.replace(/-/g, "/");
 }
 
-export function formatVote (voteAverage: number) {
-  return  Math.round(voteAverage * 10);
+export const convertDateToString = (date: any) => {
+  if (date) {
+    date = new Date(date);
+    const options = { year: "numeric", month: "long", day: "numeric" };
+    return date.toLocaleDateString("en-US", options);
+  }
+};
+
+export const calculateAge = (age: Date) => {
+  const birthDay = new Date(age).getFullYear();
+  let today = new Date().getFullYear();
+  let calculated =  today - birthDay;
+
+  if (birthDay < 0) {
+    calculated--;
+  }
+  
+  return calculated
+};
+
+export const deathAge = (age: Date, death: Date) => {
+  const birthDay = new Date(age).getFullYear();
+  let deathTime = new Date(death).getFullYear();
+  let calculated =  deathTime - birthDay;
+
+  if (birthDay < 0) {
+    calculated--;
+  }
+  
+  return calculated
+};
+
+export function formatVote(voteAverage: number) {
+  return Math.round(voteAverage * 10);
 }
 
 export function loopArr(arr: Item[]) {
@@ -34,5 +66,5 @@ export const formatAmount = (amount: number) => {
     style: "currency",
     currency: "USD",
   }).format(amount);
-  return formatNumber
+  return formatNumber;
 };

@@ -7,7 +7,7 @@ export const getPersonDetails = createAsyncThunk(
     "personDetails/id",
     async ({ personID }: { personID: number | string }, { rejectWithValue }) => {
         try {
-            const response = await API(`/person/${personID}?&language=en-US&append_to_response=credits,external_ids`, options);
+            const response = await API(`/person/${personID}?&language=en-US&append_to_response=credits,external_ids,movie_credits,tv_credits`, options);
             const data = response.data;
             console.log("Person Details", data)
             return data

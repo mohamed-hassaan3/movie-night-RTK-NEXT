@@ -26,10 +26,10 @@ const PersonID = ({ params }: { params: { personID: string | number } }) => {
   return (
     <main className="w-[80%] m-auto py-12">
       {isError ? (
-        <p className="text-center">
+        <h2 className="text-center">
           <span className="mr-2">{`Status_Error ${isError.status_code}`}</span>
           {isError.status_message}
-        </p>
+        </h2>
       ) : isLoading ? (
         <PersonSkeleton />
       ) : (

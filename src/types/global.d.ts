@@ -154,15 +154,19 @@ declare global {
         biography: string;
         birthday: Date;
         also_known_as: [];
+        deathday: Date
         homepage: string
         known_for_department: string;
         name: string;
         place_of_birth: string;
         profile_path: string;
+        gender: number
         external_ids?: {
             facebook_id: string
             instagram_id: string
             twitter_id: string
+            tiktok_id: string
+            youtube_id: string
         }
         credits: Credits
     }
