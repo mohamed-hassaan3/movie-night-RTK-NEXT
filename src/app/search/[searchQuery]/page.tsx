@@ -1,5 +1,5 @@
 "use client";
-import SearchCard from "@/components/search-page/cards/SearchCard";
+import SearchCard from "@/components/common/cards/SearchCard";
 import SearchSkeleton from "@/components/search-page/SearchSkeleton";
 import {
   getSearch,
@@ -15,11 +15,11 @@ import { type SearchItem } from "@/types/index";
 import usePagination from "@/hooks/usePagination";
 import SearchCategory from "@/components/search-page/SearchCategory";
 import PrimaryButton from "@/components/common/Buttons/PrimaryButton";
-import PersonCard from "@/components/search-page/cards/PersonCard";
-import CompanyCard from "@/components/search-page/cards/CompanyCard";
-import KeywordCard from "@/components/search-page/cards/KeywordCard";
-import CollectionCard from "@/components/search-page/cards/CollectionCard";
-import TvCard from "@/components/search-page/cards/TvCard";
+import PersonCard from "@/components/common/cards/PersonCard";
+import CompanyCard from "@/components/common/cards/CompanyCard";
+import KeywordCard from "@/components/common/cards/KeywordCard";
+import CollectionCard from "@/components/common/cards/CollectionCard";
+import TvCard from "@/components/common/cards/TvCard";
 
 const SearchTerm = () => {
   const searchTerm = useAppSelector(selectSearchTerm);

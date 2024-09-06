@@ -71,7 +71,7 @@ const Header = () => {
             } flex items-center mr-2 xl:w-[400px] lg:w-[250px] w-[200px] opacity-0 transition-opacity duration-700`}
           >
             <input
-              className=" text-sm outline-none p-2 w-full text-gray-400 italic"
+              className=" text-sm outline-none p-2 w-full text-gray-400 italic focus:border-sky-500 focus:ring-sky-500 focus:ring-1 rounded-md shadow-sm"
               type="text"
               name="search"
               value={searchTerm}
@@ -80,7 +80,7 @@ const Header = () => {
             />
           </Form>
         )}
-        <div onClick={handleClick} className="cursor-pointer text-lg">
+        <div onClick={handleClick} className="cursor-pointer text-lg text-lightBlue active:text-white transition duration-500">
           <FaSearch />
         </div>
       </div>

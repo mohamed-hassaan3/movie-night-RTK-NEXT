@@ -2,7 +2,7 @@ import { getPopular } from "@/app/actions/getPopular";
 import { Data, TrendingProps } from "@/types";
 import React, { useCallback, useEffect, useState } from "react";
 import HorizontalCardSkeleton from "../common/HorizontalCardSkeleton";
-import PersonCard from "../search-page/cards/PersonCard";
+import PersonCard from "../common/cards/PersonCard";
 import CastCard from "../mediaDetails-page/cards/CastCard";
 
 const TrendingPeople = () => {

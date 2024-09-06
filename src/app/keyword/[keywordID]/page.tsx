@@ -1,4 +1,4 @@
-import SearchCard from "@/components/search-page/cards/SearchCard";
+import SearchCard from "@/components/common/cards/SearchCard";
 import React from "react";
 
 async function getKeyword(keywordID: string | number) {
