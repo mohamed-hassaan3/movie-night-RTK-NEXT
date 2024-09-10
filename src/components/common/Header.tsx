@@ -3,17 +3,26 @@ import Image from "next/image";
 import Link from "next/link";
 import LOGO from "../../../public/logo.png";
 import { FaSearch } from "react-icons/fa";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Form from "./Form";
 import useSearchQuery from "@/hooks/useSearchQuery";
 
 const Header = () => {
   const [isSearch, setIsSearch] = useState(false);
   const { searchTerm, handleChange, handleSubmit } = useSearchQuery();
+  const refInput = useRef<HTMLInputElement | null>(null);
 
-  const handleClick = () => {
+  const toggleSearch = () => {
     setIsSearch(!isSearch);
   };
+
+  useEffect(() => {
+    if (isSearch) {
+      refInput.current?.focus();
+    } else if (!isSearch) {
+      refInput.current;
+    }
+  }, [isSearch]);
 
   return (
     <div className="w-[70%] m-auto flex items-center justify-between gap-4">
@@ -74,13 +83,17 @@ const Header = () => {
               className=" text-sm outline-none p-2 w-full text-gray-400 italic focus:border-sky-500 focus:ring-sky-500 focus:ring-1 rounded-md shadow-sm"
               type="text"
               name="search"
+              ref={refInput}
               value={searchTerm}
               onChange={handleChange}
               placeholder="Search for a Movie, TV show, person"
             />
           </Form>
         )}
-        <div onClick={handleClick} className="cursor-pointer text-lg text-lightBlue active:text-white transition duration-500">
+        <div
+          onClick={toggleSearch}
+          className="cursor-pointer text-lg text-lightBlue active:text-white transition duration-500"
+        >
           <FaSearch />
         </div>
       </div>

@@ -29,3 +29,7 @@ html {
     }
 }
 
+.toggle {
+    display: none;
+    background-color: black;
+}

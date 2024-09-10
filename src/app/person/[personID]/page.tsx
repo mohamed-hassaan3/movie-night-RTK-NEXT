@@ -22,13 +22,12 @@ const PersonID = ({ params }: { params: { personID: string | number } }) => {
     window.scrollTo({ top: 0 });
   }, [dispatch, personID]);
 
-  console.log("personDetails", personDetails);
   return (
     <main className="w-[80%] m-auto py-12">
       {isError ? (
         <h2 className="text-center">
           <span className="mr-2">{`Status_Error ${isError.status_code}`}</span>
-          {isError.status_message}
+          {isError?.status_message}
         </h2>
       ) : isLoading ? (
         <PersonSkeleton />

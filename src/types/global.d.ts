@@ -40,6 +40,9 @@ declare global {
         poster_path?: string | null
         backdrop_path?: string | null
         media_type?: string
+        department: string
+        original_title: string
+        episode_count: number
     }
     interface Keywords {
         id: number
@@ -156,6 +159,7 @@ declare global {
         also_known_as: [];
         deathday: Date
         homepage: string
+        combined_credits?: Credits
         known_for_department: string;
         name: string;
         place_of_birth: string;
