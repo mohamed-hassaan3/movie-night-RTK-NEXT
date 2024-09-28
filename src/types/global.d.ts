@@ -164,6 +164,7 @@ declare global {
         name: string;
         place_of_birth: string;
         profile_path: string;
+        media_type: string;
         gender: number
         external_ids?: {
             facebook_id: string

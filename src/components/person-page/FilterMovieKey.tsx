@@ -2,12 +2,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { FaCaretDown } from "react-icons/fa";
 
-const FilterMovieKey = ({
-  personDetails,
-}: {
-  personDetails: PersonDetails;
-}) => {
-  const { known_for_department } = personDetails;
+const FilterMovieKey = () => {
   const refAll = useRef<any | null>(null);
   const refDepartment = useRef<any | null>(null);
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
@@ -42,7 +37,7 @@ const FilterMovieKey = ({
   }, [activeMenu]);
 
   return (
-    <div>
+    <div className=" float-right">
       <div className="flex items-center gap-12">
         <div className="relative">
           <p

@@ -78,7 +78,7 @@ const PersonBanner = ({ personDetails }: { personDetails: PersonDetails }) => {
           {credits?.cast.length && <KnownFor credits={credits} />}
         </section>
         <aside>
-          <FilterMovieKey personDetails={personDetails} />
+          <FilterMovieKey />
           <FilterMovieList personDetails={personDetails} />
         </aside>
       </section>
