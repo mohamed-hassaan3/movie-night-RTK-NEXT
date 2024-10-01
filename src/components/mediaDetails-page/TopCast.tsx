@@ -21,7 +21,9 @@ const TopCast = ({ mediaDetails }: { mediaDetails: MediaDetails }) => {
             {/* View More Card */}
             {mediaDetails.credits?.cast.length > 9 && (
               <Link
-                href={`/mediaDetails/${mediaDetails.id}/fullCast`}
+                href={`/mediaDetails/${
+                  mediaDetails.media_type ? mediaDetails.media_type : "movie"
+                }/${mediaDetails.id}/fullCast`}
                 className="flex items-center justify-center gap-2 min-w-[170px] min-h-[265px] border shadow-md rounded-md"
               >
                 View More
@@ -33,12 +35,16 @@ const TopCast = ({ mediaDetails }: { mediaDetails: MediaDetails }) => {
           </div>
           <Link
             className="text-lg hover:opacity-50"
-            href={`/mediaDetails/${mediaDetails.id}/fullCast`}
+            href={`/mediaDetails/${
+              mediaDetails.media_type ? mediaDetails.media_type : "movie"
+            }/${mediaDetails.id}/fullCast`}
           >
             Full Cast & Crew
           </Link>
         </div>
-      ) : "We don't have any cast added to this movie. You can help by adding some!"}
+      ) : (
+        "We don't have any cast added to this movie. You can help by adding some!"
+      )}
     </>
   );
 };

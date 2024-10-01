@@ -8,6 +8,7 @@ import {
   selectPersonLoading,
 } from "@/lib/redux/features/personDetails/personDetailsSlice";
 import { useAppDispatch, useAppSelector } from "@/lib/redux/hooks";
+import Head from "next/head";
 import React, { useEffect } from "react";
 
 const PersonID = ({ params }: { params: { personID: string | number } }) => {
@@ -23,20 +24,25 @@ const PersonID = ({ params }: { params: { personID: string | number } }) => {
   }, [dispatch, personID]);
 
   return (
-    <main className="w-[80%] m-auto py-12">
-      {isError ? (
-        <h2 className="text-center">
-          <span className="mr-2">{`Status_Error ${isError.status_code}`}</span>
-          {isError?.status_message}
-        </h2>
-      ) : isLoading ? (
-        <PersonSkeleton />
-      ) : (
-        <section>
-          <PersonBanner personDetails={personDetails} />
-        </section>
-      )}
-    </main>
+    <>
+      <Head>
+        <title>{personDetails?.name || "Not available"}</title>
+      </Head>
+      <main className="w-[80%] m-auto py-12">
+        {isError ? (
+          <h2 className="text-center">
+            <span className="mr-2">{`Status_Error ${isError.status_code}`}</span>
+            {isError?.status_message}
+          </h2>
+        ) : isLoading ? (
+          <PersonSkeleton />
+        ) : (
+          <section>
+            <PersonBanner personDetails={personDetails} />
+          </section>
+        )}
+      </main>
+    </>
   );
 };
 

@@ -68,3 +68,7 @@ export const formatAmount = (amount: number) => {
   }).format(amount);
   return formatNumber;
 };
+
+export const formatDateYearly = (date: string) => {
+  return new Date(date).getFullYear()
+}

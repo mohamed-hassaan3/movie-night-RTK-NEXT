@@ -5,11 +5,15 @@ import unknown from "../../../public/unknown-Img.jpg";
 import PersonInfo from "./PersonInfo";
 import FilterMovieKey from "./FilterMovieKey";
 import FilterMovieList from "./FilterMovieList";
+
 const PersonBanner = ({ personDetails }: { personDetails: PersonDetails }) => {
   const { biography, name, profile_path, credits } = personDetails;
   const [isExpand, setIsExpand] = useState(false);
+  const [departmentKey, setDepartmentKey] = useState<string>("");
   const paragraphs = biography?.split("\n\n");
-
+  const onDepartmentFilter = (departmentKey: string) => {
+    setDepartmentKey(departmentKey);
+  };
   return (
     <article className="grid justify-center items-start grid-cols-6 gap-4">
       <section className=" col-span-2">
@@ -78,8 +82,15 @@ const PersonBanner = ({ personDetails }: { personDetails: PersonDetails }) => {
           {credits?.cast.length && <KnownFor credits={credits} />}
         </section>
         <aside>
-          <FilterMovieKey />
-          <FilterMovieList personDetails={personDetails} />
+          <FilterMovieKey
+            personDetails={personDetails}
+            onDepartmentFilter={onDepartmentFilter}
+            departmentKey={departmentKey}
+          />
+          <FilterMovieList
+            personDetails={personDetails}
+            departmentKey={departmentKey}
+          />
         </aside>
       </section>
     </article>

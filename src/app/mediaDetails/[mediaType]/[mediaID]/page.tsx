@@ -14,6 +14,7 @@ import Social from "@/components/mediaDetails-page/Social";
 import Media from "@/components/mediaDetails-page/Media";
 import Recommendation from "@/components/mediaDetails-page/Recommendation";
 import MediaDetailsSkeleton from "@/components/mediaDetails-page/MediaDetailsSkeleton";
+import Head from "next/head";
 
 const MediaID = ({
   params,
@@ -30,34 +31,44 @@ const MediaID = ({
 
   useEffect(() => {
     dispatch(getMediaDetails({ mediaType, mediaID }));
-  
   }, [dispatch, mediaID, mediaType]);
 
   return (
-    <main className="overflow-hidden">
-      {isError ? (
-        <p className="text-center my-4 mx-auto h-[60dvh]">
-          {isError.status_message}
-        </p>
-      ) : isLoading ? (
-        <MediaDetailsSkeleton />
-      ) : (
-        <section>
-          <MediaBanner mediaDetails={mediaDetails} />
-          <section className="grid grid-cols-6 gap-6 m-auto my-6 lg:p-2 w-[95%] lg:w-[80%] ">
-            <article className="col-span-5">
-              <TopCast mediaDetails={mediaDetails} />
-              <Social mediaDetails={mediaDetails} />
-              <Media mediaDetails={mediaDetails} />
-              <Recommendation mediaDetails={mediaDetails} />
-            </article>
-            <aside className="col-span-1">
-              <RightSide mediaDetails={mediaDetails} />
-            </aside>
+    <>
+      <Head>
+        <title>
+          {mediaDetails?.title ||
+            mediaDetails?.original_title ||
+            mediaDetails?.original_name ||
+            mediaDetails?.name}
+        </title>
+        <meta name="description" content={mediaDetails?.overview} />
+      </Head>
+      <main className="overflow-hidden">
+        {isError ? (
+          <p className="text-center my-4 mx-auto h-[60dvh]">
+            {isError.status_message}
+          </p>
+        ) : isLoading ? (
+          <MediaDetailsSkeleton />
+        ) : (
+          <section>
+            <MediaBanner mediaDetails={mediaDetails} />
+            <section className="grid grid-cols-6 gap-6 m-auto my-6 lg:p-2 w-[95%] lg:w-[80%] ">
+              <article className="col-span-5">
+                <TopCast mediaDetails={mediaDetails} />
+                <Social mediaDetails={mediaDetails} />
+                <Media mediaDetails={mediaDetails} />
+                <Recommendation mediaDetails={mediaDetails} />
+              </article>
+              <aside className="col-span-1">
+                <RightSide mediaDetails={mediaDetails} />
+              </aside>
+            </section>
           </section>
-        </section>
-      )}
-    </main>
+        )}
+      </main>
+    </>
   );
 };
 

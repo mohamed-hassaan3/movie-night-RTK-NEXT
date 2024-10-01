@@ -4,6 +4,7 @@ import {
   filterDate,
   loopArr,
   convertRuntime,
+  formatDateYearly,
 } from "@/helper/formatText";
 import PercentageBar from "../common/PercentageBar";
 import WatchProviders from "./WatchProviders";
@@ -78,10 +79,10 @@ const MediaBanner = ({ mediaDetails }) => {
           <aside className="flex flex-col p-4 text-start overflow-hidden min-w-[70%]">
             <p className="md:text-2xl font-extrabold text-start md:mr-12">
               {title || original_title || original_name || name}
-              <span className="font-normal">
-                {release_date ||
-                  (first_air_date &&
-                    filterDate(release_date || first_air_date))}
+              <span className="ml-2 opacity-70 font-bold">(
+                {formatDateYearly(release_date) ||
+                  (formatDateYearly(first_air_date) &&
+                    filterDate(release_date || first_air_date))})
               </span>
             </p>
             <ul className="text-start flex gap-3">
