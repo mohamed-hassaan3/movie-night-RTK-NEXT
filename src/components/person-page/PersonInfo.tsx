@@ -27,8 +27,8 @@ const PersonInfo = ({ personDetails }: { personDetails: PersonDetails }) => {
   } = personDetails;
 
   return (
-    <section className="space-y-9 w-[90%] pr-4">
-      <div className="flex items-center gap-4 *:text-2xl *:opacity-80 hover:*:opacity-100">
+    <section className="space-y-9 md:w-[90%] pr-0 md:pr-4">
+      <div className="flex items-center gap-4 *:text-2xl *:opacity-80 hover:*:opacity-100 md:m-0 m-auto w-fit md:w-auto">
         {external_ids && external_ids.facebook_id ? (
           <Link
             href={`https://www.facebook.com/${external_ids.facebook_id}`}
@@ -103,7 +103,7 @@ const PersonInfo = ({ personDetails }: { personDetails: PersonDetails }) => {
         <hgroup>
           <h3 className="font-medium text-lg">Known Credits</h3>
           <p className="font-light">
-            {credits?.cast.length + credits?.crew.length}
+            {`${credits?.cast.length + credits?.crew.length}`}
           </p>
         </hgroup>
         <hgroup>

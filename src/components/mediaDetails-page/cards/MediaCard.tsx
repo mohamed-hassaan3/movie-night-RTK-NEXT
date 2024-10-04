@@ -7,7 +7,7 @@ interface VideoKey {
 const MediaCard: React.FC<VideoKey> = ({ videoKey }) => {
   const opts = {
     height: "390",
-    width: "640",
+    width: "100%",
     playerVars: {
       autoplay: 0,
       controls: 1,
@@ -18,7 +18,11 @@ const MediaCard: React.FC<VideoKey> = ({ videoKey }) => {
     },
   };
 
-  return <YouTube videoId={videoKey} opts={opts} />;
+  return (
+    <div className="w-[285px] md:w-[665px] aspect-video">
+      <YouTube videoId={videoKey} opts={opts} />
+    </div>
+  )
 };
 
 export default MediaCard;

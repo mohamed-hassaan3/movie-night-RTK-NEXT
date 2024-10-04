@@ -38,6 +38,7 @@ const Trailer: React.FC<TrailerProps> = ({ videos }) => {
         typeName={getTrailer?.type}
       >
         <iframe
+        className="!w-full md:!w-1/2"
           width="50%"
           height="50%"
           src={`https://www.youtube.com/embed/${getTrailer?.key}`}

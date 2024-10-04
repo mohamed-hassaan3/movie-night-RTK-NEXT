@@ -53,21 +53,3 @@ const WatchProviders = ({ mediaDetails }: any) => {
 };
 
 export default WatchProviders;
-/* {firstProvider ? (
-        <div>
-          <div key={firstProvider.provider_id}>
-            <Image
-            width={40}
-            height={40}
-              src={`${process.env.NEXT_PUBLIC_MOVIE_DB_IMAGE_API}${firstProvider.logo_path}`}
-              alt={"firstProvider.provider_name"}
-            />
-          </div>
-          <Link href={countryProviders.link} target="_blank">
-            Watch Now
-          </Link>
-        </div>
-      ) : ""}*/
-/* countryProviders.flatrate.map((provider: any) => (
-          
-        )) */

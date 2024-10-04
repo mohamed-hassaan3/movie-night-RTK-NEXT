@@ -4,7 +4,7 @@ import { Search } from "@/lib/redux";
 const Banner = () => {
   return (
     <div className="w-full relative">
-      <h1 className="absolute text-white text-4xl top-1/4 font-semibold opacity-100 z-10 px-8">
+      <h1 className="absolute text-white text-2xl md:text-4xl top-1/4 font-semibold opacity-100 z-10 px-8">
         <span className="block mb-6 font-extrabold">Welcome.</span>Millions of
         movies, TV shows and people to discover. Explore now.
       </h1>

@@ -24,9 +24,7 @@ const Social = ({ mediaDetails }: { mediaDetails: MediaDetails }) => {
             </div>
             <Link
               className="text-md hover:opacity-50"
-              href={`/mediaDetails/${
-                mediaDetails.media_type ? mediaDetails.media_type : "movie"
-              }/${mediaDetails.id}/fullReviews`}
+              href={`/mediaDetails/${mediaDetails.media_type ? mediaDetails.media_type : "movie"}/${mediaDetails.id}/fullReviews`}
             >
               Read All Reviews
             </Link>

@@ -1,33 +1,34 @@
 "use client";
 import { filterList } from "@/helper/filterList";
-import { uniqueObject } from "@/helper/uniqueObject";
 import React, { useEffect, useRef, useState } from "react";
 import { FaCaretDown } from "react-icons/fa";
 
 const FilterMovieKey = ({
   personDetails,
-  onDepartmentFilter,
-  departmentKey,
+  onFilter,
+  filterMedia,
+  resetFilter,
 }: {
   personDetails: PersonDetails;
-  onDepartmentFilter: any;
-  departmentKey: string;
+  onFilter: (e: string) => void;
+  filterMedia: string;
+  resetFilter: () => void;
 }) => {
   const refAll = useRef<any | null>(null);
   const refDepartment = useRef<any | null>(null);
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
-  const crew = personDetails?.combined_credits?.crew || [];
-  const cast = personDetails?.combined_credits?.cast || [];
+  const crew = personDetails.combined_credits?.crew || [];
+  const cast = personDetails.combined_credits?.cast || [];
 
-  const filterDepartmentKey = [
-    ...new Set(crew?.map((item) => item.department)),
+  const crewDepartment = [...new Set(crew.map((item) => item.department))];
+  const castDepartment = [
+    ...new Set(cast?.map((item) => item.media_type?.toUpperCase())),
   ];
 
   const toggleMenu = (menu: string) => {
     setActiveMenu((prev) => (prev === menu ? null : menu));
   };
 
-  console.log("SELECTED DEPARTMENT", departmentKey);
   useEffect(() => {
     const handleClickOutside = (e: any) => {
       if (
@@ -54,13 +55,24 @@ const FilterMovieKey = ({
   }, [activeMenu]);
 
   return (
-    <div className=" float-right">
+    <div className="float-right z-50">
       <div className="flex items-center gap-12">
-        {/* ALL Filter */}
+        {filterMedia && (
+          <button
+            className="font-extra-light text-sm text-lightBlue hover:opacity-60"
+            onClick={resetFilter}
+          >
+            Reset Filter
+          </button>
+        )}
         <div className="relative">
           <p
             onClick={() => toggleMenu("all")}
-            className="cursor-pointer hover:opacity-95"
+            className={`${
+              filterList(cast, "department", "").length === 0
+                ? "opacity-30 cursor-default"
+                : "cursor-pointer hover:opacity-95"
+            }`}
           >
             All
             <span className="ml-2 text-lg inline-block">
@@ -69,82 +81,77 @@ const FilterMovieKey = ({
           </p>
           <ul
             ref={refAll}
-            className={`bg-white border shadow-md py-2 px-4 space-y-2 absolute top-7 left-0 *:w-fit w-36 *:whitespace-nowrap ${
+            className={`border shadow-md py-2 px-4 space-y-2 absolute top-8 left-0 *:w-fit w-36 *:whitespace-nowrap bg-white ${
               activeMenu !== "all" && "hidden"
             }`}
           >
-            <li
-              onClick={() => {
-                toggleMenu("all"), onDepartmentFilter("movie");
-              }}
-            >
-              <button>
-                Movies
-                <span className="opacity-60 ml-2">
-                  {filterList(uniqueObject(cast), "media_type", "movie").length}
-                </span>
-              </button>
-            </li>
-            <li
-              onClick={() => {
-                toggleMenu("all"), onDepartmentFilter("tv");
-              }}
-            >
-              <button>
-                TV Shows
-                <span className="opacity-60 ml-2">
-                  {filterList(uniqueObject(cast), "media_type", "tv").length}
-                </span>
-              </button>
-            </li>
+            {castDepartment.map((item: any) => (
+              <li
+                key={item}
+                onClick={() => {
+                  toggleMenu(item), onFilter(item);
+                }}
+              >
+                <button>
+                  {item}{" "}
+                  <span className="pl-1 opacity-70 font-semibold">
+                    {filterList(cast, "media_type", item).length}
+                  </span>
+                </button>
+              </li>
+            ))}
           </ul>
         </div>
-        {/* Department Filter */}
         <div className="relative">
           <p
             onClick={() => setActiveMenu("department")}
-            className="cursor-pointer hover:opacity-95"
+            className={`${
+              filterList(crew, "department", "").length === 0
+                ? "opacity-30 cursor-default"
+                : "cursor-pointer hover:opacity-95"
+            }`}
           >
             Department
             <span className="ml-2 text-lg inline-block">
               <FaCaretDown />
             </span>
           </p>
-          <ul
-            ref={refDepartment}
-            className={`bg-white border shadow-md py-2 px-4 space-y-2 absolute left-0 top-7 *:w-fit w-36 *:whitespace-nowrap ${
-              activeMenu !== "department" && "hidden"
-            }`}
-          >
-            <li
-              onClick={() => {
-                toggleMenu("department"), onDepartmentFilter("");
-              }}
+          {filterList(crew, "department", "").length >= 1 && (
+            <ul
+              ref={refDepartment}
+              className={`border shadow-md py-2 px-4 space-y-2 absolute left-0 top-8 *:w-fit w-36 *:whitespace-nowrap bg-white ${
+                activeMenu !== "department" && "hidden"
+              }`}
             >
-              <button>
-                Acting
-                <span className="opacity-60 ml-2">
-                  {filterList(cast, "media_type", "").length}
-                </span>
-              </button>
-            </li>
-            {filterDepartmentKey &&
-              filterDepartmentKey.map((department) => (
-                <li
-                  key={department}
+              {cast.length >= 1 && (
+                <button
                   onClick={() => {
-                    toggleMenu("department"), onDepartmentFilter(department);
+                    toggleMenu("acting"), onFilter("");
+                  }}
+                >
+                  {personDetails?.known_for_department}{" "}
+                  <span className="pl-1 opacity-70 font-semibold">
+                    {filterList(cast, "", "").length}
+                  </span>
+                </button>
+              )}
+              {crewDepartment.map((item: any) => (
+                <li
+                  key={item}
+                  onClick={() => {
+                    toggleMenu(item), onFilter(item);
                   }}
                 >
                   <button>
-                    {department}
-                    <span className="opacity-60 ml-2">
-                      {filterList(uniqueObject(crew), "department", department).length}
+                    {item}{" "}
+                    <span className="pl-1 opacity-70 font-semibold">
+                      {filterList(crew, "department", item).length}
                     </span>
                   </button>
                 </li>
               ))}
-          </ul>
+            </ul>
+          )}
         </div>
       </div>
     </div>

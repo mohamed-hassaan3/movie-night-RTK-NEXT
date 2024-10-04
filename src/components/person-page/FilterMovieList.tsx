@@ -2,133 +2,126 @@ import React from "react";
 import { filterList } from "@/helper/filterList";
 import { uniqueObject } from "@/helper/uniqueObject";
 import Link from "next/link";
-import { formatDateYearly } from "@/helper/formatText";
+import { filterDate } from "@/helper/formatText";
 
 const FilterMovieList = ({
   personDetails,
-  departmentKey,
+  filterMedia,
 }: {
   personDetails: PersonDetails;
-  departmentKey: string;
+  filterMedia: string;
 }) => {
-  const { combined_credits, known_for_department } = personDetails;
-  const crew = uniqueObject(combined_credits?.crew || []);
+  const { combined_credits, known_for_department, media_type } = personDetails;
+  
+  const crew = [...new Set(combined_credits?.crew)];
   const cast = uniqueObject(combined_credits?.cast || []);
-  const filterDepartmentKey = [
-    ...new Set(crew?.map((item: any) => item.department)),
+  const department = [
+    ...new Set(crew.map((item: Cast) => item.department.trim().toLowerCase())),
   ];
 
-  console.log("FILTER CREW", filterList(crew, "", ""));
-  console.log("FILTER CAST", filterList(cast, "", ""));
+  const sortCast = cast.sort(function (a: any, b: any) {
+    if (cast.length === 0) return;
+    return (
+      new Date(b.release_date || b.first_air_date).getFullYear() -
+      new Date(a.release_date || a.first_air_date).getFullYear()
+    );
+  });
 
   return (
-    <div className="space-y-6">
+    <div className="mb-4 space-y-6">
       {/* ACTING DEPARTMENT */}
-      {departmentKey === "" ? (
-        <>
-          <div>
-            {known_for_department && (
-              <h3 className="font-bold text-xl">
-                {typeof departmentKey === "string" ? "Acting" : departmentKey}
-              </h3>
-            )}
-            <ul className="border shadow-md border-gray-300 p-4 space-y-6 my-4">
-              {cast.map((item: Cast) => (
-                <li key={item.id}>
+      {filterMedia.toLowerCase() === "movie" ||
+      filterMedia.toLowerCase() === "tv" ||
+      filterMedia === "" ? (
+        <div>
+          <h3 className="font-bold text-lg">
+            {filterMedia || known_for_department}
+          </h3>
+          <ul className="border shadow-md border-gray-300 p-4 space-y-6 mt-2">
+            {filterList(sortCast, "media_type", filterMedia.toLowerCase()).map(
+              (item: any) => (
+                <li key={item.id} className="flex gap-4 items-baseline">
+                  <span>
+                    {item.release_date || item.first_air_date
+                      ? filterDate(item.release_date || item.first_air_date)
+                      : "___"}
+                  </span>
+                  <input
+                    className=" accent-black cursor-pointer"
+                    type="radio"
+                    name="movie"
+                  />
                   <Link
-                    className="font-semibold text-sm hover:text-lightBlue w-fit"
-                    href={`/mediaDetails/${
-                      item.media_type ? item.media_type : "movie"
-                    }/${item.id}`}
+                    href={`/mediaDetails/${media_type ? media_type : "movie"}/${
+                      item.id
+                    }`}
                   >
-                    <span className="mr-2 font-extrabold">{formatDateYearly(item.release_date)}</span>
+                    <p className="hover:text-lightBlue">
+                      {item.name || item.original_title}
+                    </p>
+                    <span className="block opacity-90 ml-4">
+                      {item.media_type === "tv" && item.episode_count
+                        ? `(${item.episode_count} Episode${
+                            item.episode_count > 1 ? "s" : ""
+                          }) ${item.character && "as"} ${item.character}`
+                        : item.character}
+                    </span>
+                  </Link>
+                </li>
+              )
+            )}
+          </ul>
+        </div>
+      ) : (
+        ""
+      )}
+
+      {/* OTHERS DEPARTMENT */}
+      {filterMedia.toLowerCase() === "movie" ||
+      filterMedia.toLowerCase() === "tv" ? (
+        ""
+      ) : filterMedia ? (
+        <>
+          <h3 className="font-bold text-lg">
+            {filterMedia.charAt(0).toUpperCase() + filterMedia.slice(1)}
+          </h3>
+          <ul className="border shadow-md border-gray-300 p-4">
+            {filterList(crew, "department", filterMedia).map((item: any) => (
+              <li key={item.id} className="py-3">
+                <Link
+                  className="hover:text-lightBlue "
+                  href={`/mediaDetails/${media_type ? media_type : "movie"}/${
+                    item.id
+                  }`}
+                >
+                  {item.name || item.original_title}
+                </Link>
+              </li>
+            ))}
+          </ul>{" "}
+        </>
+      ) : (
+        department.map((item: any) => (
+          <div key={item}>
+            <h3 className="font-bold text-lg">
+              {item.charAt(0).toUpperCase() + item.slice(1)}
+            </h3>
+            <ul className="border shadow-md border-gray-300 p-4">
+              {filterList(crew, "department", item).map((item: any) => (
+                <li key={item.id} className="py-3">
+                  <Link
+                    className="hover:text-lightBlue "
+                    href={`/mediaDetails/${media_type ? media_type : "movie"}/${
+                      item.id
+                    }`}
+                  >
                     {item.name || item.original_title}
                   </Link>
-                  <span className="block  ml-4 mt-2 font-light">
-                    {item.media_type === "tv" && item.episode_count
-                      ? `(${item.episode_count} Episode${
-                          item.episode_count > 1 ? "s" : ""
-                        }) ${item.character && "as"} ${item.character}`
-                      : item.character}
-                  </span>
                 </li>
               ))}
             </ul>
           </div>
-          {/* OTHERS DEPARTMENT */}
-          <div>
-            {filterDepartmentKey.map((selectedKey: Cast) => (
-              <>
-                <h3 className="font-bold text-xl">{selectedKey}</h3>
-                <ul
-                  key={selectedKey.id}
-                  className="border shadow-md border-gray-300 p-4 space-y-6 my-4"
-                >
-                  {filterList(crew, "department", selectedKey).map(
-                    (item: Cast) => (
-                      <li key={item.id}>
-                        <Link
-                          className="font-semibold text-sm hover:text-lightBlue w-fit"
-                          href={`/mediaDetails/${
-                            item.media_type ? item.media_type : "movie"
-                          }/${item.id}`}
-                        >
-                          {item.name || item.original_title}
-                        </Link>
-                        <span className="opacity-60 block ml-2 mt-1">
-                          ...{item.job}
-                        </span>
-                      </li>
-                    )
-                  )}
-                </ul>
-              </>
-            ))}
-          </div>
-        </>
-      ) : (
-        <>
-          {/* FILTERED VIEW BASED ON SELECTED DEPARTMENT OR MEDIA TYPE */}
-          <h3 className="font-bold text-xl">
-            {departmentKey.charAt(0).toUpperCase() + departmentKey.slice(1)}
-          </h3>
-          <ul className="border shadow-md border-gray-300 p-4 space-y-6 my-4">
-            {/* Filter for media type or department */}
-            {departmentKey === "movie" || departmentKey === "tv"
-              ? filterList(cast, "media_type", departmentKey).map(
-                  (item: Cast) => (
-                    <li key={item.id}>
-                      <Link
-                        className="font-semibold text-sm hover:text-lightBlue w-fit"
-                        href={`/mediaDetails/${departmentKey}/${item.id}`}
-                      >
-                        {item.name || item.original_title}
-                      </Link>
-                      <span className="block ml-4 mt-2 font-light">
-                        {item.character}
-                      </span>
-                    </li>
-                  )
-                )
-              : filterList(crew, "department", departmentKey).map(
-                  (item: Cast) => (
-                    <li key={item.id}>
-                      <Link
-                        className="font-semibold text-sm hover:text-lightBlue w-fit"
-                        href={`/mediaDetails/${item.media_type || "movie"}/${
-                          item.id
-                        }`}
-                      >
-                        {item.name || item.original_title}
-                      </Link>
-                      <span className="opacity-60 block ml-2 mt-1">
-                        ...{item.job}
-                      </span>
-                    </li>
-                  )
-                )}
-          </ul>
-        </>
+        ))
       )}
     </div>
   );

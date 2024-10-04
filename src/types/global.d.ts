@@ -43,6 +43,12 @@ declare global {
         department: string
         original_title: string
         episode_count: number
+        release_date: string
+        character: string
+        original_title: string
+        name: string
+        media_type: string
+        job: string
     }
     interface Keywords {
         id: number

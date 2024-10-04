@@ -9,17 +9,23 @@ import FilterMovieList from "./FilterMovieList";
 const PersonBanner = ({ personDetails }: { personDetails: PersonDetails }) => {
   const { biography, name, profile_path, credits } = personDetails;
   const [isExpand, setIsExpand] = useState(false);
-  const [departmentKey, setDepartmentKey] = useState<string>("");
+  const [filterMedia, setFilterMedia] = useState("");
   const paragraphs = biography?.split("\n\n");
-  const onDepartmentFilter = (departmentKey: string) => {
-    setDepartmentKey(departmentKey);
+
+  const onFilter = (e: string) => {
+    setFilterMedia(e);
   };
+  const resetFilter = () => {
+    setFilterMedia("");
+  };
+
   return (
-    <article className="grid justify-center items-start grid-cols-6 gap-4">
+    <article className="md:grid justify-center items-start grid-cols-6 gap-4 md:*:text-sm *:text-xs">
+      {/* Left Side */}
       <section className=" col-span-2">
         {profile_path !== null ? (
           <Image
-            className="object-contain aspect-[1/1.5] rounded-lg"
+            className="object-fill h-[550px] aspect-square md:aspect-[1/1.5] rounded-lg w-full"
             src={`${process.env.NEXT_PUBLIC_MOVIE_DB_IMAGE_API}${profile_path}`}
             width={300}
             height={300}
@@ -27,7 +33,7 @@ const PersonBanner = ({ personDetails }: { personDetails: PersonDetails }) => {
           />
         ) : (
           <Image
-            className="object-cover aspect-[1/1.5] rounded-lg col-span-2"
+            className="object-fill h-[550px] aspect-square md:aspect-[1/1.5] rounded-lg col-span-2 w-full"
             src={unknown}
             width={300}
             height={300}
@@ -42,14 +48,15 @@ const PersonBanner = ({ personDetails }: { personDetails: PersonDetails }) => {
       {/* Right Side */}
       <section className="col-span-4 grid gap-1">
         <div className=" overflow-hidden space-y-6">
-          <h1 className="text-3xl font-bold tracking-wide">
-            {name || "Not available"}
+          <h1 className="md:text-3xl text-lg font-bold tracking-wide">
+            {name || "Name Not available"}
           </h1>
+          {/* BIO */}
           {biography ? (
             <div
               className={`${
                 isExpand || biography.slice().length <= 600 ? "h-none" : "h-48"
-              } relative`}
+              } relative md:*:text-sm *:text-xs`}
             >
               <h3 className="text-xl font-bold">Biography</h3>
               {paragraphs.map((paragraph, i: number | string) => (
@@ -78,18 +85,21 @@ const PersonBanner = ({ personDetails }: { personDetails: PersonDetails }) => {
             </p>
           )}
         </div>
+        {/* KNOWN FOR "MOVIES" */}
         <section className="overflow-x-scroll overflow-y-hidden w-full py-6 mb-8 relative">
-          {credits?.cast.length && <KnownFor credits={credits} />}
+          {credits?.cast.length >= 1 ? <KnownFor credits={credits} /> : null}
         </section>
+        {/* MOVIES AND DEPARTMENT */}
         <aside>
           <FilterMovieKey
+            filterMedia={filterMedia}
             personDetails={personDetails}
-            onDepartmentFilter={onDepartmentFilter}
-            departmentKey={departmentKey}
+            onFilter={onFilter}
+            resetFilter={resetFilter}
           />
           <FilterMovieList
+            filterMedia={filterMedia}
             personDetails={personDetails}
-            departmentKey={departmentKey}
           />
         </aside>
       </section>

@@ -10,7 +10,7 @@ const Search = () => {
   return (
     <Form className="text-center m-auto w-[95%]" onSubmit={handleSubmit}>
       <input
-        className="outline-none border-none w-full p-4 rounded-full relative"
+        className="outline-none border-none w-full p-2 md:p-4 rounded-full relative md:placeholder:text-lg placeholder:text-sm"
         value={searchTerm}
         onChange={handleChange}
         type="text"
@@ -19,7 +19,7 @@ const Search = () => {
       />
       <PrimaryButton
         disabled={!searchTerm}
-        className={`bg-lightBlue py-4 px-8 rounded-full text-white font-bold hover:text-black absolute right-4 ${
+        className={`bg-lightBlue py-2 md:py-4 px-8 rounded-full text-white font-bold hover:text-black absolute right-2 md:right-4 ${
           searchTerm
             ? "bg-lightBlue hover:text-black cursor-pointer"
             : "hover:text-white cursor-not-allowed"

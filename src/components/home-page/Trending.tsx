@@ -40,9 +40,9 @@ const Trending = () => {
       ) : (
         trendingData &&
         trendingData.results.length > 1 && (
-          <div className="flex items-center gap-6 mb-2">
+          <div className="md:flex items-center gap-6 space-y-2 mb-2">
             <h1 className="title">Trending</h1>
-            <ul className="flex items-center text-sm border rounded-full *:rounded-full *:text-darkBlue ">
+            <ul className="flex items-center text-sm border rounded-full w-fit *:rounded-full *:text-darkBlue ">
               <li>
                 <button
                   className={`${

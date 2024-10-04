@@ -25,11 +25,11 @@ const Header = () => {
   }, [isSearch]);
 
   return (
-    <div className="w-[70%] m-auto flex items-center justify-between gap-4">
+    <div className="md:w-[95%] lg:w-[68%] m-auto flex items-center justify-between gap-4">
       <Link href="/">
         <Image src={LOGO} width={50} height={50} alt="LOGO" />
       </Link>
-      <ul className="flex items-center flex-1 gap-8">
+      <ul className="flex items-center flex-1 gap-8 *:text-xs *:md:text-sm *:xl:text-lg">
         <li className="group relative">
           <Link href="">Movies</Link>
           <ul className=" hidden group-hover:block absolute top-8 font-light space-y-4 bg-white text-black py-4 px-10 text-nowrap rounded-md z-10">
@@ -47,7 +47,7 @@ const Header = () => {
             </li>
           </ul>
         </li>
-        <li className="group/title relative">
+        <li className="group/title text-nowrap relative">
           <Link href="">TV Shows</Link>
           <ul className=" *:hover:bg-slate-300 invisible group-hover/title:visible absolute top-8 font-light space-y-4 bg-white text-black py-4 px-10 text-nowrap rounded-md z-10">
             <li>
@@ -64,23 +64,24 @@ const Header = () => {
             </li>
           </ul>
         </li>
-        <li>
+        <li className="group/title text-nowrap relative">
           <Link href="">People</Link>
-        </li>
-        <li>
-          <Link href="">More</Link>
+          <ul className="w-fit *:hover:bg-slate-300 invisible group-hover/title:visible absolute top-8 font-light space-y-4 bg-white text-black py-4 px-10 text-nowrap rounded-md z-10">
+            <li>
+              <Link href="">Popular People</Link>
+            </li>
+          </ul>
         </li>
       </ul>
       <div className="flex items-center">
         {isSearch && (
           <Form
             onSubmit={handleSubmit}
-            className={`${
-              isSearch && "opacity-100 "
-            } flex items-center mr-2 xl:w-[400px] lg:w-[250px] w-[200px] opacity-0 transition-opacity duration-700`}
+            className={`${isSearch && "opacity-100 "
+              } flex items-center mr-2 absolute -left-1/2 top-[85px] z-50 sm:static translate-x-1/2 w-full opacity-0 transition-opacity duration-700`}
           >
             <input
-              className=" text-sm outline-none p-2 w-full text-gray-400 italic focus:border-sky-500 focus:ring-sky-500 focus:ring-1 rounded-md shadow-sm"
+              className="border-b border-b-sky-700 text-[16px] outline-none p-1 w-full text-gray-500 italic focus:border-b-sky-500 rounded-md shadow-sm font-light px-1 placeholder:text-xs placeholder:font-thin"
               type="text"
               name="search"
               ref={refInput}
@@ -92,9 +93,10 @@ const Header = () => {
         )}
         <div
           onClick={toggleSearch}
-          className="cursor-pointer text-lg text-lightBlue active:text-white transition duration-500"
+          className="cursor-pointer *:text-lg text-lightBlue active:text-white transition duration-500"
         >
-          <FaSearch />
+          {isSearch ? <span>&times;</span> : <FaSearch />}
+          
         </div>
       </div>
     </div>

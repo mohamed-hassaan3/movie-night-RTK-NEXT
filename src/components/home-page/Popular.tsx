@@ -39,9 +39,9 @@ const Popular = () => {
       ) : (
         popularData &&
         popularData.results.length > 1 && (
-          <div className="flex items-center gap-6 mb-2">
+          <div className="md:flex space-y-2 items-center gap-6 mb-2">
             <h1 className="title">What&apos;s Popular</h1>
-            <ul className="flex items-center text-sm border rounded-full *:rounded-full *:text-darkBlue ">
+            <ul className="flex items-center text-sm border rounded-full w-fit *:rounded-full *:text-darkBlue ">
               <li>
                 <button
                   className={`${

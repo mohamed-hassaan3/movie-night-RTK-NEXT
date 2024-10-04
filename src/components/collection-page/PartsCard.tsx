@@ -19,7 +19,7 @@ const PartsCard = ({ item }: { item: SearchItem }) => {
   } = item;
   
   return (
-    <div className=" flex gap-4 h-[175px] border rounded-xl shadow-lg my-6">
+    <div className="flex gap-4 md:h-[175px] border rounded-xl shadow-lg my-6">
       <Link
         href={`/mediaDetails/${media_type ? media_type : "movie"}/${id}`}
         className="w-full max-w-[100px] max-h-[175px]"
@@ -27,7 +27,7 @@ const PartsCard = ({ item }: { item: SearchItem }) => {
       >
         {poster_path || profile_path ? (
           <Image
-            className=" rounded-tl-xl rounded-bl-xl w-auto h-full object-cover"
+            className="rounded-tl-xl rounded-bl-xl w-auto min-w-[100px] h-full object-cover"
             src={`${process.env.NEXT_PUBLIC_MOVIE_DB_IMAGE_API}${
               poster_path || profile_path
             }`}
