@@ -21,7 +21,7 @@ const page = async ({ params }: { params: { companyID: string | number } }) => {
   const companyData = await getCompanyID(params.companyID);
   console.log(companyData.results);
   return (
-    <div className="w-[90%] m-auto py-16">
+    <div className="w-[90%] m-auto py-16 min-h-screen">
       {companyData.total_results > 1 && (
         <h1 className="mb-2 italic opacity-80">
           Total Results: {companyData.total_results}

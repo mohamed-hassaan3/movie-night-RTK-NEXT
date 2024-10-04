@@ -26,7 +26,7 @@ const CollectionCard = ({ item }: { item: SearchItem }) => {
       >
         {poster_path || profile_path ? (
           <Image
-            className=" rounded-tl-xl rounded-bl-xl w-auto h-auto object-cover"
+            className=" rounded-tl-xl rounded-bl-xl max-w-[100px] h-auto object-cover"
             src={`${process.env.NEXT_PUBLIC_MOVIE_DB_IMAGE_API}${
               poster_path || profile_path
             }`}
@@ -36,7 +36,7 @@ const CollectionCard = ({ item }: { item: SearchItem }) => {
           />
         ) : (
           <Image
-            className="w-auto h-auto object-cover"
+            className="max-w-[100px] h-auto object-cover"
             src={UNKNOWN}
             width={100}
             height={100}
