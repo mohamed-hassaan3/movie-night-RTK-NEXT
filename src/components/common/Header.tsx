@@ -29,7 +29,7 @@ const Header = () => {
       <Link href="/">
         <Image src={LOGO} width={50} height={50} alt="LOGO" />
       </Link>
-      <ul className="flex items-center flex-1 gap-8 *:text-xs *:md:text-sm *:xl:text-lg">
+      <ul className="flex items-center flex-1 gap-8 *:text-xs *:md:text-sm *:2xl:text-lg">
         <li className="group relative">
           <Link href="">Movies</Link>
           <ul className=" hidden group-hover:block absolute top-8 font-light space-y-4 bg-white text-black py-4 px-10 text-nowrap rounded-md z-10">
@@ -77,8 +77,9 @@ const Header = () => {
         {isSearch && (
           <Form
             onSubmit={handleSubmit}
-            className={`${isSearch && "opacity-100 "
-              } flex items-center mr-2 absolute -left-1/2 top-[85px] z-50 sm:static translate-x-1/2 w-full opacity-0 transition-opacity duration-700`}
+            className={`${
+              isSearch && "opacity-100 "
+            } flex items-center mr-2 absolute -left-1/2 top-[82px] z-50 translate-x-1/2 w-full opacity-0 transition-opacity duration-700`}
           >
             <input
               className="border-b border-b-sky-700 text-[16px] outline-none p-1 w-full text-gray-500 italic focus:border-b-sky-500 rounded-md shadow-sm font-light px-1 placeholder:text-xs placeholder:font-thin"
@@ -96,7 +97,6 @@ const Header = () => {
           className="cursor-pointer *:text-lg text-lightBlue active:text-white transition duration-500"
         >
           {isSearch ? <span>&times;</span> : <FaSearch />}
-          
         </div>
       </div>
     </div>

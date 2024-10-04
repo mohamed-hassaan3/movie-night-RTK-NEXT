@@ -25,7 +25,11 @@ const FullReviews = ({ params }: { params: { mediaID: string | number } }) => {
 
   return (
     <main className="w-full m-auto">
-      <Link href={`/mediaDetails/${mediaID}`}>
+      <Link
+        href={`/mediaDetails/${
+          mediaDetails.media_type ? mediaDetails.media_type : "movie"
+        }/${mediaID}`}
+      >
         <header className="bg-gray-800 my-6">
           <figure className="w-[75%] m-auto flex items-center gap-4">
             <Image
@@ -47,7 +51,9 @@ const FullReviews = ({ params }: { params: { mediaID: string | number } }) => {
               </h1>
               <Link
                 className="opacity-50 text-white flex items-center gap-1 mt-2 hover:opacity-100"
-                href={`/mediaDetails/${mediaID}`}
+                href={`/mediaDetails/${
+                  mediaDetails.media_type ? mediaDetails.media_type : "movie"
+                }/${mediaID}`}
               >
                 <FaArrowLeft />
                 Back to main

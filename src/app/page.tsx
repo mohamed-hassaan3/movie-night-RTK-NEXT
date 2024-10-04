@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Fragment } from "react";
 import Banner from "@/components/home-page/Banner";
 import Trending from "@/components/home-page/Trending";
 import Popular from "@/components/home-page/Popular";
@@ -23,12 +23,12 @@ export default function Home() {
   }, []);
 
   return (
-    <>
+    <Fragment>
       {loading ? (
         <div className="fixed inset-0 flex items-center justify-center bg-darkBlue z-50"></div>
       ) : (
         <main className="wrapper">
-          <section className="md:space-y-16 space-y-8 px-4 md:px-0">
+          <section className="md:space-y-16 space-y-8 px-4 xl:px-0">
             <Banner />
             <Trending />
             <Popular />
@@ -36,6 +36,6 @@ export default function Home() {
           </section>
         </main>
       )}
-    </>
+    </Fragment>
   );
 }

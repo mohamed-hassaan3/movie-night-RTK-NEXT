@@ -46,6 +46,8 @@ declare global {
         release_date: string
         character: string
         original_title: string
+        original_name: string
+        title: string
         name: string
         media_type: string
         job: string

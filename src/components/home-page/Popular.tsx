@@ -68,7 +68,7 @@ const Popular = () => {
           </div>
         )
       )}
-      <div className="absolute right-0 bottom-0 h-full w-32 bg-gradient-to-l from-white z-50 to-transparent "></div>
+      <div className="absolute right-0 bottom-0 h-full lg:w-32 w-10 bg-gradient-to-l from-white z-50 to-transparent "></div>
       <div className="w-full overflow-scroll flex gap-4 items-center m-auto pr-12">
         {isLoading && popularData ? (
           <HorizontalCardSkeleton items={popularData || []} />

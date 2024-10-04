@@ -1,5 +1,6 @@
 "use client";
 import CastCard from "@/components/mediaDetails-page/cards/CastCard";
+import FullCastCard from "@/components/mediaDetails-page/cards/FullCastCard";
 import { filterDate } from "@/helper/formatText";
 import { uniqueObject } from "@/helper/uniqueObject";
 import {
@@ -29,7 +30,7 @@ const FullCast = ({ params }: { params: { mediaID: number } }) => {
 
   return (
     <main>
-      <Link href={`/mediaDetails/${mediaID}`}>
+      <Link href={`/mediaDetails/${mediaDetails.media_type ? mediaDetails.media_type : "movie"}/${mediaID}`}>
         <header className="bg-gray-800 my-6">
           <figure className="w-[75%] m-auto flex items-center gap-4">
             <Image
@@ -51,7 +52,7 @@ const FullCast = ({ params }: { params: { mediaID: number } }) => {
               </h1>
               <Link
                 className="opacity-50 text-white flex items-center gap-1 mt-2 hover:opacity-100"
-                href={`/mediaDetails/${mediaID}`}
+                href={`/mediaDetails/${mediaDetails.media_type ? mediaDetails.media_type : "movie"}/${mediaID}`}
               >
                 <FaArrowLeft />
                 Back to main
@@ -70,7 +71,7 @@ const FullCast = ({ params }: { params: { mediaID: number } }) => {
             {!casts?.length ? (
               <p>No Results Found</p>
             ) : (
-              casts.map((cast: Cast) => <CastCard key={cast.id} cast={cast} />)
+              casts.map((cast: Cast) => <FullCastCard key={cast.id} cast={cast} />)
             )}
           </div>
         </section>
@@ -83,7 +84,7 @@ const FullCast = ({ params }: { params: { mediaID: number } }) => {
             {!casts?.length ? (
               <p>No Results Found</p>
             ) : (
-              crews.map((crew: Cast) => <CastCard key={crew.id} cast={crew} />)
+              crews.map((crew: Cast) => <FullCastCard key={crew.id} cast={crew} />)
             )}
           </div>
         </section>

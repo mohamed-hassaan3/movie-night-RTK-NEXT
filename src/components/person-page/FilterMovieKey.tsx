@@ -56,10 +56,10 @@ const FilterMovieKey = ({
 
   return (
     <div className="float-right z-50">
-      <div className="flex items-center gap-12">
+      <div className="flex items-center lg:gap-12 gap-6">
         {filterMedia && (
           <button
-            className="font-extra-light text-sm text-lightBlue hover:opacity-60"
+            className="font-extra-light text-sm text-lightBlue hover:opacity-60 text-nowrap"
             onClick={resetFilter}
           >
             Reset Filter
@@ -81,7 +81,7 @@ const FilterMovieKey = ({
           </p>
           <ul
             ref={refAll}
-            className={`border shadow-md py-2 px-4 space-y-2 absolute top-8 left-0 *:w-fit w-36 *:whitespace-nowrap bg-white ${
+            className={`border shadow-md py-2 px-4 space-y-2 absolute top-8 left-0 *:w-fit w-36 *:whitespace-nowrap bg-white z-50 ${
               activeMenu !== "all" && "hidden"
             }`}
           >
@@ -119,7 +119,7 @@ const FilterMovieKey = ({
           {filterList(crew, "department", "").length >= 1 && (
             <ul
               ref={refDepartment}
-              className={`border shadow-md py-2 px-4 space-y-2 absolute left-0 top-8 *:w-fit w-36 *:whitespace-nowrap bg-white ${
+              className={`border shadow-md py-2 px-4 space-y-2 absolute left-0 top-8 *:w-fit w-36 *:whitespace-nowrap bg-white z-50 ${
                 activeMenu !== "department" && "hidden"
               }`}
             >
