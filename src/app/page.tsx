@@ -1,9 +1,9 @@
 "use client";
 import { useState, useEffect, Fragment } from "react";
 import Banner from "@/components/home-page/Banner";
-import Trending from "@/components/home-page/Trending";
-import Popular from "@/components/home-page/Popular";
 import TrendingPeople from "@/components/home-page/TrendingPeople";
+import Trending from "@/components/home-page/trending/Trending";
+import Popular from "@/components/home-page/popular/Popular";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);

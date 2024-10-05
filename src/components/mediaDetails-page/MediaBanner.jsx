@@ -4,6 +4,7 @@ import {
   filterDate,
   loopArr,
   convertRuntime,
+  formatDateYearly,
 } from "@/helper/formatText";
 import PercentageBar from "../common/PercentageBar";
 import WatchProviders from "./WatchProviders";
@@ -55,20 +56,20 @@ const MediaBanner = ({ mediaDetails }) => {
           <figure className="lg:min-w-[300px] lg:max-w-[300px] w-full">
             {poster_path !== null ? (
               <Image
-              className="shadow-md w-full object-fill max-h-[300px] lg:min-h-[400px] lg:max-h-[400px] lg:min-w-[300px] lg:max-w-[300px]"
-              src={`${process.env.NEXT_PUBLIC_MOVIE_DB_IMAGE_API}${poster_path}`}
-              width={300}
-              height={450}
-              alt="Banner3"
+                className="shadow-md w-full object-fill max-h-[300px] lg:min-h-[400px] lg:max-h-[400px] lg:min-w-[300px] lg:max-w-[300px]"
+                src={`${process.env.NEXT_PUBLIC_MOVIE_DB_IMAGE_API}${poster_path}`}
+                width={300}
+                height={450}
+                alt="Banner3"
               />
             ) : (
               <Image
-            className="shadow-md w-full object-fill min-h-[400px] max-h-[400px] min-w-[300px] max-w-[300px]"
-            src={unknown}
-            width={300}
-            height={450}
-            alt="Banner2"
-          />
+                className="shadow-md w-full object-fill min-h-[400px] max-h-[400px] min-w-[300px] max-w-[300px]"
+                src={unknown}
+                width={300}
+                height={450}
+                alt="Banner2"
+              />
             )}
             <figcaption className="w-full border-b rounded-md lg:border-b-0">
               <WatchProviders mediaDetails={mediaDetails} />
@@ -77,10 +78,11 @@ const MediaBanner = ({ mediaDetails }) => {
           <aside className="flex flex-col p-4 text-start overflow-hidden min-w-[70%]">
             <p className="md:text-2xl font-extrabold text-start md:mr-12">
               {title || original_title || original_name || name}
-              <span className="font-normal">
-                {release_date ||
-                  (first_air_date &&
-                    filterDate(release_date || first_air_date))}
+              <span className="font-normal ml-2">
+                (
+                {release_date &&
+                  formatDateYearly(release_date || first_air_date)}
+                )
               </span>
             </p>
             <ul className="text-start space-y-1 md:flex gap-3">

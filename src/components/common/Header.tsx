@@ -6,11 +6,25 @@ import { FaSearch } from "react-icons/fa";
 import { useEffect, useRef, useState } from "react";
 import Form from "./Form";
 import useSearchQuery from "@/hooks/useSearchQuery";
+import useClickOutside from "@/hooks/useClickOutside";
 
 const Header = () => {
+  const [isMenu, setIsMenu] = useState<string | null>(null);
   const [isSearch, setIsSearch] = useState(false);
   const { searchTerm, handleChange, handleSubmit } = useSearchQuery();
   const refInput = useRef<HTMLInputElement | null>(null);
+  const refMovies = useRef(null);
+  const refTv = useRef(null);
+  const refPeople = useRef(null);
+
+  useClickOutside(refMovies, () => setIsMenu(null));
+  useClickOutside(refTv, () => setIsMenu(null));
+  useClickOutside(refPeople, () => setIsMenu(null));
+
+  const toggleMenu = (menu: string) => {
+    setIsMenu((prev) => (prev === menu ? null : menu));
+  };
+  const closeMenu = () => setIsMenu(null);
 
   const toggleSearch = () => {
     setIsSearch(!isSearch);
@@ -29,48 +43,81 @@ const Header = () => {
       <Link href="/">
         <Image src={LOGO} width={50} height={50} alt="LOGO" />
       </Link>
-      <ul className="flex items-center flex-1 gap-8 *:text-xs *:md:text-sm *:2xl:text-lg">
+      <ul className="flex items-center flex-1 gap-8 *:text-xs *:md:text-sm *:2xl:text-md">
         <li className="group relative">
-          <Link href="">Movies</Link>
-          <ul className=" hidden group-hover:block absolute top-8 font-light space-y-4 bg-white text-black py-4 px-10 text-nowrap rounded-md z-10">
-            <li className="hover:bg-slate-300">
-              <Link href="">Popular</Link>
-            </li>
-            <li className="hover:bg-slate-300">
-              <Link href="">Now Playing</Link>
-            </li>
-            <li className="hover:bg-slate-300">
-              <Link href="">Upcoming</Link>
-            </li>
-            <li className="hover:bg-slate-300">
-              <Link href="">Top Rated</Link>
-            </li>
-          </ul>
+          <Link href="" onClick={() => toggleMenu("movies")}>
+            Movies
+          </Link>
+          {isMenu === "movies" && (
+            <ul
+              ref={refMovies}
+              className="absolute top-8 font-light *:px-10 *:py-2 bg-white text-black *:font-semibold text-nowrap rounded-md z-50"
+            >
+              <li onClick={closeMenu} className="hover:bg-slate-100 rounded-md">
+                <Link href="">Popular</Link>
+              </li>
+              <li onClick={closeMenu} className="hover:bg-slate-100 rounded-md">
+                <Link href="">Now Playing</Link>
+              </li>
+              <li onClick={closeMenu} className="hover:bg-slate-100 rounded-md">
+                <Link href="">Upcoming</Link>
+              </li>
+              <li onClick={closeMenu} className="hover:bg-slate-100 rounded-md">
+                <Link href="">Top Rated</Link>
+              </li>
+            </ul>
+          )}
+        </li>
+        <li className="text-nowrap relative">
+          <Link href="" onClick={() => toggleMenu("tv")}>
+            TV Shows
+          </Link>
+          {isMenu === "tv" && (
+            <ul
+              ref={refTv}
+              className="absolute top-8 font-light *:px-10 *:py-2 bg-white text-black text-nowrap rounded-md z-50 *:font-semibold"
+            >
+              <li
+                onClick={closeMenu}
+                className="hover:bg-slate-100 rounded-md "
+              >
+                <Link href="">Popular</Link>
+              </li>
+              <li
+                onClick={closeMenu}
+                className="hover:bg-slate-100 rounded-md "
+              >
+                <Link href="">Airing Today</Link>
+              </li>
+              <li
+                onClick={closeMenu}
+                className="hover:bg-slate-100 rounded-md "
+              >
+                <Link href="">On Tv</Link>
+              </li>
+              <li
+                onClick={closeMenu}
+                className="hover:bg-slate-100 rounded-md "
+              >
+                <Link href="">Top Rated</Link>
+              </li>
+            </ul>
+          )}
         </li>
         <li className="group/title text-nowrap relative">
-          <Link href="">TV Shows</Link>
-          <ul className=" *:hover:bg-slate-300 invisible group-hover/title:visible absolute top-8 font-light space-y-4 bg-white text-black py-4 px-10 text-nowrap rounded-md z-10">
-            <li>
-              <Link href="">Popular</Link>
-            </li>
-            <li>
-              <Link href="">Airing Today</Link>
-            </li>
-            <li>
-              <Link href="">On Tv</Link>
-            </li>
-            <li>
-              <Link href="">Top Rated</Link>
-            </li>
-          </ul>
-        </li>
-        <li className="group/title text-nowrap relative">
-          <Link href="">People</Link>
-          <ul className="w-fit *:hover:bg-slate-300 invisible group-hover/title:visible absolute top-8 font-light space-y-4 bg-white text-black py-4 px-10 text-nowrap rounded-md z-10">
-            <li>
-              <Link href="">Popular People</Link>
-            </li>
-          </ul>
+          <Link href="" onClick={() => toggleMenu("people")}>
+            People
+          </Link>
+          {isMenu === "people" && (
+            <ul
+              ref={refPeople}
+              className="w-fit absolute top-8 font-light *:px-10 *:py-2 bg-white text-black text-nowrap rounded-md z-50 *:font-semibold"
+            >
+              <li onClick={closeMenu} className="hover:bg-slate-100 rounded-md">
+                <Link href="">Popular People</Link>
+              </li>
+            </ul>
+          )}
         </li>
       </ul>
       <div className="flex items-center">

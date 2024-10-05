@@ -23,7 +23,7 @@ const Collection = ({
   }, [dispatch, collectionID]);
 
   return (
-    <main className="overflow-hidden">
+    <main className="overflow-hidden min-h-screen">
       {isError ? (
         isError.status_message
       ) : isLoading ? (

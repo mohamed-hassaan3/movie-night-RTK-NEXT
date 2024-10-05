@@ -1,4 +1,4 @@
-import { getPopular } from "@/app/actions/getPopular";
+import { getPopular } from "@/components/home-page/popular/getPopular";
 import { Data, TrendingProps } from "@/types";
 import React, { useCallback, useEffect, useState } from "react";
 import HorizontalCardSkeleton from "../common/HorizontalCardSkeleton";

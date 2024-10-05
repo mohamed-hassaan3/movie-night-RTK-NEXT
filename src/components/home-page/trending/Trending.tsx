@@ -1,9 +1,9 @@
 "use client";
 import React, { useCallback, useEffect, useState } from "react";
-import TrendingCard from "./cards/TrendingCard";
 import { Data, TrendingProps } from "@/types";
-import { getTrending } from "@/app/actions/getTrending";
-import HorizontalCardSkeleton from "../common/HorizontalCardSkeleton";
+import { getTrending } from "./getTrending";
+import TrendingCard from "../cards/TrendingCard";
+import HorizontalCardSkeleton from "@/components/common/HorizontalCardSkeleton";
 
 const Trending = () => {
   const [trendingData, setTrendingData] = useState<Data | undefined>();
