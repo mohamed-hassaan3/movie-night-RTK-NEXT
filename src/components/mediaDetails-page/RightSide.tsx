@@ -99,7 +99,7 @@ const RightSide = ({ mediaDetails }: { mediaDetails: MediaDetails }) => {
       {mediaDetails.keywords?.keywords && (
         <div className=" border-b pb-6">
           <h5 className="font-semibold mb-3">Keywords</h5>
-          <div className="flex flex-wrap md:w-[200%]">
+          <div className="flex flex-wrap mx-0 space-x-1 lg:w-[150%] xl:w-[180%]">
             {mediaDetails.keywords?.keywords &&
               mediaDetails.keywords.keywords?.map((word: Keywords) => (
                 <span

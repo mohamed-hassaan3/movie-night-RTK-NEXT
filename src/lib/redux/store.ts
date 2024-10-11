@@ -15,7 +15,8 @@ import {
 const configPersist = {
     key: "movie search",
     storage,
-    whitelist: ['']
+    whitelist: [''],
+    timeout: 1000
 }
 const persistedReducer = persistReducer(configPersist, RootReducer)
 

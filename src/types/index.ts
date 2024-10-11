@@ -75,7 +75,7 @@ export interface InitialCollectionDetails {
     isError: unknown
     isLoading: boolean
 }
-export interface TrendingProps {
+export interface MediaProps {
     id: number;
     title: string;
     name: string;
@@ -88,5 +88,13 @@ export interface TrendingProps {
 }
 
 export interface Data {
-    results: TrendingProps[];
+    results: MediaProps[];
+  }
+
+  export interface TopPeople {
+    id: number | string
+    name: string
+    original_name: string
+    profile_path: string
+    known_for: []
   }

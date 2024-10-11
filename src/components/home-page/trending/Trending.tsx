@@ -1,9 +1,9 @@
 "use client";
 import React, { useCallback, useEffect, useState } from "react";
-import { Data, TrendingProps } from "@/types";
+import { Data, MediaProps } from "@/types";
 import { getTrending } from "./getTrending";
-import TrendingCard from "../cards/TrendingCard";
 import HorizontalCardSkeleton from "@/components/common/HorizontalCardSkeleton";
+import GeneralCard from "@/components/common/cards/GeneralCard";
 
 const Trending = () => {
   const [trendingData, setTrendingData] = useState<Data | undefined>();
@@ -75,8 +75,8 @@ const Trending = () => {
           <HorizontalCardSkeleton items={trendingData || []} />
         ) : (
           trendingData?.results &&
-          trendingData.results?.map((trending: TrendingProps) => (
-            <TrendingCard key={trending.id} trending={trending} />
+          trendingData.results?.map((trending: MediaProps) => (
+            <GeneralCard key={trending.id} media={trending} />
           ))
         )}
       </div>

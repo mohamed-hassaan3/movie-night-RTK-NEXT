@@ -19,25 +19,25 @@ export const convertDateToString = (date: any) => {
 export const calculateAge = (age: Date) => {
   const birthDay = new Date(age).getFullYear();
   let today = new Date().getFullYear();
-  let calculated =  today - birthDay;
+  let calculated = today - birthDay;
 
   if (birthDay < 0) {
     calculated--;
   }
-  
-  return calculated
+
+  return calculated;
 };
 
 export const deathAge = (age: Date, death: Date) => {
   const birthDay = new Date(age).getFullYear();
   let deathTime = new Date(death).getFullYear();
-  let calculated =  deathTime - birthDay;
+  let calculated = deathTime - birthDay;
 
   if (birthDay < 0) {
     calculated--;
   }
-  
-  return calculated
+
+  return calculated;
 };
 
 export function formatVote(voteAverage: number) {
@@ -70,5 +70,14 @@ export const formatAmount = (amount: number) => {
 };
 
 export const formatDateYearly = (date: string) => {
-  return new Date(date).getFullYear()
-}
+  return new Date(date).getFullYear();
+};
+
+export const convertSymbol = (str: string) => {
+  const regex = /[^A-Z0-9]/gi;
+  const firstChar = /\b\w/g;
+
+  return str
+    .replace(regex, " ")
+    .replace(firstChar, (char) => char.toLocaleUpperCase());
+};

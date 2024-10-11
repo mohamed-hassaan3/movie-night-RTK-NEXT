@@ -1,5 +1,4 @@
 "use client";
-import CastCard from "@/components/mediaDetails-page/cards/CastCard";
 import FullCastCard from "@/components/mediaDetails-page/cards/FullCastCard";
 import { filterDate } from "@/helper/formatText";
 import { uniqueObject } from "@/helper/uniqueObject";

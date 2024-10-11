@@ -1,5 +1,5 @@
 "use server"
-import { Data, TrendingProps } from "@/types";
+import { Data } from "@/types";
 
 export async function getTrending({timeWindow}: {timeWindow: string}) {
     let data: Data | undefined = undefined

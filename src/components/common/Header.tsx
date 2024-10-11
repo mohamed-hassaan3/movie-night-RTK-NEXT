@@ -9,7 +9,7 @@ import useSearchQuery from "@/hooks/useSearchQuery";
 import useClickOutside from "@/hooks/useClickOutside";
 
 const Header = () => {
-  const [isMenu, setIsMenu] = useState<string | null>(null);
+  let [isMenu, setIsMenu] = useState<string | null>(null);
   const [isSearch, setIsSearch] = useState(false);
   const { searchTerm, handleChange, handleSubmit } = useSearchQuery();
   const refInput = useRef<HTMLInputElement | null>(null);
@@ -45,33 +45,35 @@ const Header = () => {
       </Link>
       <ul className="flex items-center flex-1 gap-8 *:text-xs *:md:text-sm *:2xl:text-md">
         <li className="group relative">
-          <Link href="" onClick={() => toggleMenu("movies")}>
-            Movies
-          </Link>
+          <button onClick={() => toggleMenu("movies")}>Movies</button>
           {isMenu === "movies" && (
             <ul
               ref={refMovies}
               className="absolute top-8 font-light *:px-10 *:py-2 bg-white text-black *:font-semibold text-nowrap rounded-md z-50"
             >
               <li onClick={closeMenu} className="hover:bg-slate-100 rounded-md">
-                <Link href="">Popular</Link>
+                <Link href={`/topMovies/${(isMenu = "popular")}`}>Popular</Link>
               </li>
               <li onClick={closeMenu} className="hover:bg-slate-100 rounded-md">
-                <Link href="">Now Playing</Link>
+                <Link href={`/topMovies/${(isMenu = "now_playing")}`}>
+                  Now Playing
+                </Link>
               </li>
               <li onClick={closeMenu} className="hover:bg-slate-100 rounded-md">
-                <Link href="">Upcoming</Link>
+                <Link href={`/topMovies/${(isMenu = "upcoming")}`}>
+                  Upcoming
+                </Link>
               </li>
               <li onClick={closeMenu} className="hover:bg-slate-100 rounded-md">
-                <Link href="">Top Rated</Link>
+                <Link href={`/topMovies/${(isMenu = "/top_rated")}`}>
+                  Top Rated
+                </Link>
               </li>
             </ul>
           )}
         </li>
         <li className="text-nowrap relative">
-          <Link href="" onClick={() => toggleMenu("tv")}>
-            TV Shows
-          </Link>
+          <button onClick={() => toggleMenu("tv")}>TV Shows</button>
           {isMenu === "tv" && (
             <ul
               ref={refTv}
@@ -81,40 +83,40 @@ const Header = () => {
                 onClick={closeMenu}
                 className="hover:bg-slate-100 rounded-md "
               >
-                <Link href="">Popular</Link>
+                <Link href={`/topTv/${(isMenu = "/popular")}`}>Popular</Link>
               </li>
               <li
                 onClick={closeMenu}
                 className="hover:bg-slate-100 rounded-md "
               >
-                <Link href="">Airing Today</Link>
+                <Link href={`/topTv/${(isMenu = "/airing_today")}`}>
+                  Airing Today
+                </Link>
               </li>
               <li
                 onClick={closeMenu}
                 className="hover:bg-slate-100 rounded-md "
               >
-                <Link href="">On Tv</Link>
+                <Link href={`/topTv/${(isMenu = "/on_the_air")}`}>On Tv</Link>
               </li>
               <li
                 onClick={closeMenu}
                 className="hover:bg-slate-100 rounded-md "
               >
-                <Link href="">Top Rated</Link>
+                <Link href={`/topTv/${(isMenu = "/top_rated")}`}>Top Rated</Link>
               </li>
             </ul>
           )}
         </li>
         <li className="group/title text-nowrap relative">
-          <Link href="" onClick={() => toggleMenu("people")}>
-            People
-          </Link>
+          <button onClick={() => toggleMenu("people")}>People</button>
           {isMenu === "people" && (
             <ul
               ref={refPeople}
               className="w-fit absolute top-8 font-light *:px-10 *:py-2 bg-white text-black text-nowrap rounded-md z-50 *:font-semibold"
             >
               <li onClick={closeMenu} className="hover:bg-slate-100 rounded-md">
-                <Link href="">Popular People</Link>
+                <Link href={`/topPeople/${(isMenu = "/popular")}`}>Popular People</Link>
               </li>
             </ul>
           )}

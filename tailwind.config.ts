@@ -13,7 +13,10 @@ const config: Config = {
         darkBlue: "rgb(3,37,65)",
         lightBlue: "rgb(1,180,228)",
         scrollerGrey: "rgb(219,219,219)"
-      }
+      },
+      screens: {
+        'xs': '430px',
+      },
     },
   },
   plugins: [],

@@ -1,8 +1,8 @@
 import { getPopular } from "@/components/home-page/popular/getPopular";
-import { Data, TrendingProps } from "@/types";
+import { Data, MediaProps } from "@/types";
 import React, { useCallback, useEffect, useState } from "react";
 import HorizontalCardSkeleton from "../../common/HorizontalCardSkeleton";
-import TrendingCard from "../cards/TrendingCard";
+import GeneralCard from "@/components/common/cards/GeneralCard";
 
 const Popular = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -74,8 +74,8 @@ const Popular = () => {
           <HorizontalCardSkeleton items={popularData || []} />
         ) : (
           popularData?.results &&
-          popularData.results?.map((trending: TrendingProps) => (
-            <TrendingCard key={trending.id} trending={trending} />
+          popularData.results?.map((trending: MediaProps) => (
+            <GeneralCard key={trending.id} media={trending} />
           ))
         )}
       </div>
