@@ -1,8 +1,7 @@
 import { getPopular } from "@/components/home-page/popular/getPopular";
-import { Data, TrendingProps } from "@/types";
+import { Data } from "@/types";
 import React, { useCallback, useEffect, useState } from "react";
 import HorizontalCardSkeleton from "../common/HorizontalCardSkeleton";
-import PersonCard from "../common/cards/PersonCard";
 import CastCard from "../mediaDetails-page/cards/CastCard";
 
 const TrendingPeople = () => {

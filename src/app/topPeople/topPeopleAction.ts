@@ -1,9 +1,9 @@
 import { Data } from "@/types"
 
-export const topPeopleAction = async (category: string) => {
+export async function topPeopleAction(category: string) {
     let data: Data | undefined = undefined
     let isError = false
-    let error = null
+    let error = ""
 
     try {
         const response = await fetch(`${process.env.NEXT_PUBLIC_MOVIE_DB_API}/person/${category}`,
@@ -17,8 +17,8 @@ export const topPeopleAction = async (category: string) => {
         data = await response.json();
     } catch (e) {
         isError = true
-        if (typeof e === "string") return error = e
-        else if (e instanceof Error) return error = e.message
+        if (typeof e === "string") error = e
+        else if (e instanceof Error) error = e.message
         else error = "Something Went Wrong"
     }
     return { data, isError, error }

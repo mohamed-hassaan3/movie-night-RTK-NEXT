@@ -15,8 +15,8 @@ export async function topTvAction(category: string) {
         data = await response.json()
     } catch (e) {
         isError = true
-        if (typeof e === "string") return error = e
-        else if (e instanceof Error) return error = e.message
+        if (typeof e === "string") error = e
+        else if (e instanceof Error) error = e.message
         else error = "Something Went Wrong"
     }
     return { data, isError, error }
