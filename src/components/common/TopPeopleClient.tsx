@@ -18,7 +18,7 @@ export default function TopPeopleClient({
   const fetchMoreData = async () => {
     if (loading) return;
     setLoading(true);
-    const res = await fetch(
+    const res = await fetch( 
       `${process.env.NEXT_PUBLIC_MOVIE_DB_API}/person/${category}?language=en-US&page=${page}`,
       {
         headers: {
