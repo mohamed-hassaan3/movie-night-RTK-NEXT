@@ -29,7 +29,7 @@ export default function TopPeopleClient({
     );
     const newData = await res.json();
 
-    setPeople((prevPeople) => {
+    setPeople((prevPeople: any) => {
       const mergedPeople = [...prevPeople, ...newData.results];
       const uniquePeople = Array.from(
         new Set(mergedPeople.map((item) => item.id))
