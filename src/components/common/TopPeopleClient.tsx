@@ -11,7 +11,7 @@ export default function TopPeopleClient({
   category: string;
 }) {
   const [people, setPeople] = useState(initialData.results || []);
-  const [page, setPage] = useState(2); // Start with the second page
+  const [page, setPage] = useState(2); 
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
 
@@ -65,7 +65,8 @@ export default function TopPeopleClient({
         {people.map((item: any) => (
           <TopPeopleCard key={item.id} person={item} />
         ))}
-      </article>
+
+      </article> 
       {loading && <p className="text-center my-4">Loading more people...</p>}
     </main>
   );
