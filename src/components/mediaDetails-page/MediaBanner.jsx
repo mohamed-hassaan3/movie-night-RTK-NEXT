@@ -29,6 +29,7 @@ const MediaBanner = ({ mediaDetails }) => {
     first_air_date,
     videos,
     name,
+    last_air_date
   } = mediaDetails;
 
   return (
@@ -80,8 +81,8 @@ const MediaBanner = ({ mediaDetails }) => {
               {title || original_title || original_name || name}
               <span className="font-normal ml-2">
                 (
-                {release_date &&
-                  formatDateYearly(release_date || first_air_date)}
+                {release_date ?
+                  formatDateYearly(release_date) : formatDateYearly(first_air_date)}
                 )
               </span>
             </p>

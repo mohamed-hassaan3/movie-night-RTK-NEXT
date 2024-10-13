@@ -5,6 +5,7 @@ import PercentageBar from "../PercentageBar";
 import Link from "next/link";
 import Image from "next/image";
 import { formatDate } from "@/helper/formatText";
+import UNKNOWN from '../../../../public/unknown-Img.jpg'
 
 const GeneralCard = ({ media }: { media: MediaProps }) => {
   const {
@@ -25,15 +26,26 @@ const GeneralCard = ({ media }: { media: MediaProps }) => {
       className="min-w-[180px] h-auto my-2 *:text-sm border rounded-lg shadow-lg"
     >
       <div className="relative ">
-        <Image
+        {poster_path || backdrop_path ? (
+
+          <Image
           className="min-w[150px] min-h-[225px] object-fill w-full mb-4 rounded-lg"
           width={150}
           height={225}
           src={`${process.env.NEXT_PUBLIC_MOVIE_DB_IMAGE_API}${
             poster_path || backdrop_path
           }`}
-          alt="img"
-        />
+          alt={name}
+          />
+        ) : (
+          <Image
+          className="min-w[150px] min-h-[225px] object-fill w-full mb-4 rounded-lg"
+          width={150}
+          height={225}
+          src={UNKNOWN}
+          alt={name}
+          />
+        )}
         <div className="w-12 aspect-square absolute -bottom-[18px] left-2">
           <PercentageBar percentage={vote_average} />
         </div>

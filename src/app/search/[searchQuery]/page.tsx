@@ -95,7 +95,6 @@ const SearchTerm = () => {
                   currentPage <= 1 && "opacity-50"
                 }`}
               />
-
               <span>
                 {currentPage} of {searchResult.total_pages}
               </span>

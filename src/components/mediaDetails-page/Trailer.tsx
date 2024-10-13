@@ -23,7 +23,7 @@ const Trailer: React.FC<TrailerProps> = ({ videos }) => {
   const getTrailer = findTrailer(videos);
 
   return (
-    <div>
+    <div className="w-full">
       <button
         onClick={onOpenPopup}
         className="flex items-center gap-2 cursor-pointer hover:opacity-90 active:opacity-90 font-bold text-lg"
@@ -38,7 +38,7 @@ const Trailer: React.FC<TrailerProps> = ({ videos }) => {
         typeName={getTrailer?.type}
       >
         <iframe
-        className="!w-full md:!w-1/2"
+          className="!w-[95%] xl:!w-1/2"
           width="50%"
           height="50%"
           src={`https://www.youtube.com/embed/${getTrailer?.key}`}

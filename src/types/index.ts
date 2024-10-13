@@ -89,6 +89,7 @@ export interface MediaProps {
 
 export interface Data {
     results: MediaProps[];
+    total_pages: any
   }
 
   export interface TopPeople {

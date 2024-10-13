@@ -11,15 +11,15 @@ const CastCard = ({ cast }: { cast: Cast }) => {
       <figure className="min-w-[170px] min-h-[250px] md:min-h-[265px] border shadow-md rounded-md">
         {profile_path ? (
           <Image
-            className="w-full h-[175px] object-fill aspect-video"
+            className="w-full h-[175px] object-fill aspect-square rounded-t-md"
             src={`${process.env.NEXT_PUBLIC_MOVIE_DB_IMAGE_API}${profile_path}`}
             width={100}
             height={100}
-            alt={"img"}
+            alt={name || character}
           />
         ) : (
           <Image
-            className="w-full h-[175px] object-contain aspect-video"
+            className="w-full h-[175px] object-fill aspect-square rounded-t-md"
             src={CHARACTER}
             width={70}
             height={100}
