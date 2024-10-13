@@ -23,13 +23,13 @@ const GeneralCard = ({ media }: { media: MediaProps }) => {
   return (
     <Link
       href={`/mediaDetails/${media_type ? media_type : "movie"}/${id}`}
-      className="min-w-[180px] h-auto my-2 *:text-sm border rounded-lg shadow-lg"
+      className="md:min-w-[240px] md:w-[240px] w-[180px] min-w-[180px] h-[340px] my-2 *:text-sm border rounded-lg shadow-lg"
     >
       <div className="relative ">
         {poster_path || backdrop_path ? (
 
           <Image
-          className="min-w[150px] min-h-[225px] object-fill w-full mb-4 rounded-lg"
+          className="h-[225px] object-fill w-full mb-4 rounded-lg"
           width={150}
           height={225}
           src={`${process.env.NEXT_PUBLIC_MOVIE_DB_IMAGE_API}${
@@ -39,7 +39,7 @@ const GeneralCard = ({ media }: { media: MediaProps }) => {
           />
         ) : (
           <Image
-          className="min-w[150px] min-h-[225px] object-fill w-full mb-4 rounded-lg"
+          className="h-[225px] object-fill w-full mb-4 rounded-lg"
           width={150}
           height={225}
           src={UNKNOWN}
@@ -50,9 +50,9 @@ const GeneralCard = ({ media }: { media: MediaProps }) => {
           <PercentageBar percentage={vote_average} />
         </div>
       </div>
-      <div className="p-2 w-full h-20">
+      <div className="p-2 w-full h-20 space-y-2">
         <h3 className="font-semibold">{title || name}</h3>
-        <p>{formatDate(release_date || first_air_date)}</p>
+        <p className="opacity-70">{formatDate(release_date || first_air_date)}</p>
       </div>
     </Link>
   );

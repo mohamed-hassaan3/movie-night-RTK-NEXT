@@ -3,13 +3,12 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import CHARACTER from "../../../../public/character.jpg";
-import { loopArr } from "@/helper/formatText";
 
 const TopPeopleCard = ({ person }: { person: TopPeople }) => {
   const { id, known_for, name, profile_path, original_name } = person;
   return (
     <Link href={`/person/${id}`}>
-      <figure className="w-[170px] 2xl:w-[250px] min-h-[250px] md:h-[310px] border shadow-md rounded-md overflow-hidden">
+      <figure className="w-[170px] 2xl:w-[250px] h-[310px] border shadow-md rounded-md overflow-hidden">
         {profile_path ? (
           <Image
             className="w-full h-[175px] object-fill aspect-square rounded-t-md"
