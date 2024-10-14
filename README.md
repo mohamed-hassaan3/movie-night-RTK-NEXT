@@ -38,23 +38,31 @@ Before running the project, make sure you have the following installed:
    npm install
    ```
 3. **Copy the environment variables to .env**:
-   Copy the contents of .env.example to a new .env file
 
-```bash
-    cp .env.example .env
-    Update the values in the .env file as needed for your environment.
+   ```bash
+   cp .env.example .env
+   ```
+
+   Copy the contents of .env.example to a new .env file
+   Update the values in the .env file as needed for your environment.
 
 4. **Run the development server**:
+
 ```bash
 npm run dev
+```
 
-5. **Engine Locking:
-To prevent any issues caused by inconsistencies between different versions of Node.js, a .nvmrc file is provided at the root level. Additionally, a .npmrc file is included to lock the Node version and ensure the package manager uses the specified engine version**:
+5. **Engine Locking**:
+   To prevent any issues caused by inconsistencies between different versions of Node.js, a .nvmrc file is provided at the root level. Additionally, a .npmrc file is included to lock the Node version and ensure the package manager uses the specified engine version:
+   `bash
 // package.json
 "engines": {
   "node": ">= 20.11.0"
 }
+    `
+
 ## Deployment
+
 The app is deployed using Vercel, which is the recommended platform for Next.js applications:
 
 Deploy on Vercel:
