@@ -1,5 +1,4 @@
 "use client";
-
 import { useState, useEffect } from "react";
 import TopPeopleCard from "./cards/TopPeopleCard";
 
@@ -11,14 +10,14 @@ export default function TopPeopleClient({
   category: string;
 }) {
   const [people, setPeople] = useState(initialData.results || []);
-  const [page, setPage] = useState(2); 
+  const [page, setPage] = useState(2);
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
 
   const fetchMoreData = async () => {
     if (loading) return;
     setLoading(true);
-    const res = await fetch( 
+    const res = await fetch(
       `${process.env.NEXT_PUBLIC_MOVIE_DB_API}/person/${category}?language=en-US&page=${page}`,
       {
         headers: {
@@ -45,7 +44,7 @@ export default function TopPeopleClient({
     const handleScroll = () => {
       if (
         window.innerHeight + document.documentElement.scrollTop >=
-          document.documentElement.offsetHeight - 500 &&
+          document.documentElement.offsetHeight - 300 &&
         hasMore
       ) {
         fetchMoreData();
@@ -57,17 +56,13 @@ export default function TopPeopleClient({
   }, [hasMore, loading]);
 
   return (
-    <main className="min-h-screen w-[95%] md:w-[80%] m-auto py-2 md:py-8">
-      <h1 className="font-bold md:text-xl 2xl:text-lg mb-6 lg:mb-3">
-        Top Rated
-      </h1>
-      <article className="grid place-items-center gap-2 lg:gap-4 xl:grid-cols-5 lg:grid-cols-4 md::grid-cols-4 sm:grid-cols-3 xs:grid-cols-2 grid-cols-1 ">
-        {people.map((item: any) => (
-          <TopPeopleCard key={item.id} person={item} />
-        ))}
-
-      </article> 
-      {loading && <p className="text-center my-4">Loading more people...</p>}
-    </main>
+    <article className="grid place-items-center gap-2 lg:gap-4 xl:grid-cols-5 lg:grid-cols-4 md::grid-cols-4 sm:grid-cols-3 xs:grid-cols-2 grid-cols-1 ">
+      {people.map((item: any) => (
+        <TopPeopleCard key={item.id} person={item} />
+      ))}
+      {loading && (
+        <p className="text-center my-4 text-nowrap">Loading more people...</p>
+      )}
+    </article>
   );
 }

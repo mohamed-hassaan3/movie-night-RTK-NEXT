@@ -15,7 +15,7 @@ const TopPeopleCard = ({ person }: { person: TopPeople }) => {
             src={`${process.env.NEXT_PUBLIC_MOVIE_DB_IMAGE_API}${profile_path}`}
             width={100}
             height={100}
-            alt={"img"}
+            alt={name || "img"}
           />
         ) : (
           <Image

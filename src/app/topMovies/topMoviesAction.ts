@@ -1,13 +1,13 @@
 "use server"
 import { Data } from "@/types"
 
-export async function topMoviesAction(category: string) {
+export async function topMoviesAction(category: string, page=1) {
 
     let data: Data | undefined = undefined
     let isError = false
     let error = ""
     try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_MOVIE_DB_API}/movie/${category}`,
+        const response = await fetch(`${process.env.NEXT_PUBLIC_MOVIE_DB_API}/movie/${category}?language=en-US&page=${page}`,
             {
                 headers: {
                     accept: 'application/json',
