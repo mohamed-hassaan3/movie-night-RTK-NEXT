@@ -35,7 +35,7 @@ const GeneralCard = ({ media }: { media: MediaProps }) => {
           src={`${process.env.NEXT_PUBLIC_MOVIE_DB_IMAGE_API}${
             poster_path || backdrop_path
           }`}
-          alt={name || "IMG"}
+          alt={ "IMG"}
           />
         ) : (
           <Image
@@ -43,7 +43,7 @@ const GeneralCard = ({ media }: { media: MediaProps }) => {
           width={150}
           height={225}
           src={UNKNOWN}
-          alt={name}
+          alt={"IMG"}
           />
         )}
         <div className="w-12 aspect-square absolute -bottom-[18px] left-2">
