@@ -30,7 +30,6 @@ const MediaID = ({
 
   useEffect(() => {
     dispatch(getMediaDetails({ mediaType, mediaID }));
-  
   }, [dispatch, mediaID, mediaType]);
 
   return (
