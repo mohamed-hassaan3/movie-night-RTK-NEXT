@@ -1,7 +1,6 @@
 import Image from "next/image";
 import {
   formatDate,
-  filterDate,
   loopArr,
   convertRuntime,
   formatDateYearly,
@@ -29,7 +28,7 @@ const MediaBanner = ({ mediaDetails }) => {
     first_air_date,
     videos,
     name,
-    last_air_date
+    last_air_date,
   } = mediaDetails;
 
   return (
@@ -81,13 +80,18 @@ const MediaBanner = ({ mediaDetails }) => {
               {title || original_title || original_name || name}
               <span className="font-normal ml-2">
                 (
-                {release_date ?
-                  formatDateYearly(release_date) : formatDateYearly(first_air_date)}
+                {release_date
+                  ? formatDateYearly(release_date)
+                  : formatDateYearly(first_air_date)}
                 )
               </span>
             </p>
             <ul className="text-start space-y-1 md:flex gap-3">
-              <li>{release_date && formatDate(release_date)}</li>
+              <li>
+                {release_date
+                  ? formatDate(release_date)
+                  : formatDate(last_air_date)}
+              </li>
               <li>{origin_country && loopArr(origin_country)}</li>
               <li>
                 <ul className="flex space-x-1">{loopArr(genres)}</ul>

@@ -5,7 +5,7 @@ import PrimaryButton from "@/components/common/Buttons/PrimaryButton";
 import useSearchQuery from "@/hooks/useSearchQuery";
 
 const Search = () => {
-  const {searchTerm, handleChange, handleSubmit} = useSearchQuery()
+  const { searchTerm, handleChange, handleSubmit } = useSearchQuery();
 
   return (
     <Form className="text-center m-auto w-[95%]" onSubmit={handleSubmit}>

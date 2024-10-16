@@ -31,13 +31,15 @@ const KeywordID = async ({
           Total Results: {keyword.total_results}
         </h1>
       )}
-      {keyword.total_results > 1 ? (
-        keyword?.results.map((result: any) => (
-          <SearchCard key={result.id} item={result} />
-        ))
-      ) : (
-        <p className="text-center h-[60dvh]">No Result Found!</p>
-      )}
+      <div className="space-y-2 md:space-y-4">
+        {keyword.total_results > 1 ? (
+          keyword?.results.map((result: any) => (
+            <SearchCard key={result.id} item={result} />
+          ))
+        ) : (
+          <p className="text-center h-[60dvh]">No Result Found!</p>
+        )}
+      </div>
     </div>
   );
 };
