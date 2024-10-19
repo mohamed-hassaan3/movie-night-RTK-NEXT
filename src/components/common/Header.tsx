@@ -30,6 +30,12 @@ const Header = () => {
     setIsSearch(!isSearch);
   };
 
+  const onSubmit = (e:React.FormEvent) => {
+    e.preventDefault()
+    handleSubmit()
+    toggleSearch()
+  }
+
   useEffect(() => {
     if (isSearch) {
       refInput.current?.focus();
@@ -125,7 +131,7 @@ const Header = () => {
       <div className="flex items-center">
         {isSearch && (
           <Form
-            onSubmit={handleSubmit}
+            onSubmit={onSubmit}
             className={`${
               isSearch && "opacity-100 "
             } flex items-center mr-2 absolute -left-1/2 top-[82px] z-50 translate-x-1/2 w-full opacity-0 transition-opacity duration-700`}

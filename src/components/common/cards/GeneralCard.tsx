@@ -51,8 +51,8 @@ const GeneralCard = ({ media }: { media: MediaProps }) => {
         </div>
       </div>
       <div className="p-2 w-full h-20 space-y-2">
-        <h3 className="font-semibold">{title || name}</h3>
-        <p className="opacity-70">{formatDate(release_date || first_air_date)}</p>
+        <h3 className="font-semibold">{title || name || ""}</h3>
+        <p className="opacity-70">{formatDate(release_date || first_air_date || "")}</p>
       </div>
     </Link>
   );

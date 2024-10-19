@@ -11,7 +11,7 @@ const FilterMovieList = ({
   personDetails: PersonDetails;
   filterMedia: string;
 }) => {
-  const { combined_credits, known_for_department, media_type } = personDetails;
+  const { combined_credits, known_for_department } = personDetails;
   
   const crew = [...new Set(combined_credits?.crew)];
   const cast = uniqueObject(combined_credits?.cast || []);
@@ -52,7 +52,7 @@ const FilterMovieList = ({
                     name="movie"
                   />
                   <Link
-                    href={`/mediaDetails/${media_type ? media_type : "movie"}/${
+                    href={`/mediaDetails/${item.media_type ? item.media_type : "movie"}/${
                       item.id
                     }`}
                   >
@@ -90,7 +90,7 @@ const FilterMovieList = ({
               <li key={item.id} className="py-3">
                 <Link
                   className="hover:text-lightBlue "
-                  href={`/mediaDetails/${media_type ? media_type : "movie"}/${
+                  href={`/mediaDetails/${item.media_type ? item.media_type : "movie"}/${
                     item.id
                   }`}
                 >
@@ -111,7 +111,7 @@ const FilterMovieList = ({
                 <li key={item.id} className="py-3">
                   <Link
                     className="hover:text-lightBlue "
-                    href={`/mediaDetails/${media_type ? media_type : "movie"}/${
+                    href={`/mediaDetails/${item.media_type ? item.media_type : "movie"}/${
                       item.id
                     }`}
                   >

@@ -4,6 +4,7 @@ import { Data, MediaProps } from "@/types";
 import { getTrending } from "./getTrending";
 import HorizontalCardSkeleton from "@/components/common/HorizontalCardSkeleton";
 import GeneralCard from "@/components/common/cards/GeneralCard";
+import PersonCard from "@/components/common/cards/PersonCard";
 
 const Trending = () => {
   const [trendingData, setTrendingData] = useState<Data | undefined>();
@@ -32,6 +33,7 @@ const Trending = () => {
     const value = (e.target as HTMLButtonElement).value;
     setTimeWindow(value);
   };
+  console.log("TRENDING", trendingData);
 
   return (
     <article className="relative">

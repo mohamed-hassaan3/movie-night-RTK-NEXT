@@ -21,8 +21,7 @@ const useSearchQuery = () => {
         dispatch(setSearchTerm(event.target.value.toLocaleLowerCase()));
     };
 
-    const handleSubmit = (event: React.ChangeEvent<HTMLFormElement>) => {
-        event.preventDefault();
+    const handleSubmit = () => {
         router.push(`/search/${searchTerm}`);
     };
 

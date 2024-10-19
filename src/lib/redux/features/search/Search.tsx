@@ -6,9 +6,12 @@ import useSearchQuery from "@/hooks/useSearchQuery";
 
 const Search = () => {
   const { searchTerm, handleChange, handleSubmit } = useSearchQuery();
-
+  const onSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    handleSubmit()
+  }
   return (
-    <Form className="text-center m-auto w-[95%]" onSubmit={handleSubmit}>
+    <Form className="text-center m-auto w-[95%]" onSubmit={onSubmit}>
       <input
         className="outline-none border-none w-full p-2 md:p-4 rounded-full relative md:placeholder:text-lg placeholder:text-sm"
         value={searchTerm}

@@ -30,7 +30,7 @@ const PercentageBar: React.FC<PercentageBarProps> = ({ percentage }) => {
           textSize: "24px"
         })}
         value={voteAverage}
-        text={`${voteAverage}%`}
+        text={`${voteAverage || 0}%`}
       />
     </div>
   );
