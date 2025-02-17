@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import LOGO from "../../../public/logo.png";
+import LOGO from "../../../public/logo.webp";
 import { FaSearch } from "react-icons/fa";
 import { useEffect, useRef, useState } from "react";
 import Form from "./Form";

@@ -37,9 +37,9 @@ const FullCastCard = ({ cast }: { cast: Cast }) => {
         )}
       </Link>
       <div className="flex flex-col justify-between gap-0 py-2 pr-4">
-        <h3 className=" font-extrabold">
+        <p className=" font-extrabold">
           {name || title || original_name || original_title}{" "}
-        </h3>
+        </p>
       </div>
     </div>
   );

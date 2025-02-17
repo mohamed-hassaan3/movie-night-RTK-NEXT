@@ -9,7 +9,7 @@ const TrendingPeople = () => {
   const [isError, setIsError] = useState(false);
   const [error, setError] = useState("");
   const [popularData, setPopularData] = useState<Data | undefined>();
-  const [popularType, setPopularType] = useState("person");
+  const [popularType] = useState("person");
 
   const fetchPopular = useCallback(async (type: string) => {
     setIsLoading(true);

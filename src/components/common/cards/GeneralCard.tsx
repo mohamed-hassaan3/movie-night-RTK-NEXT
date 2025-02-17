@@ -27,7 +27,6 @@ const GeneralCard = ({ media }: { media: MediaProps }) => {
     >
       <div className="relative ">
         {poster_path || backdrop_path ? (
-
           <Image
           className="h-[225px] object-fill w-full mb-4 rounded-lg"
           width={150}
@@ -35,7 +34,7 @@ const GeneralCard = ({ media }: { media: MediaProps }) => {
           src={`${process.env.NEXT_PUBLIC_MOVIE_DB_IMAGE_API}${
             poster_path || backdrop_path
           }`}
-          alt={ "IMG"}
+          alt="IMG"
           />
         ) : (
           <Image
@@ -43,7 +42,7 @@ const GeneralCard = ({ media }: { media: MediaProps }) => {
           width={150}
           height={225}
           src={UNKNOWN}
-          alt={"IMG"}
+          alt="IMG"
           />
         )}
         <div className="w-12 aspect-square absolute -bottom-[18px] left-2">
@@ -51,7 +50,7 @@ const GeneralCard = ({ media }: { media: MediaProps }) => {
         </div>
       </div>
       <div className="p-2 w-full h-20 space-y-2">
-        <h3 className="font-semibold">{title || name || ""}</h3>
+        <p className="font-semibold">{title || name || ""}</p>
         <p className="opacity-70">{formatDate(release_date || first_air_date || "")}</p>
       </div>
     </Link>

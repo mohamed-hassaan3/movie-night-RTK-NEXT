@@ -10,6 +10,7 @@ import { selectCategory } from "@/lib/redux/features/search/searchSlice";
 import { useAppDispatch, useAppSelector } from "@/lib/redux/hooks";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
 import { FaArrowLeft } from "react-icons/fa";
 
@@ -20,9 +21,7 @@ const FullCast = ({ params }: { params: { mediaID: number } }) => {
   const dispatch = useAppDispatch();
   const casts = mediaDetails.credits?.cast;
   const crews = uniqueObject(mediaDetails.credits?.crew);
-  console.log("CASTS", casts);
-  console.log("CREWS", crews);
-
+  const router = useRouter()
   useEffect(() => {
     dispatch(getMediaDetails({ mediaID, category }));
   }, [mediaID, category, dispatch]);
@@ -33,9 +32,8 @@ const FullCast = ({ params }: { params: { mediaID: number } }) => {
         <header className="bg-gray-800 my-6">
           <figure className="w-[75%] m-auto flex items-center gap-4">
             <Image
-              src={`${process.env.NEXT_PUBLIC_MOVIE_DB_IMAGE_API}${
-                mediaDetails.poster_path || mediaDetails.backdrop_path
-              }`}
+              src={`${process.env.NEXT_PUBLIC_MOVIE_DB_IMAGE_API}${mediaDetails.poster_path || mediaDetails.backdrop_path
+                }`}
               width={80}
               height={140}
               alt={mediaDetails.title || "poster"}
@@ -49,13 +47,7 @@ const FullCast = ({ params }: { params: { mediaID: number } }) => {
                   )})`}
                 </span>
               </h1>
-              <Link
-                className="opacity-50 text-white flex items-center gap-1 mt-2 hover:opacity-100"
-                href={`/mediaDetails/${mediaDetails.media_type ? mediaDetails.media_type : "movie"}/${mediaID}`}
-              >
-                <FaArrowLeft />
-                Back to main
-              </Link>
+              <button className="opacity-50 text-white flex items-center gap-1 mt-2 hover:opacity-100" onClick={() => router.back}><FaArrowLeft /> Back to main</button>
             </figcaption>
           </figure>
         </header>

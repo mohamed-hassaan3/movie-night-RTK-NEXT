@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import LOGO from "../../../public/logo.png";
+import LOGO from "../../../public/logo.webp";
 const Footer = () => {
   return (
     <div className="w-fit">

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import AVATAR from "../../../public/banner.jpg";
+import AVATAR from "../../../public/banner.webp";
 import { Search } from "@/lib/redux";
 const Banner = () => {
   return (

@@ -8,7 +8,7 @@ const CastCard = ({ cast }: { cast: Cast }) => {
 
   return (
     <Link href={`/person/${id}`}>
-      <figure className="min-w-[170px] min-h-[250px] md:min-h-[265px] border shadow-md rounded-md">
+      <figure className="min-w-[170px] overflow-hidden max-h-[250px] min-h-[250px] md:min-h-[265px] border shadow-md rounded-md">
         {profile_path ? (
           <Image
             className="w-full h-[175px] object-fill aspect-square rounded-t-md"
@@ -27,7 +27,7 @@ const CastCard = ({ cast }: { cast: Cast }) => {
           />
         )}
         <figcaption className=" p-3">
-          <h5 className="font-semibold text-sm">{name || null}</h5>
+          <p className="font-semibold text-sm">{name || null}</p>
           <small className="text-xs">{character || null}</small>
         </figcaption>
       </figure>

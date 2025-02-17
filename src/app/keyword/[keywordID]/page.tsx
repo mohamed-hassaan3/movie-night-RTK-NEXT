@@ -22,7 +22,6 @@ const KeywordID = async ({
   params: { keywordID: string | number };
 }) => {
   const keyword = await getKeyword(params.keywordID);
-  console.log("keyword", keyword);
 
   return (
     <div className="w-[90%] m-auto py-16">

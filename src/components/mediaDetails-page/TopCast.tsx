@@ -7,7 +7,6 @@ import { uniqueObject } from "@/helper/uniqueObject";
 
 const TopCast = ({ mediaDetails }: { mediaDetails: MediaDetails }) => {
   const truncateCast = uniqueObject(mediaDetails.credits?.cast.slice(0, 9));
-  console.log("Full Cast", mediaDetails.credits?.cast)
   return (
     <>
       {mediaDetails.credits?.cast.length > 0 ? (

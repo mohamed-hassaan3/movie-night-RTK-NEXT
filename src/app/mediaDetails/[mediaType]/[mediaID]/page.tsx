@@ -26,7 +26,6 @@ const MediaID = ({
   const isError = useAppSelector(selectMediaIDError);
   const mediaDetails = useAppSelector(selectMediaDetails);
   const dispatch = useAppDispatch();
-  console.log("Media type", mediaDetails?.media_type);
 
   useEffect(() => {
     dispatch(getMediaDetails({ mediaType, mediaID }));
