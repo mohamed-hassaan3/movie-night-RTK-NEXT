@@ -33,7 +33,6 @@ const Trending = () => {
     const value = (e.target as HTMLButtonElement).value;
     setTimeWindow(value);
   };
-  console.log("TRENDING", trendingData);
 
   return (
     <article className="relative">

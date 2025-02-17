@@ -16,6 +16,7 @@ const Banner = () => {
         className="w-full h-[50vh] object-cover opacity-80 -z-10"
         quality={100}
         alt="Banner"
+        priority
       />
     </div>
   );

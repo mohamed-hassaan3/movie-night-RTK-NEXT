@@ -12,7 +12,6 @@ export const getSearch = createAsyncThunk(
             const response = await API
                 (`search/${category}?query=${encodeURIComponent(searchTerm)}&page=${currentPage}`, options);
             const data = await response.data
-            console.log("DATA", data)
             return data
         } catch (error: unknown) {
             if (axios.isAxiosError(error)) {

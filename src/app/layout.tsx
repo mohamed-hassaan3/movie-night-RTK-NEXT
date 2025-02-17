@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     url: "https://movie-night-rtk-next.vercel.app/",
     images: [
       {
-        url: "https://i.ibb.co/fvzKpdz/opengraph-image.jpg",
+        url: "https://i.ibb.co/g7gzctT/opengraph-image.jpg",
         width: 800,
         height: 600
       }
