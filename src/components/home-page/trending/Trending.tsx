@@ -4,7 +4,6 @@ import { Data, MediaProps } from "@/types";
 import { getTrending } from "./getTrending";
 import HorizontalCardSkeleton from "@/components/common/HorizontalCardSkeleton";
 import GeneralCard from "@/components/common/cards/GeneralCard";
-import PersonCard from "@/components/common/cards/PersonCard";
 
 const Trending = () => {
   const [trendingData, setTrendingData] = useState<Data | undefined>();
