@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.3",
+    "@vercel/analytics": "^1.5.0",
     "axios": "^1.6.8",
     "next": "14.2.1",
     "nextjs-toploader": "^1.6.12",
