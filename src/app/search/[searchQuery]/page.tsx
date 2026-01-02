@@ -33,9 +33,6 @@ const SearchTerm = () => {
     ? searchResult.results
     : [];
 
-  console.log("RESULT", resultArray);
-  console.log("category", category);
-
   const renderCategoriesCard = (item: SearchItem) => {
     switch (category) {
       case "movie":

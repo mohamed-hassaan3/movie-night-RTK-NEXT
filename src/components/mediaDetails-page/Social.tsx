@@ -6,7 +6,6 @@ const Social = ({ mediaDetails }: { mediaDetails: MediaDetails }) => {
   const truncateSocial = mediaDetails.reviews?.results.slice(0, 1);
   const social: Reviews[] = mediaDetails.reviews?.results || [];
 
-  console.log("Social", social);
   return (
     <>
       {social.length !== 0 && (

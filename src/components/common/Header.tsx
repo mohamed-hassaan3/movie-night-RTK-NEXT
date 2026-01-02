@@ -134,10 +134,10 @@ const Header = () => {
             onSubmit={onSubmit}
             className={`${
               isSearch && "opacity-100 "
-            } flex items-center mr-2 absolute -left-1/2 top-[82px] z-50 translate-x-1/2 w-full opacity-0 transition-opacity duration-700`}
+            } flex items-center mr-2 absolute -left-1/2 top-[82px] z-20 translate-x-1/2 w-full opacity-0 transition-opacity duration-700`}
           >
             <input
-              className="border-b border-b-sky-700 text-[16px] outline-none p-1 w-full text-gray-500 italic focus:border-b-sky-500 rounded-md shadow-sm font-light px-1 placeholder:text-xs placeholder:font-thin"
+              className="border-b border-b-sky-700 text-[16px] outline-none p-1 w-full text-gray-500 italic focus:border-b-sky-500 rounded-md shadow-sm font-light px-1 placeholder:text-xs placeholder:font-thin0"
               type="text"
               name="search"
               ref={refInput}

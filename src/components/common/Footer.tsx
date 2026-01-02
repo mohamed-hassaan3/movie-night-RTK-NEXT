@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <div className="w-fit">
       <Link href="/" >
-        <Image src={LOGO} width={100} height={100} className="w-fit" alt="LOGO" />
+        <Image src={LOGO} width={60} height={60} alt="LOGO" />
       </Link>
     </div>
   );

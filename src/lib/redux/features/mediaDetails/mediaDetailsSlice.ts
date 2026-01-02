@@ -9,7 +9,6 @@ export const getMediaDetails = createAsyncThunk(
         try {
             const response = await API(`/${mediaType || category}/${mediaID}?&language=en-US&append_to_response=credits,videos,reviews,keywords,watch/providers,external_ids,recommendations`, options);
             const data = response.data
-            console.log("MEDIA ID", data)
             return data
         } catch (error) {
             if (axios.isAxiosError(error)) {

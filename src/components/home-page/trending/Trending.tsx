@@ -23,7 +23,6 @@ const Trending = () => {
     }
     setIsLoading(false);
   }, []);
-
   useEffect(() => {
     fetchTrending(timeWindow);
   }, [fetchTrending, timeWindow]);

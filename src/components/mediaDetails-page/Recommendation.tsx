@@ -2,7 +2,6 @@ import React from "react";
 import RecommendationCard from "./cards/RecommendationCard";
 
 const Recommendation = ({ mediaDetails }: { mediaDetails: MediaDetails }) => {
-  console.log("recommendations", mediaDetails.recommendations?.results);
   const recommendations = mediaDetails.recommendations?.results;
   return (
     <section className="py-6 border-b">

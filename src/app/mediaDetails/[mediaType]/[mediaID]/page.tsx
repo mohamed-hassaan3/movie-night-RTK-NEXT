@@ -26,7 +26,6 @@ const MediaID = ({
   const isError = useAppSelector(selectMediaIDError);
   const mediaDetails = useAppSelector(selectMediaDetails);
   const dispatch = useAppDispatch();
-
   useEffect(() => {
     dispatch(getMediaDetails({ mediaType, mediaID }));
   }, [dispatch, mediaID, mediaType]);
@@ -34,7 +33,7 @@ const MediaID = ({
   return (
     <main className="overflow-hidden">
       {isError ? (
-        <p className="text-center my-4 mx-auto h-[60dvh]">
+        <p className="text-center my-4 mx-auto h-[75dvh] flex flex-col items-center justify-center">
           {isError.status_message}
         </p>
       ) : isLoading ? (

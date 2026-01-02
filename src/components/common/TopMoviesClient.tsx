@@ -57,7 +57,7 @@ const TopMoviesClient = ({
   return (
     <article className="grid place-items-center gap-2 lg:gap-4 xl:grid-cols-5 lg:grid-cols-4 md::grid-cols-4 sm:grid-cols-3 xs:grid-cols-2 grid-cols-1">
       {movies &&
-        movies?.map((item: any) => <GeneralCard key={item.id} media={item} />)}
+        movies?.map((item: any) => <GeneralCard key={item.id} media={item} popularType="movie" />)}
       {loading && (
         <p className="text-center my-4 text-nowrap">Loading more Movies...</p>
       )}

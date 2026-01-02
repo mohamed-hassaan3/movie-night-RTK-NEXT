@@ -16,7 +16,6 @@ const TvID = ({ params }: { params: { tvID: number | string } }) => {
   const isError = useAppSelector(selectTvIDError);
   const tvDetails = useAppSelector(selectTvDetails);
   const dispatch = useAppDispatch();
-  console.log("TV Details", tvDetails?.network);
 
   useEffect(() => {
     dispatch(getTvDetails({ tvID }));

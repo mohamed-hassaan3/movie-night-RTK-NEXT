@@ -7,7 +7,7 @@ import Image from "next/image";
 import { formatDate } from "@/helper/formatText";
 import UNKNOWN from '../../../../public/unknown-Img.jpg'
 
-const GeneralCard = ({ media }: { media: MediaProps }) => {
+const GeneralCard = ({ media, popularType }: { media: MediaProps, popularType?: string}) => {
   const {
     id,
     title,
@@ -22,7 +22,7 @@ const GeneralCard = ({ media }: { media: MediaProps }) => {
 
   return (
     <Link
-      href={`/mediaDetails/${media_type ? media_type : "movie"}/${id}`}
+      href={`/mediaDetails/${media_type ? media_type : popularType === "movie" ? "movie" : "tv"}/${id}`}
       className="md:min-w-[200px] md:w-[200px] w-[180px] min-w-[180px] md:h-[340px] h-[300px] my-2 *:text-sm border rounded-lg shadow-lg"
     >
       <div className="relative ">

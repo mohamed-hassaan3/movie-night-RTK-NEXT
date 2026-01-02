@@ -1,6 +1,5 @@
 import React from "react";
 import { topTvAction } from "../topTvAction";
-import GeneralCard from "@/components/common/cards/GeneralCard";
 import { convertSymbol } from "@/helper/formatText";
 import TopTvClient from "@/components/common/TopTvClient";
 

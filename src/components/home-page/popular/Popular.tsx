@@ -75,7 +75,7 @@ const Popular = () => {
         ) : (
           popularData?.results &&
           popularData.results?.map((trending: MediaProps) => (
-            <GeneralCard key={trending.id} media={trending} />
+            <GeneralCard key={trending.id} media={trending} popularType={popularType} />
           ))
         )}
       </div>
