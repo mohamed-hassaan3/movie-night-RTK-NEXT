@@ -1,14 +1,27 @@
+"use client";
 import { getPopular } from "@/components/home-page/popular/getPopular";
 import { Data } from "@/types";
 import React, { useCallback, useEffect, useState } from "react";
 import HorizontalCardSkeleton from "../common/HorizontalCardSkeleton";
 import CastCard from "../mediaDetails-page/cards/CastCard";
 
-const TrendingPeople = () => {
+type TrendingPeopleProps = {
+  initialData?: Data;
+  initialError?: string;
+  initialIsError?: boolean;
+};
+
+const TrendingPeople = ({
+  initialData,
+  initialError = "",
+  initialIsError = false,
+}: TrendingPeopleProps) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
-  const [error, setError] = useState("");
-  const [popularData, setPopularData] = useState<Data | undefined>();
+  const [isError, setIsError] = useState(initialIsError);
+  const [error, setError] = useState(initialError);
+  const [popularData, setPopularData] = useState<Data | undefined>(
+    initialData
+  );
   const [popularType] = useState("person");
 
   const fetchPopular = useCallback(async (type: string) => {
@@ -24,8 +37,10 @@ const TrendingPeople = () => {
   }, []);
 
   useEffect(() => {
-    fetchPopular(popularType);
-  }, [fetchPopular, popularType]);
+    if (!popularData) {
+      fetchPopular(popularType);
+    }
+  }, [fetchPopular, popularData, popularType]);
 
   return (
     <article className="relative">

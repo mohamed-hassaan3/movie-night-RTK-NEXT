@@ -5,18 +5,34 @@ import { getTrending } from "./getTrending";
 import HorizontalCardSkeleton from "@/components/common/HorizontalCardSkeleton";
 import GeneralCard from "@/components/common/cards/GeneralCard";
 
-const Trending = () => {
-  const [trendingData, setTrendingData] = useState<Data | undefined>();
+type TrendingProps = {
+  initialData?: Data;
+  initialError?: string;
+  initialIsError?: boolean;
+};
+
+const Trending = ({
+  initialData,
+  initialError = "",
+  initialIsError = false,
+}: TrendingProps) => {
+  const [trendingData, setTrendingData] = useState<Data | undefined>(
+    initialData
+  );
   const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
-  const [error, setError] = useState("");
+  const [isError, setIsError] = useState(initialIsError);
+  const [error, setError] = useState(initialError);
   const [timeWindow, setTimeWindow] = useState<string>("day");
+  const [loadedTimeWindow, setLoadedTimeWindow] = useState(
+    initialData ? "day" : ""
+  );
 
   const fetchTrending = useCallback(async (timeWindow: string) => {
     setIsLoading(true);
     const { data, error, isError } = await getTrending({ timeWindow });
     if (!isError) {
       setTrendingData(data);
+      setLoadedTimeWindow(timeWindow);
     } else {
       setIsError(true);
       setError(error);
@@ -24,8 +40,10 @@ const Trending = () => {
     setIsLoading(false);
   }, []);
   useEffect(() => {
-    fetchTrending(timeWindow);
-  }, [fetchTrending, timeWindow]);
+    if (timeWindow !== loadedTimeWindow) {
+      fetchTrending(timeWindow);
+    }
+  }, [fetchTrending, loadedTimeWindow, timeWindow]);
 
   const toggleBtn = (e: React.MouseEvent<HTMLButtonElement>) => {
     const value = (e.target as HTMLButtonElement).value;

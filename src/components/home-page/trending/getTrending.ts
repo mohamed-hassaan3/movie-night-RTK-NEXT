@@ -13,7 +13,6 @@ export async function getTrending({timeWindow}: {timeWindow: string}) {
                     Authorization: `Bearer ${process.env.NEXT_PUBLIC_MOVIE_DB_ACCESS_TOKEN}`,
                 },
             });
-            console.log("TRENDING DATA", data)
         data = await response.json()
     } catch (e) {
         isError = true;

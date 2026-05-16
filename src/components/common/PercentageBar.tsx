@@ -1,3 +1,4 @@
+"use client";
 import { formatVote } from "@/helper/formatText";
 import React from "react";
 import { buildStyles, CircularProgressbar } from "react-circular-progressbar";

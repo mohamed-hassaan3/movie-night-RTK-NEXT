@@ -31,6 +31,7 @@ const GeneralCard = ({ media, popularType }: { media: MediaProps, popularType?: 
           className="md:h-[225px] h-[200px] w-full mb-4 rounded-lg"
           width={150}
           height={225}
+          sizes="(min-width: 768px) 200px, 180px"
           src={`${process.env.NEXT_PUBLIC_MOVIE_DB_IMAGE_API}${
             poster_path || backdrop_path
           }`}
@@ -41,6 +42,7 @@ const GeneralCard = ({ media, popularType }: { media: MediaProps, popularType?: 
           className="h-[225px] w-full mb-4 rounded-lg"
           width={150}
           height={225}
+          sizes="(min-width: 768px) 200px, 180px"
           src={UNKNOWN}
           alt="movie poster"
           />
