@@ -6,15 +6,20 @@ type MediaDetailsResult = {
   error?: any;
   isError: boolean;
 };
+const DEFAULT_URL = "https://api.themoviedb.org/3"
+const rawUrl = process.env.NEXT_PUBLIC_MOVIE_DB_API || DEFAULT_URL;
 
 export async function getMediaDetailsFromApi(
   mediaType: string,
   mediaID: string | number
 ): Promise<MediaDetailsResult> {
   try {
-    const baseUrl =
-      process.env.NEXT_PUBLIC_MOVIE_DB_API?.replace(/\/$/, "") ||
-      "https://api.themoviedb.org/3";
+    const parsedUrl = new URL(rawUrl);
+    if (parsedUrl.protocol !== "https:") {
+      throw new Error("Security Error: Insecure HTTP protocol blocked.");
+    }
+    const baseUrl = parsedUrl.href.replace(/\/$/, "");
+
     const response = await fetch(
       `${baseUrl}/${mediaType}/${mediaID}?language=en-US&append_to_response=${appendToResponse}`,
       {
