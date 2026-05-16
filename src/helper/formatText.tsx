@@ -44,12 +44,13 @@ export function formatVote(voteAverage: number) {
   return Math.round(voteAverage * 10);
 }
 
-export function loopArr(arr: Item[]) {
+export function loopArr(arr: Array<Item | string>) {
   return arr?.map((e, i) => {
+    const label = typeof e === "string" ? e : e.name;
     return (
       <Fragment key={i}>
-        {e.name ? e.name : e}
-        {i < e.length - 1 || (i < e.name?.length - 1 && ", ")}
+        {label}
+        {i < arr.length - 1 ? ", " : ""}
       </Fragment>
     );
   });

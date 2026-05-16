@@ -1,11 +1,11 @@
 module.exports = {
-    images: {
-      unoptimized: true,
-      remotePatterns: [
-        {
-          protocol: 'https',
-          hostname: 'image.tmdb.org',
-        },
-      ],
-    },
-  }
+  images: {
+    formats: ["image/avif", "image/webp"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "image.tmdb.org",
+      },
+    ],
+  },
+};

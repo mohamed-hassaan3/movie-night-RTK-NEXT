@@ -9,8 +9,16 @@ import PercentageBar from "../common/PercentageBar";
 import WatchProviders from "./WatchProviders";
 import Trailer from "./Trailer";
 import unknown from "../../../public/unknown-Img.jpg";
+import { getTmdbImageUrl } from "@/Utilities/tmdbImages";
+import { toRgba } from "@/Utilities/getImagePalette";
 
-const MediaBanner = ({ mediaDetails }) => {
+const fallbackPalette = {
+  rgb: [3, 37, 65],
+  titleTextColor: "#ffffff",
+  bodyTextColor: "#ffffff",
+};
+
+const MediaBanner = ({ mediaDetails, bannerPalette = fallbackPalette }) => {
   const {
     id,
     backdrop_path,
@@ -30,45 +38,65 @@ const MediaBanner = ({ mediaDetails }) => {
     name,
     last_air_date,
   } = mediaDetails;
+  const backdropUrl = getTmdbImageUrl(backdrop_path || poster_path, "w1280");
+  const posterUrl = getTmdbImageUrl(poster_path, "w500");
+  const paletteColor = bannerPalette.rgb || fallbackPalette.rgb;
+  const titleTextColor =
+    bannerPalette.titleTextColor || fallbackPalette.titleTextColor;
+  const bodyTextColor =
+    bannerPalette.bodyTextColor || fallbackPalette.bodyTextColor;
 
   return (
     <div className="text-center relative m-auto !text-sm">
-      <section className="lg:h-[70vh] w-full bg-darkBlue text-white md:text-black md:bg-transparent">
-        {backdrop_path || poster_path !== null ? (
-          <Image
-            className="w-full h-full object-cover object-right-top opacity-10 hidden lg:block"
-            src={`${process.env.NEXT_PUBLIC_MOVIE_DB_IMAGE_API}${
-              backdrop_path ? backdrop_path : poster_path
-            }`}
-            layout="fill"
-            alt="Banner"
-          />
-        ) : (
-          <Image
-            className="w-full h-full object-cover object-right-top opacity-10 hidden"
-            src={unknown}
-            layout="fill"
-            alt="Banner2"
-          />
-        )}
+      <section
+        className="relative w-full overflow-hidden bg-darkBlue text-white"
+        style={{
+          backgroundColor: toRgba(paletteColor, 1),
+          backgroundImage: backdropUrl
+            ? `linear-gradient(to bottom, ${toRgba(
+                paletteColor,
+                0.98
+              )} 0%, ${toRgba(paletteColor, 0.62)} 42%, ${toRgba(
+                paletteColor,
+                0.18
+              )} 100%), linear-gradient(to right, ${toRgba(
+                paletteColor,
+                1
+              )} 0%, ${toRgba(paletteColor, 0.96)} 46%, ${toRgba(
+                paletteColor,
+                0.72
+              )} 100%), url(${backdropUrl})`
+            : undefined,
+          backgroundPosition: "center top, center top, right top",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+        }}
+      >
         {/* Content */}
-        <article className="lg:absolute lg:left-1/2 lg:-translate-x-1/2 lg:top-1/2 lg:-translate-y-1/2 w-[95%] lg:flex-row lg:w-[80%] p-4 lg:p-2 flex static flex-col gap-4 md:items-center">
+        <article
+          className="relative z-10 m-auto w-[95%] lg:flex-row lg:w-[80%] p-4 py-8 lg:py-10 lg:px-2 flex static flex-col gap-4 md:items-center"
+          style={{ color: bodyTextColor }}
+        >
           <figure className="lg:min-w-[300px] lg:max-w-[300px] w-full">
-            {poster_path !== null ? (
+            {posterUrl ? (
               <Image
-                className="shadow-md w-full object-fill max-h-[300px] lg:min-h-[400px] lg:max-h-[400px] lg:min-w-[300px] lg:max-w-[300px]"
-                src={`${process.env.NEXT_PUBLIC_MOVIE_DB_IMAGE_API}${poster_path}`}
+                className="shadow-md w-full object-fill max-h-[300px] lg:min-h-[400px] lg:max-h-[400px] lg:min-w-[300px] lg:max-w-[300px] rounded-md"
+                src={posterUrl}
                 width={300}
                 height={450}
                 alt="Banner3"
+                sizes="(min-width: 1024px) 300px, 95vw"
+                priority
+                unoptimized
               />
             ) : (
               <Image
-                className="shadow-md w-full object-fill min-h-[400px] max-h-[400px] min-w-[300px] max-w-[300px]"
+                className="shadow-md w-full object-fill min-h-[400px] max-h-[400px] min-w-[300px] max-w-[300px] rounded-md"
                 src={unknown}
                 width={300}
                 height={450}
                 alt="Banner2"
+                sizes="(min-width: 1024px) 300px, 95vw"
               />
             )}
             <figcaption className="w-full border-b rounded-md lg:border-b-0">
@@ -76,7 +104,10 @@ const MediaBanner = ({ mediaDetails }) => {
             </figcaption>
           </figure>
           <aside className="flex flex-col p-4 text-start overflow-hidden min-w-[70%]">
-            <p className="md:text-2xl font-extrabold text-start md:mr-12">
+            <p
+              className="md:text-2xl font-extrabold text-start md:mr-12"
+              style={{ color: titleTextColor }}
+            >
               {title || original_title || original_name || name}
               <span className="font-normal ml-2">
                 (
@@ -112,7 +143,7 @@ const MediaBanner = ({ mediaDetails }) => {
               {videos?.results && <Trailer videos={videos?.results} id={id} />}
             </div>
             <div className="space-y-3 md:mr-16">
-              <p className="text-gray-500 italic">{tagline}</p>
+              <p className="italic opacity-70">{tagline}</p>
               {overview && (
                 <div className="space-y-2">
                   <h3 className="text-xl font-bold">Overview</h3>

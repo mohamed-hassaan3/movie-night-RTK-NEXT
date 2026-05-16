@@ -1,21 +1,38 @@
+"use client";
 import { getPopular } from "@/components/home-page/popular/getPopular";
 import { Data, MediaProps } from "@/types";
 import React, { useCallback, useEffect, useState } from "react";
 import HorizontalCardSkeleton from "../../common/HorizontalCardSkeleton";
 import GeneralCard from "@/components/common/cards/GeneralCard";
 
-const Popular = () => {
+type PopularProps = {
+  initialData?: Data;
+  initialError?: string;
+  initialIsError?: boolean;
+};
+
+const Popular = ({
+  initialData,
+  initialError = "",
+  initialIsError = false,
+}: PopularProps) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
-  const [error, setError] = useState("");
-  const [popularData, setPopularData] = useState<Data | undefined>();
+  const [isError, setIsError] = useState(initialIsError);
+  const [error, setError] = useState(initialError);
+  const [popularData, setPopularData] = useState<Data | undefined>(
+    initialData
+  );
   const [popularType, setPopularType] = useState("movie");
+  const [loadedPopularType, setLoadedPopularType] = useState(
+    initialData ? "movie" : ""
+  );
 
   const fetchPopular = useCallback(async (type: string) => {
     setIsLoading(true);
     const { data, isError, error } = await getPopular({ type });
     if (!isError) {
       setPopularData(data);
+      setLoadedPopularType(type);
     } else {
       setIsError(true);
       setError(error);
@@ -24,8 +41,10 @@ const Popular = () => {
   }, []);
 
   useEffect(() => {
-    fetchPopular(popularType);
-  }, [fetchPopular, popularType]);
+    if (popularType !== loadedPopularType) {
+      fetchPopular(popularType);
+    }
+  }, [fetchPopular, loadedPopularType, popularType]);
 
   const toggleBtn = (e: React.MouseEvent<HTMLButtonElement>) => {
     const value = (e.target as HTMLButtonElement).value;

@@ -7,6 +7,7 @@ import { uniqueObject } from "@/helper/uniqueObject";
 
 const TopCast = ({ mediaDetails }: { mediaDetails: MediaDetails }) => {
   const truncateCast = uniqueObject(mediaDetails.credits?.cast.slice(0, 9));
+  const mediaType = mediaDetails.media_type || "movie";
   return (
     <>
       {mediaDetails.credits?.cast.length > 0 ? (
@@ -20,7 +21,7 @@ const TopCast = ({ mediaDetails }: { mediaDetails: MediaDetails }) => {
             {/* View More Card */}
             {mediaDetails.credits?.cast.length > 9 && (
               <Link
-                href={`/mediaDetails/${mediaDetails.id}/${mediaDetails.media_type ? mediaDetails.media_type : "movie"}/fullCast`}
+                href={`/mediaDetails/${mediaType}/${mediaDetails.id}/fullCast`}
                 className="flex items-center justify-center gap-2 min-w-[170px] min-h-[265px] border shadow-md rounded-md"
               >
                 View More
@@ -32,7 +33,7 @@ const TopCast = ({ mediaDetails }: { mediaDetails: MediaDetails }) => {
           </div>
           <Link
             className="text-lg hover:opacity-50"
-            href={`/mediaDetails/${mediaDetails.media_type ? mediaDetails.media_type : "movie"}/${mediaDetails.id}/fullCast`}
+            href={`/mediaDetails/${mediaType}/${mediaDetails.id}/fullCast`}
           >
             Full Cast & Crew
           </Link>
