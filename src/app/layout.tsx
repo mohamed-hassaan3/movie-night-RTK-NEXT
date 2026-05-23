@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     template: "%s | Movie Night",
   },
   description:
-    "A Next.js movie database application built with React, Redux Toolkit, and Axios. It offers real-time movie, TV show, and actor search and filtering capabilities. The app uses server-side actions for dynamic data updates and leverages responsive design for an optimized experience across devices. Features include API integration, global state management, and seamless UI interactions. ",
+    "A Next.js movie database application built with React, Redux Toolkit, and Axios. It offers real-time movie, TV show, and actor search and filtering capabilities. The app uses server-side actions for dynamic data updates and leverages responsive design for an optimized experience across devices. Features include API integration, global state management, and seamless UI interactions.",
   alternates: {
     languages: {
       "en-US": "/en-US",
